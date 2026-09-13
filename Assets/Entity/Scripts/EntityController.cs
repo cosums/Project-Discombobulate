@@ -22,10 +22,17 @@ public class EntityController : MonoBehaviour
     public bool HasLineOfSight;
 
     public LayerMask VisibilityLayerMask;
+
+    public AINodeManager NodeManager;
     
     void Start()
     {
         m_Agent = GetComponent<NavMeshAgent>();
+
+        AINode startNode = NodeManager.FindRandHiddenNode(Player);
+
+        m_Agent.Warp(startNode.transform.position);
+
     }
 
     void Update()
