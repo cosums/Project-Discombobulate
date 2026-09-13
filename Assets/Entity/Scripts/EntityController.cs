@@ -26,6 +26,10 @@ public class EntityController : MonoBehaviour
     public AINodeManager NodeManager;
     public AINode CurrentTarget;
 
+    [Header("Speed Controls")]
+    public float StalkFollowSpeed = 0f;
+    public float StalkHideSpeed = 0f;
+
     // behavior
     private IEntityBehavior _currentBehavior;
 
@@ -34,11 +38,11 @@ public class EntityController : MonoBehaviour
     void Start()
     {
         Agent = GetComponent<NavMeshAgent>();
-
-        CurrentTarget = NodeManager.FindRandHiddenNode(Player);
-
-        Agent.Warp(CurrentTarget.transform.position);
         ChangeBehavior(StalkingBehavior);
+
+        NodeManager.EvaluateHiddenNodes(Player);
+        CurrentTarget = NodeManager.FindRandHiddenNode(Player);
+        Agent.Warp(CurrentTarget.transform.position);
     }
 
     void Update()
@@ -63,8 +67,6 @@ public class EntityController : MonoBehaviour
         float distanceToPlayer = displacementToPlayer.magnitude;
         Vector3 dirToPlayer = displacementToPlayer.normalized;
         float angle = Vector3.Angle(PlayerCamera.transform.forward, -dirToPlayer);
-
-        
         
         if (angle < CenterFOV)
         {

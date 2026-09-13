@@ -7,7 +7,7 @@ public class StalkingBehavior : IEntityBehavior
     
     public void Enter(EntityController entity)
     {
-        phase = StalkingPhase.Hiding;
+        phase = StalkingPhase.Following;
         phaseTimer = 0f;
     }
 
@@ -38,6 +38,7 @@ public class StalkingBehavior : IEntityBehavior
         {
             entity.CurrentTarget = entity.NodeManager.FindRandHiddenNode(entity.Player);
             entity.Agent.Warp(entity.CurrentTarget.transform.position); // go to a new place. will probably need a cooldown here too
+            entity.Agent.speed = entity.StalkFollowSpeed;
             SetPhase(StalkingPhase.Following); // move to following
             return;
         }
@@ -78,6 +79,7 @@ public class StalkingBehavior : IEntityBehavior
         // TODO
         entity.CurrentTarget = entity.NodeManager.FindFarthestSafeHiddenNode(entity.Player, entity.transform);
         entity.Agent.SetDestination(entity.CurrentTarget.transform.position);
+        entity.Agent.speed = entity.StalkHideSpeed;
         SetPhase(StalkingPhase.Hiding);
     }
 

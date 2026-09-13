@@ -2113,6 +2113,8 @@ MonoBehaviour:
   VisibilityLayerMask:
     serializedVersion: 2
     m_Bits: 55
+  HiddenNodes: []
+  BehindPlayerAngleThreshold: 90
 --- !u!1 &1111884007
 GameObject:
   m_ObjectHideFlags: 0
@@ -3670,6 +3672,14 @@ PrefabInstance:
       propertyPath: PlayerCamera
       value: 
       objectReference: {fileID: 1883601552}
+    - target: {fileID: 4905316657505248884, guid: 1e2d22dac4d306049a37b8e390996ad7, type: 3}
+      propertyPath: StalkHideSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905316657505248884, guid: 1e2d22dac4d306049a37b8e390996ad7, type: 3}
+      propertyPath: StalkFollowSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4905316657505248884, guid: 1e2d22dac4d306049a37b8e390996ad7, type: 3}
       propertyPath: VisibilityLayerMask.m_Bits
       value: 55

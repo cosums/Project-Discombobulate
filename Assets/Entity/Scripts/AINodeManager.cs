@@ -34,6 +34,12 @@ public class AINodeManager : MonoBehaviour
         }
     }
 
+    public AINode FindFallbackNode()
+    {
+        int choice = Random.Range(0, AINodes.Count);
+        return AINodes[choice];
+    }
+
     public AINode FindRandHiddenNode(Transform playerTransform)
     {
         EvaluateHiddenNodes(playerTransform);
@@ -44,7 +50,7 @@ public class AINodeManager : MonoBehaviour
         } 
         else
         {
-            return null;
+            return FindFallbackNode();
         }
     }
 
@@ -52,7 +58,7 @@ public class AINodeManager : MonoBehaviour
     {
         EvaluateHiddenNodes(playerTransform);
 
-        AINode farthestNode = HiddenNodes[0];
+        AINode farthestNode = FindFallbackNode();
         float farthestDistance = 0f;
 
         foreach (var node in HiddenNodes)
@@ -75,7 +81,7 @@ public class AINodeManager : MonoBehaviour
         Vector3 dirToPlayer = (playerTransform.position - entityTransform.position).normalized;
         float distanceToPlayer = Vector3.Distance(entityTransform.position, playerTransform.position);
 
-        AINode best = null;
+        AINode best = FindFallbackNode();
         float bestDistance = 0f;
 
         foreach (var node in HiddenNodes)
