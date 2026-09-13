@@ -54,11 +54,14 @@ public class StalkingBehavior : IEntityBehavior
 
     private void TickFollowing(EntityController entity)
     {
-        if (entity.PlayerVisibility == Visibility.Focused && entity.HasLineOfSight)
+        if ((entity.PlayerVisibility == Visibility.Focused || entity.PlayerVisibility == Visibility.Periphery) && entity.HasLineOfSight)
         {
             SetPhase(StalkingPhase.StareDown);
             return;
         }
+
+        AINode targetNode = entity.NodeManager.FindClosestOffscreenNode(entity.Player);
+        entity.Agent.SetDestination(targetNode.transform.position);
     }
 
     private void TickStareDown(EntityController entity)

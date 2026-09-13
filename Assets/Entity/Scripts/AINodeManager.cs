@@ -102,4 +102,24 @@ public class AINodeManager : MonoBehaviour
 
         return best; // plan to use backup behavior going forward
     }
+
+    public AINode FindClosestOffscreenNode(Transform playerTransform)
+    {
+        AINode closestNode = FindFallbackNode();
+        float closestDistance = Mathf.Infinity;
+
+        foreach (var node in AINodes)
+        {
+            if (node.VisibleToPlayer) continue;
+            
+            float distance = (node.transform.position - playerTransform.position).sqrMagnitude;
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestNode = node;
+            }
+        }
+
+        return closestNode;
+    }
 }
