@@ -115,14 +115,16 @@ MonoBehaviour:
   - {r: 1, g: 0.5402735, b: 0, a: 1}
   - {r: 1, g: 0.86889887, b: 0, a: 1}
   - {r: 0.29615474, g: 1, b: 0, a: 1}
+  Agent: {fileID: 4591156269016564387}
   CenterFOV: 10
   PeripheryFOV: 60
-  BehaviorState: 0
   PlayerVisibility: 0
   HasLineOfSight: 0
   VisibilityLayerMask:
     serializedVersion: 2
     m_Bits: 55
+  NodeManager: {fileID: 0}
+  CurrentTarget: {fileID: 0}
 --- !u!195 &4591156269016564387
 NavMeshAgent:
   m_ObjectHideFlags: 0
