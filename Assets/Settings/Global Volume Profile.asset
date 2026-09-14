@@ -21,10 +21,10 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.4
+    m_Value: 0.28
   smoothness:
-    m_OverrideState: 0
-    m_Value: 0.2
+    m_OverrideState: 1
+    m_Value: 1
   rounded:
     m_OverrideState: 0
     m_Value: 0
@@ -83,7 +83,7 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: 2.2
+    m_Value: 1.5
   contrast:
     m_OverrideState: 1
     m_Value: -3
@@ -111,13 +111,32 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {r: 0.509434, g: 0.45102403, b: 0.39168745, a: 1}
+    m_Value: {r: 0.59607846, g: 0.5662656, b: 0.5294118, a: 1}
   highlights:
     m_OverrideState: 1
-    m_Value: {r: 0.9245283, g: 0.71526897, b: 0.501513, a: 1}
+    m_Value: {r: 0.8867924, g: 0.64208794, b: 0.3973834, a: 1}
   balance:
+    m_OverrideState: 1
+    m_Value: 18
+--- !u!114 &-2681263576729561041
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb60a22f311433c4c962b888d1393f88, type: 3}
+  m_Name: PaniniProjection
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.PaniniProjection
+  active: 1
+  distance:
+    m_OverrideState: 1
+    m_Value: 0.199
+  cropToFit:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 1
 --- !u!114 &-1305170661529749050
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -188,6 +207,7 @@ MonoBehaviour:
   - {fileID: -6489491696343890689}
   - {fileID: -8492734598488917710}
   - {fileID: 3882595842547421673}
+  - {fileID: -2681263576729561041}
 --- !u!114 &3882595842547421673
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -206,7 +226,7 @@ MonoBehaviour:
     m_Value: {x: 1, y: 0.93713677, z: 0.98828036, w: 0}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 0.8016485, y: 0.91217935, z: 1, w: 0}
+    m_Value: {x: 0.8779609, y: 0.863722, z: 1, w: 0}
   highlights:
     m_OverrideState: 0
     m_Value: {x: 1, y: 1, z: 1, w: 0}
