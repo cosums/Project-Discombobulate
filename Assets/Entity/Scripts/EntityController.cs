@@ -12,20 +12,38 @@ public class EntityController : MonoBehaviour
 
     public Color[] colors = new Color[4];
 
-    private NavMeshAgent m_Agent;
+    public NavMeshAgent Agent;
+    public AIPathfollower Pathfollower;
 
     public float CenterFOV = 30f;
     public float PeripheryFOV = 40f;
 
-    public BehaviorMode BehaviorState = BehaviorMode.Stalking;
+
     public Visibility PlayerVisibility;
     public bool HasLineOfSight;
 
     public LayerMask VisibilityLayerMask;
+
+    public AINodeManager NodeManager;
+    public AINode CurrentTarget;
+
+    [Header("Speed Controls")]
+    public float StalkFollowSpeed = 0f;
+    public float StalkHideSpeed = 0f;
+
+    // behavior
+    private IEntityBehavior _currentBehavior;
+
+    public readonly StalkingBehavior StalkingBehavior = new StalkingBehavior();
     
     void Start()
     {
-        m_Agent = GetComponent<NavMeshAgent>();
+        Agent = GetComponent<NavMeshAgent>();
+        ChangeBehavior(StalkingBehavior);
+
+        NodeManager.EvaluateHiddenNodes(Player);
+        CurrentTarget = NodeManager.FindRandHiddenNode(Player);
+        Agent.Warp(CurrentTarget.transform.position);
     }
 
     void Update()
@@ -33,6 +51,34 @@ public class EntityController : MonoBehaviour
         UpdateVisibility();
 
         LookAtPlayer();
+
+        _currentBehavior.Tick(this);
+    }
+
+    public void SmartMoveToNode(AINode target, System.Func<AINode, AINode, float, float> costFn = null)
+    {
+        if (target == null) return;
+
+        AINode currentNode = NodeManager.FindNearestNode(transform.position);
+        var path = AStarPathfinder.FindPath(currentNode, target, costFn);
+
+        if (path == null || path.Count == 0) return; 
+
+        Pathfollower.SetPath(path);
+        CurrentTarget = target;
+    }
+
+    public void MoveToNode(AINode target)
+    {
+        Pathfollower.Stop();
+        Agent.SetDestination(target.transform.position);
+    }
+
+    public void ChangeBehavior(IEntityBehavior newBehavior)
+    {
+        _currentBehavior?.Exit(this);
+        _currentBehavior = newBehavior;
+        _currentBehavior?.Enter(this);
     }
 
     void UpdateVisibility()
@@ -50,7 +96,7 @@ public class EntityController : MonoBehaviour
         {
             PlayerVisibility = Visibility.Periphery;
             Renderer.material.color = colors[1];
-        } else if (Renderer.isVisible)
+        } else if (VisibilityUtility.FOVCheck(transform, Camera.main))
         {
             PlayerVisibility = Visibility.OnScreen;
             Renderer.material.color = colors[2];
@@ -74,21 +120,15 @@ public class EntityController : MonoBehaviour
 
     void LookAtPlayer()
     {
-        if (PlayerVisibility == Visibility.Focused) return;
+        //if (PlayerVisibility == Visibility.Focused) return;
         HeadAnchor.LookAt(PlayerCamera.position);
     }
-}
 
-public enum BehaviorMode
-{
-    Stalking
-}
-
-public enum StalkingPhase
-{
-    Hiding,
-    Following,
-    StareDown
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.purple;
+        if (CurrentTarget!= null) Gizmos.DrawSphere(CurrentTarget.transform.position, 0.5f);
+    }
 }
 
 public enum Visibility
