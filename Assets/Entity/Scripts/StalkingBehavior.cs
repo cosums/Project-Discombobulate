@@ -60,9 +60,9 @@ public class StalkingBehavior : IEntityBehavior
             return;
         }
 
-        AINode targetNode = entity.NodeManager.FindClosestOffscreenNode(entity.Player);
+        AINode targetNode = entity.NodeManager.FindClosestOffscreenNode(entity.Player, entity.StalkTargetDistance);
         if (targetNode != entity.CurrentTarget) {
-            entity.SmartMoveToNode(targetNode, entity.NodeManager.ExposureCostFunc); // try to stay out of sight!
+            entity.SmartMoveToNode(targetNode, entity.NodeManager.PathExposureCostFunc); // try to stay out of sight!
         }
     }
 

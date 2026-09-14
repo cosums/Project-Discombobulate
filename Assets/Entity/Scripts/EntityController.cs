@@ -30,6 +30,7 @@ public class EntityController : MonoBehaviour
     [Header("Speed Controls")]
     public float StalkFollowSpeed = 0f;
     public float StalkHideSpeed = 0f;
+    public float StalkTargetDistance = 15f;
 
     // behavior
     private IEntityBehavior _currentBehavior;

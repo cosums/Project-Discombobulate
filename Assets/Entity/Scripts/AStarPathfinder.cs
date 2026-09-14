@@ -86,7 +86,11 @@ public static class AStarPathfinder
                 AINode neighbor = edge.Target;
                 if (closed.Contains(neighbor)) continue;
 
-                float newG = gScore[current] + costFn(current, neighbor, edge.Distance); // swap this part out with a more advanced cost function as needed!
+                float edgeCost = costFn(current, neighbor, edge.Distance);
+                if (float.IsNaN(edgeCost) || float.IsInfinity(edgeCost)) continue;
+
+                float newG = gScore[current] + edgeCost;
+                if (float.IsNaN(newG) || float.IsInfinity(newG)) continue;
 
                 if (!gScore.TryGetValue(neighbor, out float oldG) || newG < oldG )
                 {

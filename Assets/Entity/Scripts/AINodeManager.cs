@@ -7,11 +7,14 @@ public class AINodeManager : MonoBehaviour
     public LayerMask VisibilityLayerMask;
 
     public float MaxLinkDistance = 5f;
+    public float SampleInterval = 1f;
 
     public static List<AINode> AINodes = new();
     [HideInInspector] public List<AINode> HiddenNodes = new();
 
     public float BehindPlayerAngleThreshold = 90f;
+
+    public Transform PlayerTransform;
 
     void Awake()
     {
@@ -43,11 +46,40 @@ public class AINodeManager : MonoBehaviour
                     float pathLength = GetPathLength(path);
                     if (pathLength > MaxLinkDistance) continue;
 
-                    a.Edges.Add(new AINodeEdge { Target = b, Distance = pathLength});
-                    b.Edges.Add(new AINodeEdge {Target = a, Distance = pathLength});
+                    Vector3[] corners = (Vector3[])path.corners.Clone();
+                    Vector3[] samples = SamplePointsAlongPath(path.corners, SampleInterval);
+                    a.Edges.Add(new AINodeEdge { Target = b, Distance = pathLength, Corners = corners, SamplePoints = samples});
+
+                    Vector3[] reversedCorners = (Vector3[])corners.Clone();
+                    Vector3[] reversedSamples = (Vector3[])samples.Clone();
+                    System.Array.Reverse(reversedCorners);
+                    System.Array.Reverse(reversedSamples);
+                    b.Edges.Add(new AINodeEdge {Target = a, Distance = pathLength, Corners = reversedCorners, SamplePoints = reversedSamples});
                 }
             }
         }
+    }
+
+    Vector3[] SamplePointsAlongPath(Vector3[] corners, float interval)
+    {
+        var samples = new List<Vector3>();
+
+        for (int i = 0; i < corners.Length - 1; i++)
+        {
+            Vector3 segStart = corners[i];
+            Vector3 segEnd = corners[i + 1];
+            float segLength = Vector3.Distance(segStart, segEnd);
+
+            int steps = Mathf.Max(1, Mathf.CeilToInt(segLength / interval));
+
+            for (int s = 0; s <= steps; s++)
+            {
+                float t = s / (float)steps;
+                samples.Add(Vector3.Lerp(segStart, segEnd, t));
+            }
+        }
+
+        return samples.ToArray();
     }
 
     public float GetPathLength(NavMeshPath path)
@@ -70,6 +102,50 @@ public class AINodeManager : MonoBehaviour
         return baseDistance * multiplier;
     }
 
+    public float EdgeExposureCostFunc(AINode from, AINode to, float baseDistance)
+    {
+        AINodeEdge edge = from.Edges.Find(e => e.Target == to);
+        if (edge == null || edge.Corners == null) return baseDistance;
+
+        float worstMultiplier = 1f;
+
+        for (int i = 0; i < edge.Corners.Length; i++)
+        {
+            Vector3 samplePos = edge.Corners[i] + Vector3.up * GameConstants.PlayerHeightOffset;
+            Vector3 toPlayer = PlayerTransform.position - samplePos;
+            float dist = toPlayer.magnitude;
+
+            bool exposed = !Physics.Raycast(samplePos, toPlayer.normalized, dist, VisibilityLayerMask);
+
+            if (exposed)
+            {
+                worstMultiplier = Mathf.Max(worstMultiplier, 10f);
+            }
+        }
+
+        return baseDistance * worstMultiplier;
+    }
+
+    public float PathExposureCostFunc(AINode from, AINode to, float baseDistance)
+    {
+        AINodeEdge edge = from.Edges.Find(e => e.Target == to);
+        if (edge == null || edge.SamplePoints == null) return baseDistance;
+
+        foreach (var point in edge.SamplePoints)
+        {
+            Vector3 samplePos = point + Vector3.up * GameConstants.PlayerHeightOffset;
+            Vector3 toPlayer = PlayerTransform.position - samplePos;
+            float dist = toPlayer.magnitude;
+
+            //bool los = !Physics.Raycast(samplePos, toPlayer.normalized, dist, VisibilityLayerMask);
+            bool visible = VisibilityUtility.FOVCheck(samplePos, Camera.main);
+
+            if (visible) return float.PositiveInfinity;
+        }
+
+        return baseDistance;
+    }
+
     public AINode FindNearestNode(Vector3 position)
     {
         AINode nearest = FindFallbackNode();
@@ -90,6 +166,7 @@ public class AINodeManager : MonoBehaviour
 
     public void EvaluateHiddenNodes(Transform playerTransform)
     {
+        PlayerTransform = playerTransform;
         HiddenNodes = new();
         
         foreach (var node in AINodes)
@@ -210,16 +287,19 @@ public class AINodeManager : MonoBehaviour
         return best; // plan to use backup behavior going forward
     }
 
-    public AINode FindClosestOffscreenNode(Transform playerTransform)
+    public AINode FindClosestOffscreenNode(Transform playerTransform, float threshold = 0f)
     {
         AINode closestNode = FindFallbackNode();
         float closestDistance = Mathf.Infinity;
+        float thresholdSqrd = threshold * threshold;
 
         foreach (var node in AINodes)
         {
             if (node.VisibleToPlayer) continue;
             
             float distance = (node.transform.position - playerTransform.position).sqrMagnitude;
+            if (distance < thresholdSqrd) continue;
+
             if (distance < closestDistance)
             {
                 closestDistance = distance;

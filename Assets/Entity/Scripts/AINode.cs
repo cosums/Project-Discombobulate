@@ -42,7 +42,19 @@ public class AINode : MonoBehaviour
         {
             Gizmos.color = Color.gray;
             Gizmos.DrawLine(transform.position + Vector3.up * GameConstants.PlayerHeightOffset, edge.Target.transform.position +  Vector3.up * GameConstants.PlayerHeightOffset);
+            foreach (var corner in edge.Corners)
+            {
+                Gizmos.color = Color.lightGray;
+                Gizmos.DrawSphere(corner, 0.2f);
+            }
+            foreach (var sample in edge.SamplePoints)
+            {
+                Gizmos.color = Color.white;
+                Gizmos.DrawSphere(sample, 0.1f);
+            }
         }
+
+        
     }
 
     private bool CheckVisibility()
@@ -56,4 +68,6 @@ public class AINodeEdge
 {
     public AINode Target;
     public float Distance;
+    public Vector3[] Corners;
+    public Vector3[] SamplePoints;
 }
