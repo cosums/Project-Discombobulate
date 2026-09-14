@@ -1,14 +1,65 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AINodeManager : MonoBehaviour
 {
     public LayerMask VisibilityLayerMask;
 
+    public float MaxLinkDistance = 5f;
+
     public static List<AINode> AINodes = new();
-    public List<AINode> HiddenNodes = new();
+    [HideInInspector] public List<AINode> HiddenNodes = new();
 
     public float BehindPlayerAngleThreshold = 90f;
+
+    void Awake()
+    {
+        AINodes = new List<AINode>(
+            FindObjectsByType<AINode>(FindObjectsInactive.Include, FindObjectsSortMode.None)
+        );
+
+        BuildGraph();
+    }
+
+    public void BuildGraph()
+    {
+        var path = new NavMeshPath();
+
+        foreach (var node in AINodes) node.Edges.Clear();
+
+        for (int i = 0; i < AINodes.Count; i++)
+        {
+            for (int j = i + 1; j < AINodes.Count; j++)
+            {
+                AINode a = AINodes[i];
+                AINode b = AINodes[j];
+
+                float absDistance = Vector3.Distance(a.transform.position, b.transform.position);
+                if (absDistance > MaxLinkDistance) continue;
+
+                if (NavMesh.CalculatePath(a.transform.position, b.transform.position, NavMesh.AllAreas, path) && path.status == NavMeshPathStatus.PathComplete)
+                {
+                    float pathLength = GetPathLength(path);
+                    if (pathLength > MaxLinkDistance) continue;
+
+                    a.Edges.Add(new AINodeEdge { Target = b, Distance = pathLength});
+                    b.Edges.Add(new AINodeEdge {Target = a, Distance = pathLength});
+                }
+            }
+        }
+    }
+
+    public float GetPathLength(NavMeshPath path)
+    {
+        float length = 0f;
+        for (int i = 1; i < path.corners.Length; i++)
+        {
+            length += Vector3.Distance(path.corners[i - 1], path.corners[i]);
+        }
+
+        return length;
+    }
 
     public void EvaluateHiddenNodes(Transform playerTransform)
     {
@@ -94,6 +145,35 @@ public class AINodeManager : MonoBehaviour
             if (requiresApproachingPlayer) continue;
 
             if (distanceToNode > bestDistance)
+            {
+                bestDistance = distanceToNode;
+                best = node;
+            }
+        }
+
+        return best; // plan to use backup behavior going forward
+    }
+
+    public AINode FindClosestSafeHiddenNode(Transform playerTransform, Transform entityTransform)
+    {
+        EvaluateHiddenNodes(playerTransform);
+
+        Vector3 dirToPlayer = (playerTransform.position - entityTransform.position).normalized;
+        float distanceToPlayer = Vector3.Distance(entityTransform.position, playerTransform.position);
+
+        AINode best = FindFallbackNode();
+        float bestDistance = Mathf.Infinity;
+
+        foreach (var node in HiddenNodes)
+        {
+            Vector3 dirToNode = (node.transform.position - entityTransform.position).normalized;
+            float distanceToNode = Vector3.Distance(node.transform.position, entityTransform.position);
+            float angle = Vector3.Angle(dirToPlayer, dirToNode.normalized);
+
+            bool requiresApproachingPlayer = angle < BehindPlayerAngleThreshold && distanceToNode > distanceToPlayer;
+            if (requiresApproachingPlayer) continue;
+
+            if (distanceToNode < bestDistance)
             {
                 bestDistance = distanceToNode;
                 best = node;

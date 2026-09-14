@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AINode : MonoBehaviour
@@ -6,12 +7,11 @@ public class AINode : MonoBehaviour
     public float DebugRadius = 0.25f;
     public bool VisibleToPlayer = false;
     public bool LineOfSightToPlayer = false;
-
     private Camera _PlayerCamera;
+    public List<AINodeEdge> Edges;
 
     void Start()
     {
-        AINodeManager.AINodes.Add(this);
         _PlayerCamera = Camera.main;
     }
 
@@ -26,25 +26,34 @@ public class AINode : MonoBehaviour
         
         if (LineOfSightToPlayer && VisibleToPlayer)
         {
-            targetColor = Color.green;
+            targetColor = Color.red;
         } else if (LineOfSightToPlayer)
         {
-            targetColor = Color.yellow;
-        } else if (VisibleToPlayer)
-        {
             targetColor = Color.orange;
-        } else
+        } else 
         {
-            targetColor = Color.red;
-        }
+            targetColor = Color.green;
+        } 
 
         Gizmos.color = targetColor;
-
         Gizmos.DrawSphere(transform.position + Vector3.up * GameConstants.PlayerHeightOffset, DebugRadius);
+
+        foreach (var edge in Edges)
+        {
+            Gizmos.color = Color.gray;
+            Gizmos.DrawLine(transform.position + Vector3.up * GameConstants.PlayerHeightOffset, edge.Target.transform.position +  Vector3.up * GameConstants.PlayerHeightOffset);
+        }
     }
 
     private bool CheckVisibility()
     {
         return VisibilityUtility.FOVCheck(transform, _PlayerCamera);
     }
+}
+
+[System.Serializable]
+public class AINodeEdge
+{
+    public AINode Target;
+    public float Distance;
 }

@@ -2113,6 +2113,7 @@ MonoBehaviour:
   VisibilityLayerMask:
     serializedVersion: 2
     m_Bits: 55
+  MaxLinkDistance: 15
   HiddenNodes: []
   BehindPlayerAngleThreshold: 90
 --- !u!1 &1111884007

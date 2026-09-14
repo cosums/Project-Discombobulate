@@ -13,8 +13,6 @@ public class StalkingBehavior : IEntityBehavior
 
     public void Tick(EntityController entity)
     {
-        phaseTimer += Time.deltaTime;
-
         entity.NodeManager.EvaluateHiddenNodes(entity.Player);
 
         switch (phase)
@@ -23,6 +21,8 @@ public class StalkingBehavior : IEntityBehavior
             case StalkingPhase.Following: TickFollowing(entity); break;
             case StalkingPhase.StareDown: TickStareDown(entity); break;
         }
+        
+        phaseTimer += Time.deltaTime;
     }
 
     private void SetPhase(StalkingPhase p)
@@ -46,7 +46,7 @@ public class StalkingBehavior : IEntityBehavior
         // check if hiding node is now visible
         if (entity.CurrentTarget.VisibleToPlayer && entity.CurrentTarget.LineOfSightToPlayer)
         {
-            entity.CurrentTarget = entity.NodeManager.FindFarthestSafeHiddenNode(entity.Player, entity.transform);
+            entity.CurrentTarget = entity.NodeManager.FindClosestSafeHiddenNode(entity.Player, entity.transform);
             entity.Agent.SetDestination(entity.CurrentTarget.transform.position);
             return;
         }

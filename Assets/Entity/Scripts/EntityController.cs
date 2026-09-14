@@ -100,7 +100,7 @@ public class EntityController : MonoBehaviour
 
     void LookAtPlayer()
     {
-        if (PlayerVisibility == Visibility.Focused) return;
+        //if (PlayerVisibility == Visibility.Focused) return;
         HeadAnchor.LookAt(PlayerCamera.position);
     }
 
