@@ -13,6 +13,7 @@ public class EntityController : MonoBehaviour
     public Color[] colors = new Color[4];
 
     public NavMeshAgent Agent;
+    public AIPathfollower Pathfollower;
 
     public float CenterFOV = 30f;
     public float PeripheryFOV = 40f;
@@ -52,6 +53,25 @@ public class EntityController : MonoBehaviour
         LookAtPlayer();
 
         _currentBehavior.Tick(this);
+    }
+
+    public void SmartMoveToNode(AINode target, System.Func<AINode, AINode, float, float> costFn = null)
+    {
+        if (target == null) return;
+
+        AINode currentNode = NodeManager.FindNearestNode(transform.position);
+        var path = AStarPathfinder.FindPath(currentNode, target, costFn);
+
+        if (path == null || path.Count == 0) return; 
+
+        Pathfollower.SetPath(path);
+        CurrentTarget = target;
+    }
+
+    public void MoveToNode(AINode target)
+    {
+        Pathfollower.Stop();
+        Agent.SetDestination(target.transform.position);
     }
 
     public void ChangeBehavior(IEntityBehavior newBehavior)

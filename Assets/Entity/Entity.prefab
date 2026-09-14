@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2328357110707670461}
   - component: {fileID: 4905316657505248884}
   - component: {fileID: 4591156269016564387}
+  - component: {fileID: 7010583869224924797}
   m_Layer: 3
   m_Name: Entity
   m_TagString: Untagged
@@ -116,6 +117,7 @@ MonoBehaviour:
   - {r: 1, g: 0.86889887, b: 0, a: 1}
   - {r: 0.29615474, g: 1, b: 0, a: 1}
   Agent: {fileID: 4591156269016564387}
+  Pathfollower: {fileID: 7010583869224924797}
   CenterFOV: 10
   PeripheryFOV: 60
   PlayerVisibility: 0
@@ -125,6 +127,8 @@ MonoBehaviour:
     m_Bits: 55
   NodeManager: {fileID: 0}
   CurrentTarget: {fileID: 0}
+  StalkFollowSpeed: 0
+  StalkHideSpeed: 0
 --- !u!195 &4591156269016564387
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -147,6 +151,22 @@ NavMeshAgent:
   m_BaseOffset: 0.85
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7010583869224924797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520472271918234028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22693e012e4589e46a3a2224558da56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AIPathfollower
+  ArrivalPercision: 1
+  Agent: {fileID: 4591156269016564387}
+  CurrentPath: []
+  CurrentIndex: 0
 --- !u!1 &1095988588427801852
 GameObject:
   m_ObjectHideFlags: 0

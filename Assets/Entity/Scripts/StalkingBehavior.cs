@@ -46,8 +46,8 @@ public class StalkingBehavior : IEntityBehavior
         // check if hiding node is now visible
         if (entity.CurrentTarget.VisibleToPlayer && entity.CurrentTarget.LineOfSightToPlayer)
         {
-            entity.CurrentTarget = entity.NodeManager.FindClosestSafeHiddenNode(entity.Player, entity.transform);
-            entity.Agent.SetDestination(entity.CurrentTarget.transform.position);
+            AINode target = entity.NodeManager.FindClosestSafeHiddenNode(entity.Player, entity.transform);
+            entity.MoveToNode(target); // do not be concerened with staying out of sight, just GO!
             return;
         }
     }
@@ -61,13 +61,16 @@ public class StalkingBehavior : IEntityBehavior
         }
 
         AINode targetNode = entity.NodeManager.FindClosestOffscreenNode(entity.Player);
-        entity.Agent.SetDestination(targetNode.transform.position);
+        if (targetNode != entity.CurrentTarget) {
+            entity.SmartMoveToNode(targetNode, entity.NodeManager.ExposureCostFunc); // try to stay out of sight!
+        }
     }
 
     private void TickStareDown(EntityController entity)
     {
         if (phaseTimer == 0f)
         {
+            // TODO
             float f = Random.Range(0, 1f);
             if (f < .25f)
             {
@@ -79,9 +82,11 @@ public class StalkingBehavior : IEntityBehavior
             }
         }
         
-        // TODO
-        entity.CurrentTarget = entity.NodeManager.FindFarthestSafeHiddenNode(entity.Player, entity.transform);
-        entity.Agent.SetDestination(entity.CurrentTarget.transform.position);
+        
+        AINode target = entity.NodeManager.FindClosestSafeHiddenNode(entity.Player, entity.transform);
+        entity.MoveToNode(target);
+
+
         entity.Agent.speed = entity.StalkHideSpeed;
         SetPhase(StalkingPhase.Hiding);
     }

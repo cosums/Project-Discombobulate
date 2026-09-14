@@ -61,6 +61,33 @@ public class AINodeManager : MonoBehaviour
         return length;
     }
 
+    public float ExposureCostFunc(AINode from, AINode to, float baseDistance)
+    {
+        float multiplier = 1f;
+        if (to.LineOfSightToPlayer) multiplier = 5f;
+        if (to.VisibleToPlayer) multiplier = 10f;
+
+        return baseDistance * multiplier;
+    }
+
+    public AINode FindNearestNode(Vector3 position)
+    {
+        AINode nearest = FindFallbackNode();
+        float nearestDistance = Mathf.Infinity;
+
+        foreach (var node in AINodes)
+        {
+            float distance = (node.transform.position - position).sqrMagnitude;
+            if (distance < nearestDistance)
+            {
+                nearestDistance = distance;
+                nearest = node;
+            }
+        }
+
+        return nearest;
+    }
+
     public void EvaluateHiddenNodes(Transform playerTransform)
     {
         HiddenNodes = new();
