@@ -36,12 +36,12 @@ public class AINode : MonoBehaviour
         } 
 
         Gizmos.color = targetColor;
-        Gizmos.DrawSphere(transform.position + Vector3.up * GameConstants.PlayerHeightOffset, DebugRadius);
+        Gizmos.DrawSphere(transform.position, DebugRadius);
 
         foreach (var edge in Edges)
         {
             Gizmos.color = Color.gray;
-            Gizmos.DrawLine(transform.position + Vector3.up * GameConstants.PlayerHeightOffset, edge.Target.transform.position +  Vector3.up * GameConstants.PlayerHeightOffset);
+            Gizmos.DrawLine(transform.position, edge.Target.transform.position);
             foreach (var corner in edge.Corners)
             {
                 Gizmos.color = Color.lightGray;

@@ -127,8 +127,9 @@ MonoBehaviour:
     m_Bits: 55
   NodeManager: {fileID: 0}
   CurrentTarget: {fileID: 0}
-  StalkFollowSpeed: 0
-  StalkHideSpeed: 0
+  StalkFollowSpeed: 5
+  StalkHideSpeed: 10
+  StalkTargetDistance: 15
 --- !u!195 &4591156269016564387
 NavMeshAgent:
   m_ObjectHideFlags: 0

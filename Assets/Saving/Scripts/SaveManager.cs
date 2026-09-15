@@ -10,7 +10,7 @@ public class SaveManager : MonoBehaviour
     public SaveDataAsset debugStartData;
 
     private string Root => Application.persistentDataPath + "/";
-    public string SaveFileName = "save_data.quirstn";
+    public string SaveFileName = "save.data";
 
     public SaveData CurrentSave { get; private set; }
 
