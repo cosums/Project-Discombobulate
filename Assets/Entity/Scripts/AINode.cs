@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AINode : MonoBehaviour
 {
@@ -13,11 +14,24 @@ public class AINode : MonoBehaviour
     void Start()
     {
         _PlayerCamera = Camera.main;
+        SnapToNavMesh();
     }
 
     void Update()
     {
         VisibleToPlayer = CheckVisibility();
+    }
+
+    private void SnapToNavMesh()
+    {
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(transform.position, out hit, 1f, NavMesh.AllAreas))
+        {
+            transform.position = hit.position;
+        } else
+        {
+            Debug.LogWarning("No navmesh found for point " + name);
+        }
     }
 
     void OnDrawGizmos()
@@ -42,11 +56,11 @@ public class AINode : MonoBehaviour
         {
             Gizmos.color = Color.gray;
             Gizmos.DrawLine(transform.position, edge.Target.transform.position);
-            foreach (var corner in edge.Corners)
-            {
-                Gizmos.color = Color.lightGray;
-                Gizmos.DrawSphere(corner, 0.2f);
-            }
+            // foreach (var corner in edge.Corners)
+            // {
+            //     Gizmos.color = Color.lightGray;
+            //     Gizmos.DrawSphere(corner, 0.2f);
+            // }
             foreach (var sample in edge.SamplePoints)
             {
                 Gizmos.color = Color.white;
