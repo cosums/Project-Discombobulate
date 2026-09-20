@@ -23547,6 +23547,63 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1001 &1311973830
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: d1bedb78709c16c40b3d5b5985de7320, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 22.34
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d1bedb78709c16c40b3d5b5985de7320, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01999998
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d1bedb78709c16c40b3d5b5985de7320, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 15.528419
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d1bedb78709c16c40b3d5b5985de7320, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d1bedb78709c16c40b3d5b5985de7320, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d1bedb78709c16c40b3d5b5985de7320, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d1bedb78709c16c40b3d5b5985de7320, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d1bedb78709c16c40b3d5b5985de7320, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d1bedb78709c16c40b3d5b5985de7320, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d1bedb78709c16c40b3d5b5985de7320, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1bedb78709c16c40b3d5b5985de7320, type: 3}
+      propertyPath: m_Name
+      value: PianoWithStool
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d1bedb78709c16c40b3d5b5985de7320, type: 3}
 --- !u!1 &1317150747
 GameObject:
   m_ObjectHideFlags: 0
@@ -150100,3 +150157,4 @@ SceneRoots:
   - {fileID: 2116924315}
   - {fileID: 1054767705}
   - {fileID: 7965524}
+  - {fileID: 1311973830}
