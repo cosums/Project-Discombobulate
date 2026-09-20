@@ -5,11 +5,11 @@ OcclusionCullingSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_OcclusionBakeSettings:
-    smallestOccluder: 5
+    smallestOccluder: 1
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: 180c891bcabc12a4b99c27bd7d0ae5dd
+  m_OcclusionCullingData: {fileID: 36300000, guid: 2579ccb5bbfb3a2458e02c87818653b0, type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -6682,7 +6682,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 7503daae6a13d9d4e92f03a086eb7c4c, type: 3}
+  m_Resource: {fileID: 8300000, guid: ca741734a7c823947a68429163b4354a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.155
   m_Pitch: 1
