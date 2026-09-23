@@ -148106,7 +148106,7 @@ GameObject:
   - component: {fileID: 8565672553553045625}
   - component: {fileID: 2260453882379702460}
   m_Layer: 0
-  m_Name: 4x4 Starter Room
+  m_Name: Kitchen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
