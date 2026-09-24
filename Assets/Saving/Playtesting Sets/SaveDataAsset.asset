@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24a531d99eca42a4d93af65daea64b2b, type: 3}
+  m_Name: SaveDataAsset
+  m_EditorClassIdentifier: Assembly-CSharp::SaveDataAsset
+  uuid: 
+  hasLibraryKey: 0
+  hasOfficeKey: 0
+  hasMasterBedroomKey: 0
+  hasMalloryBedroomKey: 0
+  hasSecretRoomKey: 0
+  HasMotherDeadNotice: 0
+  HasFatherJournal: 0
+  Hs1873Newspaper: 0
+  HasRosethroneLedger: 0
+  HsCreditorTelegram: 0
+  HasMallorysJournal: 0
+  HasTrainTicket: 0
+  HasPackedTrunk: 0
+  HasNewspaperDeaths: 0
+  HasMurderWeapon: 0
+  HasSuicideWeapon: 0
+  HasFathersNote: 0
