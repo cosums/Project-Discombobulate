@@ -10,7 +10,11 @@ public class PlayerController : MonoBehaviour
     public float Gravity = -20f;
     public float JumpHeight = 1.5f;
     public float CrouchScale = 0.5f;
-    
+
+    [SerializeField] AudioClip footsteps;
+    [SerializeField] float footstepInterval = 0.45f;
+    float footstepTimer;
+
     private CharacterController m_CharacterController;
     float x, y;
     float camX, camY;
@@ -63,7 +67,7 @@ public class PlayerController : MonoBehaviour
         if (grounded && verticalVelocity < 0)
         {
             verticalVelocity = -2f;
-        } 
+        }
 
         if (grounded && Keyboard.current.spaceKey.wasPressedThisFrame)
         {
@@ -76,5 +80,26 @@ public class PlayerController : MonoBehaviour
         velocity.y = verticalVelocity;
 
         m_CharacterController.Move(velocity * Time.deltaTime);
+
+        HandleFootsteps(grounded, move);
+    }
+
+    private void HandleFootsteps(bool grounded, Vector3 move)
+    {
+        bool isWalking = grounded && move.sqrMagnitude > 0.01f;
+
+        if (!isWalking)
+        {
+            // Prime the timer so the first step plays right when you start moving
+            footstepTimer = footstepInterval;
+            return;
+        }
+
+        footstepTimer += Time.deltaTime;
+        if (footstepTimer >= footstepInterval)
+        {
+            footstepTimer -= footstepInterval;
+            AudioManager.Instance.PlayOneShot(footsteps, 0.8f, null, 0.05f);
+        }
     }
 }
