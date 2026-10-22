@@ -111599,6 +111599,63 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &6900961699130539844
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5560562339175459472, guid: 55245ca75d82f1845818f7226f69ce31, type: 3}
+      propertyPath: m_Name
+      value: BathroomSink
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639288646544916647, guid: 55245ca75d82f1845818f7226f69ce31, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639288646544916647, guid: 55245ca75d82f1845818f7226f69ce31, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.191
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639288646544916647, guid: 55245ca75d82f1845818f7226f69ce31, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639288646544916647, guid: 55245ca75d82f1845818f7226f69ce31, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639288646544916647, guid: 55245ca75d82f1845818f7226f69ce31, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639288646544916647, guid: 55245ca75d82f1845818f7226f69ce31, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639288646544916647, guid: 55245ca75d82f1845818f7226f69ce31, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639288646544916647, guid: 55245ca75d82f1845818f7226f69ce31, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639288646544916647, guid: 55245ca75d82f1845818f7226f69ce31, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639288646544916647, guid: 55245ca75d82f1845818f7226f69ce31, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 55245ca75d82f1845818f7226f69ce31, type: 3}
 --- !u!1001 &7238431711062596177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -150936,15 +150993,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1232015638219702636, guid: 9e70924e37d48584680757ba8484afc9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.57133
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 1232015638219702636, guid: 9e70924e37d48584680757ba8484afc9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.2865
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1232015638219702636, guid: 9e70924e37d48584680757ba8484afc9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.43456
+      value: 17.32
       objectReference: {fileID: 0}
     - target: {fileID: 1232015638219702636, guid: 9e70924e37d48584680757ba8484afc9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -151060,3 +151117,4 @@ SceneRoots:
   - {fileID: 8711689403024774046}
   - {fileID: 9171415659064981702}
   - {fileID: 6256145521158355789}
+  - {fileID: 6900961699130539844}
