@@ -30,7 +30,9 @@ public class EntityController : MonoBehaviour
     [Header("Speed Controls")]
     public float StalkFollowSpeed = 0f;
     public float StalkHideSpeed = 0f;
-    public float StalkTargetDistance = 15f;
+    public float StalkTargetDistance = 10f;
+     public float StalkMinDistance = 5f;
+     public float StalkMaxDistance = 30f;
 
     // behavior
     private IEntityBehavior _currentBehavior;
@@ -56,23 +58,41 @@ public class EntityController : MonoBehaviour
         _currentBehavior.Tick(this);
     }
 
-    public void SmartMoveToNode(AINode target, System.Func<AINode, AINode, float, float> costFn = null)
+    public bool SmartMoveToNode(AINode target, System.Func<AINode, AINode, float, float> costFn = null)
     {
-        if (target == null) return;
+        if (target == null) return false;
 
         AINode currentNode = NodeManager.FindNearestNode(transform.position);
         var path = AStarPathfinder.FindPath(currentNode, target, costFn);
 
-        if (path == null || path.Count == 0) return; 
+        if (path == null || path.Count == 0) return false;
+        if (path.Count > 1)
+        {
+            Vector3 first = path[0].transform.position;
+            Vector3 second = path[1].transform.position;
+            if (Vector3.Distance(transform.position, second) < Vector3.Distance(first, second))
+                path.RemoveAt(0);
+        }
+ 
 
         Pathfollower.SetPath(path);
         CurrentTarget = target;
+        return true;
+    }
+
+    public void Freeze()
+    {
+        Pathfollower.Stop();
+        Agent.isStopped = true;
+        Agent.velocity = Vector3.zero;
     }
 
     public void MoveToNode(AINode target)
     {
+        if (target == null) return;
         Pathfollower.Stop();
         Agent.SetDestination(target.transform.position);
+        CurrentTarget = target;
     }
 
     public void ChangeBehavior(IEntityBehavior newBehavior)

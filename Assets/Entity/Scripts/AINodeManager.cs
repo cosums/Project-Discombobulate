@@ -16,10 +16,18 @@ public class AINodeManager : MonoBehaviour
 
     public Transform PlayerTransform;
 
+    public float RetreatApproachTolerance = 1.5f;
+    public float LineOfSightBonus = 12f;
+    public float CurrentTargetBonus = 3f;
+
+    private NavMeshPath _retreatPath;
+    private readonly List<(AINode node, float score)> _scoredNodes = new();
+
+
     void Awake()
     {
         AINodes = new List<AINode>(
-            FindObjectsByType<AINode>(FindObjectsInactive.Include, FindObjectsSortMode.None)
+            FindObjectsByType<AINode>(FindObjectsInactive.Exclude, FindObjectsSortMode.None)
         );
 
         BuildGraph();
@@ -137,7 +145,7 @@ public class AINodeManager : MonoBehaviour
             Vector3 toPlayer = PlayerTransform.position - samplePos;
             float dist = toPlayer.magnitude;
 
-            //bool los = !Physics.Raycast(samplePos, toPlayer.normalized, dist, VisibilityLayerMask);
+            bool los = !Physics.Raycast(samplePos, toPlayer.normalized, dist, VisibilityLayerMask);
             bool visible = VisibilityUtility.FOVCheck(samplePos, Camera.main);
 
             if (visible) return float.PositiveInfinity;
@@ -308,5 +316,102 @@ public class AINodeManager : MonoBehaviour
         }
 
         return closestNode;
+    }
+
+    // RETREATING
+    public AINode FindRetreatNode(Transform player, Transform entity)
+    {
+        _retreatPath ??= new NavMeshPath();
+ 
+        Vector3 start = entity.position;
+        float startDist = FlatDistance(start, player.position);
+        float minAllowedDist = startDist - RetreatApproachTolerance;
+ 
+        AINode best = null;
+        float bestLength = Mathf.Infinity;
+ 
+        foreach (var node in HiddenNodes)
+        {
+            Vector3 nodePos = node.transform.position;
+ 
+            if (Vector3.Distance(start, nodePos) >= bestLength) continue;
+ 
+            if (!NavMesh.CalculatePath(start, nodePos, NavMesh.AllAreas, _retreatPath)) continue;
+            if (_retreatPath.status != NavMeshPathStatus.PathComplete) continue;
+ 
+            float length = GetPathLength(_retreatPath);
+            if (length >= bestLength) continue;
+ 
+            if (PathGetsCloserThan(_retreatPath.corners, player.position, minAllowedDist)) continue;
+ 
+            best = node;
+            bestLength = length;
+        }
+ 
+        return best;
+    }
+
+    public void GetFollowCandidates(Transform player, float minDist, float preferredDist, float maxDist, AINode current, List<AINode> results)
+    {
+        results.Clear();
+        _scoredNodes.Clear();
+ 
+        foreach (var node in AINodes)
+        {
+            if (node.VisibleToPlayer && node.LineOfSightToPlayer) continue;
+ 
+            float d = FlatDistance(node.transform.position, player.position);
+            if (d < minDist || d > maxDist) continue;
+ 
+            float score = Mathf.Abs(d - preferredDist);
+            if (node.LineOfSightToPlayer) score -= LineOfSightBonus;
+            if (node == current) score -= CurrentTargetBonus;
+ 
+            _scoredNodes.Add((node, score));
+        }
+ 
+        _scoredNodes.Sort((a, b) => a.score.CompareTo(b.score));
+ 
+        foreach (var s in _scoredNodes) results.Add(s.node);
+    }
+
+    private bool PathGetsCloserThan(Vector3[] corners, Vector3 playerPos, float limit)
+    {
+        foreach (var p in SamplePointsAlongPath(corners, SampleInterval))
+        {
+            if (FlatDistance(p, playerPos) < limit) return true;
+        }
+        return false;
+    }
+
+    public AINode FindVanishNode(Transform player, float minDist)
+    {
+        var pool = new List<AINode>();
+        foreach (var node in HiddenNodes)
+        {
+            if (FlatDistance(node.transform.position, player.position) >= minDist) pool.Add(node);
+        }
+        if (pool.Count > 0) return pool[Random.Range(0, pool.Count)];
+ 
+        AINode farthest = null;
+        float farthestDist = -1f;
+        foreach (var node in AINodes)
+        {
+            float d = FlatDistance(node.transform.position, player.position);
+            if (d > farthestDist)
+            {
+                farthestDist = d;
+                farthest = node;
+            }
+        }
+        return farthest;
+    }
+
+
+    private static float FlatDistance(Vector3 a, Vector3 b)
+    {
+        float dx = a.x - b.x;
+        float dz = a.z - b.z;
+        return Mathf.Sqrt(dx * dx + dz * dz);
     }
 }

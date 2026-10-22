@@ -11,9 +11,9 @@ public class LightingManager : MonoBehaviour
     public float maxFlickerInterval = 0.15f;
     public float BlackoutHold = 0.6f;
 
-    private Coroutine _flickerRoutine;
+    private Coroutine _routine;
 
-    public bool IsFlickering => _flickerRoutine != null;
+    public bool IsFlickering => _routine != null;
 
     void Awake()
     {
@@ -41,10 +41,27 @@ public class LightingManager : MonoBehaviour
         }
     }
 
+
+    public void Blackout(float hold, Action onBlackout = null)
+    {
+        _routine = StartCoroutine(BlackoutRoutine(hold, onBlackout));
+    }
+
+    private IEnumerator BlackoutRoutine(float hold, Action onBlackout)
+    {
+        SetAllLights(false);
+        onBlackout?.Invoke();
+ 
+        yield return new WaitForSeconds(hold);
+ 
+        SetAllLights(true);
+        _routine = null;
+    }
+
     public void Flicker(float duration, Action onBlackout = null)
     {
-        if (_flickerRoutine != null) StopCoroutine(_flickerRoutine);
-        _flickerRoutine = StartCoroutine(FlickerRoutine(duration, onBlackout));
+        if (_routine != null) StopCoroutine(_routine);
+        _routine = StartCoroutine(FlickerRoutine(duration, onBlackout));
     }
 
     private IEnumerator FlickerRoutine(float duration, Action onBlackout)
@@ -62,6 +79,6 @@ public class LightingManager : MonoBehaviour
         yield return new WaitForSeconds(BlackoutHold);
 
         SetAllLights(true);
-        _flickerRoutine = null;
+        _routine = null;
     }
 }
