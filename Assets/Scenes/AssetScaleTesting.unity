@@ -112423,6 +112423,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 989329220}
     m_Modifications:
+    - target: {fileID: 1044381247304621473, guid: 299a832bdd2d18c469057d93663b954c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ae391057f0c14554c8957d44cde183c0, type: 2}
     - target: {fileID: 2264812168987846058, guid: 299a832bdd2d18c469057d93663b954c, type: 3}
       propertyPath: m_Name
       value: PaintingFamily
@@ -152550,6 +152554,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7660089644709339478, guid: 85405847ece8c2746b507de4e08fb6d5, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 20216337eecb61e4faa0be98e1daf67d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
