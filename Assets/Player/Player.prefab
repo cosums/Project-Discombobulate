@@ -172,8 +172,9 @@ GameObject:
   - component: {fileID: 1529928687821361072}
   - component: {fileID: 3501923842350899657}
   - component: {fileID: 8326807541610445465}
+  - component: {fileID: 9012944107732728850}
   m_Layer: 3
-  m_Name: Spot Light
+  m_Name: Flashlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -288,6 +289,19 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!114 &9012944107732728850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3788858954456708489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8c6fd535a4f87d4d8df078ba933f8a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  m_Light: {fileID: 3501923842350899657}
 --- !u!1 &5594681434608953877
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,10 +411,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   CameraAnchor: {fileID: 8564092842901239198}
   MouseSensitivity: 0.2
-  Speed: 3
+  WalkSpeed: 4.5
+  SprintSpeed: 7
+  CrouchSpeed: 2
   Gravity: -20
   JumpHeight: 1.5
   CrouchScale: 0.5
+  CrouchTime: 0.3
   footsteps: {fileID: 0}
   footstepInterval: 0.45
 --- !u!114 &4781000318243712448
@@ -558,7 +575,7 @@ Transform:
   m_GameObject: {fileID: 6412294346110806696}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0144, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.9, y: 1.06443, z: 0.9}
   m_ConstrainProportionsScale: 1
   m_Children: []
