@@ -11,7 +11,6 @@ public class LevelManager : MonoBehaviour
 
     public static Action OnCollectionChanged; // calls when player unlocks a new lore item
 
-
     /// <summary>
     /// Each level has a list of lore items that need to be collected
     /// </summary>
@@ -24,7 +23,6 @@ public class LevelManager : MonoBehaviour
 
         public bool IsComplete => collected.Count >= items.Count;
     }
-
 
     private void Awake()
     {
@@ -101,6 +99,24 @@ public class LevelManager : MonoBehaviour
         }
 
         return true;
+    }
+
+    /// <summary>
+    /// Check if player has collected a specific lore item
+    /// </summary>
+    /// <param name="loreItem"></param>
+    /// <returns></returns>
+    public bool HasCollected(LoreItemData loreItem)
+    {
+        for (int i = 0; i < itemGroups.Count; i++)
+        {
+            if (itemGroups[i].collected.Contains(loreItem))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private bool TryIncrementGroupIndex()
