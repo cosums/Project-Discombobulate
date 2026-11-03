@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public Transform CameraAnchor;
     public float MouseSensitivity = 0.25f;
     public float Speed = 10f;
+    public float SprintSpeed = 15f;
+    public float CrouchSpeed = 2f;
     public float Gravity = -20f;
     public float JumpHeight = 1.5f;
     public float CrouchScale = 0.5f;
@@ -19,12 +21,18 @@ public class PlayerController : MonoBehaviour
     float x, y;
     float camX, camY;
     float verticalVelocity;
+    bool crouched;
+    bool isCrouching;
+    bool isSprinting;
+
+    private Vector3 _initialScale;
     
     void Start()
     {
         m_CharacterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        _initialScale = transform.localScale;
     }
     
     void Update()
@@ -47,6 +55,9 @@ public class PlayerController : MonoBehaviour
 
         camY += Mouse.current.delta.x.ReadValue() * MouseSensitivity;
         camX -= Mouse.current.delta.y.ReadValue() * MouseSensitivity;
+
+        isCrouching = Keyboard.current.ctrlKey.isPressed;
+        isSprinting = Keyboard.current.shiftKey.isPressed;
     }
 
     private void Look()
@@ -76,12 +87,20 @@ public class PlayerController : MonoBehaviour
 
         verticalVelocity += Gravity * Time.deltaTime;
 
-        Vector3 velocity = move * Speed;
+        Vector3 velocity = (isSprinting ? SprintSpeed : Speed) * move;
         velocity.y = verticalVelocity;
 
         m_CharacterController.Move(velocity * Time.deltaTime);
 
         HandleFootsteps(grounded, move);
+
+        if (isCrouching)
+        {
+            transform.localScale = new Vector3(_initialScale.x, CrouchScale, _initialScale.y);
+        } else
+        {
+            transform.localScale = _initialScale;
+        }
     }
 
     private void HandleFootsteps(bool grounded, Vector3 move)
