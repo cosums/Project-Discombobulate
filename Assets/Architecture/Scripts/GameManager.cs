@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState { 
     MainMenu = 0, 
@@ -13,7 +14,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public GameState CurrentState { get; private set; }
     
-    public static event Action<GameState> OnStateChanged;
+    public static event Action<GameState> OnStateExited;
+    public static event Action<GameState> OnStateEntered;
+
+    [SerializeField] private string m_StartScene;
 
     public void Awake()
     {
@@ -21,6 +25,13 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            // for debug purposes!
+            if (SceneManager.GetActiveScene().name != m_StartScene)
+            {
+                ChangeState(GameState.Playing);
+            }
+
         } else
         {
             Debug.LogWarning(">1 Game Manager in scene!");
@@ -43,9 +54,12 @@ public class GameManager : MonoBehaviour
         Debug.Log("[GameManager]: Changing state to " + state);
         
         ExitState(state);
-        EnterState(state);
+        OnStateExited?.Invoke(state);
 
-        OnStateChanged?.Invoke(state);
+        CurrentState = state;
+
+        EnterState(state);
+        OnStateEntered?.Invoke(state);
     }
 
     private void ExitState(GameState state)
