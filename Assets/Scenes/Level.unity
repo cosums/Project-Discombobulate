@@ -180831,6 +180831,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7262753516805210125, guid: a39a0cbd2eb848b4382ba662e071d85f, type: 3}
+      propertyPath: m_CircleCollider
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7262753516805210125, guid: a39a0cbd2eb848b4382ba662e071d85f, type: 3}
+      propertyPath: m_PlayerTransform
+      value: 
+      objectReference: {fileID: 600837528}
     - target: {fileID: 8933877949803671027, guid: a39a0cbd2eb848b4382ba662e071d85f, type: 3}
       propertyPath: m_Name
       value: Summoning Circle

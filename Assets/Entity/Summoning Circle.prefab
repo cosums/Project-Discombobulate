@@ -135,4 +135,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09de24a2bb771a24aab415808533ef00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  m_CircleCollider: {fileID: 0}
+  m_PlayerTransform: {fileID: 0}
+  m_SafeSummonDistance: 3

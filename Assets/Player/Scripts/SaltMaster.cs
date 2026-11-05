@@ -29,7 +29,7 @@ public class SaltMaster : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out hit, m_InteractDistance, m_InteractLayer))
         {
             float angle = Vector3.Angle(hit.normal, Vector3.up);
-            Debug.Log(angle);
+            
             if (angle <= m_FloorAngle) {
                 m_SaltPlaceIndicator.transform.position = hit.point;
                 _validSurface = true;
