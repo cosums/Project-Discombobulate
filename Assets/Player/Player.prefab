@@ -146,7 +146,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 0.9622642, g: 0.9051733, b: 0.7307761, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -191,7 +191,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 6.75e-43, y: 1.16e-43, z: 0, w: 5.392894e+29}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
@@ -447,10 +447,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   CameraAnchor: {fileID: 8564092842901239198}
   MouseSensitivity: 0.2
-  Speed: 3
+  Speed: 4.5
   Gravity: -20
   JumpHeight: 1.5
   CrouchScale: 0.5
+  footsteps: {fileID: 8300000, guid: 9550e57bca7459248b5489848e1c02b8, type: 3}
+  footstepInterval: 0.7
 --- !u!114 &4781000318243712448
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -19,7 +19,7 @@ public class PlayerInteractor : MonoBehaviour
 
         CheckForInteractable();
 
-        if (Keyboard.current.eKey.isPressed)
+        if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             Interact();
         }
