@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
+        if (GameManager.Instance.CurrentState != GameState.Playing) return;
+        
         MyInput();
         Look();
 
