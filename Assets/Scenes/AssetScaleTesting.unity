@@ -104084,6 +104084,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6727ad94845a00f4c8c1e26cc10fa2d0, type: 3}
+--- !u!1001 &2058358646
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 214737508347085503, guid: 3854c5fb39e9fd643896f396376dbbe5, type: 3}
+      propertyPath: m_Name
+      value: BathtubClawfoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651369716799397590, guid: 3854c5fb39e9fd643896f396376dbbe5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 26.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651369716799397590, guid: 3854c5fb39e9fd643896f396376dbbe5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00000008176329
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651369716799397590, guid: 3854c5fb39e9fd643896f396376dbbe5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651369716799397590, guid: 3854c5fb39e9fd643896f396376dbbe5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651369716799397590, guid: 3854c5fb39e9fd643896f396376dbbe5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651369716799397590, guid: 3854c5fb39e9fd643896f396376dbbe5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651369716799397590, guid: 3854c5fb39e9fd643896f396376dbbe5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651369716799397590, guid: 3854c5fb39e9fd643896f396376dbbe5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651369716799397590, guid: 3854c5fb39e9fd643896f396376dbbe5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651369716799397590, guid: 3854c5fb39e9fd643896f396376dbbe5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3854c5fb39e9fd643896f396376dbbe5, type: 3}
 --- !u!4 &2065310220 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2491489949242145722, guid: c1825f80c2c715b43b6f17d8a17e0d2d, type: 3}
@@ -151920,3 +151977,4 @@ SceneRoots:
   - {fileID: 8553828773370808244}
   - {fileID: 477402540}
   - {fileID: 19472481}
+  - {fileID: 2058358646}
