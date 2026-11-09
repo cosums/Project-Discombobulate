@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,7 +11,7 @@ public class PlayerController : MonoBehaviour
         Sprinting
     }
 
-
+    public static bool CanMove = true;
     public Transform CameraAnchor;
     public float MouseSensitivity = 0.25f;
     public float WalkSpeed = 4.5f;
@@ -41,8 +42,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         m_CharacterController = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        DisableCursor();
         _initialScale = transform.localScale;
     }
     
@@ -80,6 +80,8 @@ public class PlayerController : MonoBehaviour
 
     private void Look()
     {
+        if (!CanMove) return;
+
         camX = Mathf.Clamp(camX, -90f, 90f);
         
         CameraAnchor.localRotation = Quaternion.Euler(camX, 0, 0);
@@ -88,6 +90,8 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovement()
     {
+        if (!CanMove) return;
+
         Vector3 move = transform.right * x + transform.forward * y;
         move.Normalize();
 
@@ -147,5 +151,17 @@ public class PlayerController : MonoBehaviour
             case MovementMode.Sprinting: return SprintSpeed;
             default: return WalkSpeed;
         }
+    }
+
+    private void EnableCursor()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+    }
+
+    private void DisableCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }

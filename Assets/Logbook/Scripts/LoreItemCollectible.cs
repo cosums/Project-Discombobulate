@@ -9,9 +9,16 @@ public class LoreItemCollectible : MonoBehaviour, IInteractable
     [SerializeField] UnityEvent OnHoverEnter;
     [SerializeField] UnityEvent OnHoverExit;
 
+    private HighlightObject highlightObject;
+
+    private void Awake()
+    {
+        highlightObject = GetComponent<HighlightObject>();
+    }
+
     public void InteractEnter()
     {
-        if (LevelManager.Instance.Collect(loreItemData))
+        if (LoreItemManager.Instance.Collect(loreItemData))
         {
             OnInteractEnter.Invoke();
         }
@@ -20,11 +27,13 @@ public class LoreItemCollectible : MonoBehaviour, IInteractable
     public void HoverExit()
     {
         OnHoverExit.Invoke();
+        highlightObject?.DeHighlight();
     }
 
     public void HoverEnter()
     {
         OnHoverEnter.Invoke();
+        highlightObject?.Highlight();
     }
 
 }

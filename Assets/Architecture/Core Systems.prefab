@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e404ad878ae6534faba1ea5c6f49ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  m_StartScene: 
 --- !u!1 &3809216502371542103
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +264,7 @@ GameObject:
   - component: {fileID: 885240171515990855}
   - component: {fileID: 1129807219994260408}
   m_Layer: 0
-  m_Name: Level Manager
+  m_Name: Lore Item Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -298,6 +299,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   itemGroups:
   - name: Parlor
+    items:
+    - {fileID: 11400000, guid: b87e359eff98dd14da260b6809897987, type: 2}
+    - {fileID: 11400000, guid: d4908609549ab9641bd50c8302f95996, type: 2}
+    - {fileID: 11400000, guid: b83c9078697b60c4695dca41e6e0a361, type: 2}
+    - {fileID: 11400000, guid: 8edfa763ab93fd14fa49e1d2b0f7ae25, type: 2}
+    - {fileID: 11400000, guid: ee000abcac1f81e48b35aaa2323fbd02, type: 2}
+    - {fileID: 11400000, guid: 82a5fdb7fb3544a4a93958f94a94f169, type: 2}
+  - name: Living Room
     items:
     - {fileID: 11400000, guid: 76db7930e0038df4e978839eca3807e1, type: 2}
   - name: Living Room
