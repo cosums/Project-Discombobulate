@@ -16,5 +16,5 @@ MonoBehaviour:
   Description: A formal portrait of the Rosethorne family. Mallory appears young,
     standing next to her father.
   Icon: {fileID: 21300000, guid: fe218e9fd2558ef4d91aef856691a046, type: 3}
-  modelPrefab: {fileID: 2264812168987846058, guid: 299a832bdd2d18c469057d93663b954c, type: 3}
+  ModelPrefab: {fileID: 2264812168987846058, guid: 299a832bdd2d18c469057d93663b954c, type: 3}
   groupIndex: 0

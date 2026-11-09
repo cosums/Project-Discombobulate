@@ -16,5 +16,5 @@ MonoBehaviour:
   Description: A page from Mallory's journal recounting her parents' courtship and
     her father's transformation after her mother's death.
   Icon: {fileID: 21300000, guid: 34e7078cc154a0144b4251301bb991c6, type: 3}
-  modelPrefab: {fileID: 1160299670909165185, guid: 273e4e49b78d73741bd64f66d49ea53c, type: 3}
+  ModelPrefab: {fileID: 1160299670909165185, guid: 273e4e49b78d73741bd64f66d49ea53c, type: 3}
   groupIndex: 0

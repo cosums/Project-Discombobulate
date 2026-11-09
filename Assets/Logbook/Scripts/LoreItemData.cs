@@ -7,7 +7,7 @@ public class LoreItemData : ScriptableObject
     [TextArea(5, 10)]
     public string Description;
     public Sprite Icon; // shown in the log book
-    public GameObject modelPrefab; // to be inspected by the player
+    public GameObject ModelPrefab; // to be inspected by the player
 
     [HideInInspector] public int groupIndex = -1;
 }

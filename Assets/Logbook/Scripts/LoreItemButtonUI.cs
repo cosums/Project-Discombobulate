@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,10 +31,21 @@ public class LoreItemButtonUI : MonoBehaviour
     {
         SetImage(data.Icon);
         SetItemData(data);
-        itemNameTmp.text = data.ItemName;
-
-        if (!collected) mainImage.enabled = false;
-        else mainImage.enabled = true; 
+        
+        if (!collected)
+        {
+            mainImage.enabled = false;
+            button.enabled = false;
+            itemNameTmp.text = "";
+            collected = false;
+        }
+        else
+        {
+            mainImage.enabled = true;
+            button.enabled = true;
+            itemNameTmp.text = data.ItemName;
+            collected = true;
+        }
     }
 
     private void SetImage(Sprite sprite)
@@ -46,4 +58,23 @@ public class LoreItemButtonUI : MonoBehaviour
     {
         itemData = data;
     }
+
+    private void InspectItem()
+    {
+        if (LoreItemManager.Instance.HasCollected(itemData)) 
+        {
+            InspectObjectUI.Instance.Show(itemData);
+        }
+    }
+
+    private void OnEnable()
+    {
+        button.onClick.AddListener(InspectItem);
+    }
+
+    private void OnDisable()
+    {
+        button.onClick.RemoveListener(InspectItem);
+    }
+
 }

@@ -22,6 +22,8 @@ public class LoreItemCollectible : MonoBehaviour, IInteractable
         {
             OnInteractEnter.Invoke();
         }
+
+        InspectObjectUI.Instance.Show(loreItemData);
     }
 
     public void HoverExit()

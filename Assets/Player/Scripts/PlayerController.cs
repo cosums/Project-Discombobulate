@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         m_CharacterController = GetComponent<CharacterController>();
-        DisableCursor();
+        UIManager.DisableCursor();
         _initialScale = transform.localScale;
     }
     
@@ -54,6 +54,21 @@ public class PlayerController : MonoBehaviour
         Look();
 
         HandleMovement();
+    }
+
+    private void OnEnable()
+    {
+        UIManager.OnCursorStateChanged += UpdateCanMove;
+    }
+
+    private void OnDisable()
+    {
+        UIManager.OnCursorStateChanged -= UpdateCanMove;
+    }
+
+    private void UpdateCanMove(bool cursorEnabled)
+    {
+        CanMove = !cursorEnabled;
     }
 
     private void MyInput()
@@ -151,17 +166,5 @@ public class PlayerController : MonoBehaviour
             case MovementMode.Sprinting: return SprintSpeed;
             default: return WalkSpeed;
         }
-    }
-
-    private void EnableCursor()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
-    }
-
-    private void DisableCursor()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 }

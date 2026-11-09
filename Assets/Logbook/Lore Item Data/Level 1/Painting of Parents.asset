@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LoreItemData
   ItemName: Painting of Parents
   Description: A portrait of Lord and Lady Rosethorne, painted before Mallory's birth.
-  Icon: {fileID: 0}
-  modelPrefab: {fileID: 3609056796175034818, guid: 85405847ece8c2746b507de4e08fb6d5, type: 3}
+  Icon: {fileID: 21300000, guid: 7e483855bf77fac46a1a62e3a87eac65, type: 3}
+  ModelPrefab: {fileID: 3609056796175034818, guid: 85405847ece8c2746b507de4e08fb6d5, type: 3}
   groupIndex: 0

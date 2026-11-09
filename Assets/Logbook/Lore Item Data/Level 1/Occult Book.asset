@@ -16,5 +16,5 @@ MonoBehaviour:
   Description: An old book detailing rituals for communicating with spirits. Several
     passages describe using salt circles and personal belongings.
   Icon: {fileID: 21300000, guid: 5f7253d8df3818e4bbebece0ad1180c7, type: 3}
-  modelPrefab: {fileID: 2271426448326051920, guid: bb347b977a58aeb419a8ff392a8a828e, type: 3}
+  ModelPrefab: {fileID: 2271426448326051920, guid: bb347b977a58aeb419a8ff392a8a828e, type: 3}
   groupIndex: 0

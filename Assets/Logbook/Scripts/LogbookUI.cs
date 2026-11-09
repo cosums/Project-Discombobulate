@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,8 +22,8 @@ public class LogbookUI : MonoBehaviour
             showUI = !showUI;
             SetActive(showUI);
             PlayerController.CanMove = !showUI;
-            if (showUI) EnableCursor();
-            else DisableCursor();
+            if (showUI) UIManager.EnableCursor();
+            else UIManager.DisableCursor();
         }
     }
 
@@ -59,19 +58,5 @@ public class LogbookUI : MonoBehaviour
     public void SetActive(bool enabled)
     {
         parent.SetActive(enabled);
-    }
-
-    // TODO: Move this to a centralized location
-    private void EnableCursor()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
-    }
-
-    // TODO: Move this to a centralized location
-    private void DisableCursor()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 }
