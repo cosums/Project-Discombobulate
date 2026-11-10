@@ -11,7 +11,7 @@ public class PlayerDeathHandler : MonoBehaviour
     // this is so that the player dying looks in sync with the ghost attacking him.
     // rather than sync up animations in some fancy sophisticated way, Im just gonna delay it
     [SerializeField] private float delayBeforePlayingDeathAnimation = 0.1f; // in seconds
-    private bool isAwaitingAnimationDelay = false;
+    private bool isAwaitingDeathStart = false;
     private float elapsedDelay = 0f;
     private bool cameraAnimIsFinished = false;
     private bool fadeToBlackIsFinished = false;
@@ -37,35 +37,47 @@ public class PlayerDeathHandler : MonoBehaviour
                 finishDeath();
             }
         }
+
+        if(isResetting)
+        {
+            // TODO once previous save is loaded, call onResetFinished
+        }
     }
 
     private void UpdateDeathAnimation()
     {
-        if(isAwaitingAnimationDelay)
+        if(isDying && !isAwaitingDeathStart)
         {
-            elapsedDelay += Time.deltaTime;
-
-            if (elapsedDelay > delayBeforePlayingDeathAnimation)
-            {
-                elapsedDelay = 0f;
-                isAwaitingAnimationDelay = false;
-
-                animator.SetTrigger(ANIM_TRIGGER_DEATH);
-            }
+            
+            
         }
 
-        if(!isAwaitingAnimationDelay && cameraAnimIsFinished)
+        if(!isAwaitingDeathStart && cameraAnimIsFinished)
         {
             // TODO start fade to black
             // TODO check if fade to black is finished
         }
     }
 
-    public void StartDeath()
+    /** Should be called when an attack is initiated */
+    public void StartPreDeath()
     {
         isDying = true;
-        isAwaitingAnimationDelay = true;
+        isAwaitingDeathStart = true;
         PlayerController.movementDisabled = true;
+        // TODO look at ghost
+    }
+
+    /** Should be called when it's time to start the animation sequence */
+    public void StartDeath()
+    {
+        if(!isAwaitingDeathStart || !isDying)
+        {
+            Debug.LogWarning("StartDeath was called without calling StartPreDeath first, weird shit may happen");
+        }
+
+        isAwaitingDeathStart = false;
+        animator.SetTrigger(ANIM_TRIGGER_DEATH);
     }
 
     private void finishDeath()
@@ -74,13 +86,18 @@ public class PlayerDeathHandler : MonoBehaviour
         animator.SetTrigger(ANIM_TRIGGER_RESET);
 
         isDying = false;
-        isAwaitingAnimationDelay = false;
+        isAwaitingDeathStart = false;
         elapsedDelay = 0f;
         cameraAnimIsFinished = false;
         fadeToBlackIsFinished = false;
 
         // TODO load to last save
-        // TODO once loaded, reenable controls and fade from black into level
     }
 
+    private void onResetFinished()
+    {
+        isResetting = false;
+        PlayerController.movementDisabled = false;
+        // TODO fade from black into level
+    }
 }
