@@ -488,8 +488,9 @@ GameObject:
   - component: {fileID: 3689712941802822239}
   - component: {fileID: 5928160261811766665}
   - component: {fileID: 79486277543579043}
+  - component: {fileID: 7560147489570512845}
   m_Layer: 0
-  m_Name: AutoAttackRange
+  m_Name: Attack Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -504,7 +505,7 @@ Transform:
   m_GameObject: {fileID: 7457347657982405730}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.54354, z: 0}
+  m_LocalPosition: {x: 0, y: 0.54354, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -548,6 +549,24 @@ MonoBehaviour:
   animator: {fileID: 2035941776235020193}
   propertyName: PlayerIsAttacked
   clip: {fileID: 496037463932586155, guid: d095f484b3ab90e4ba3ec167ff85dc77, type: 3}
+--- !u!114 &7560147489570512845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7457347657982405730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83050e4b5bff2d44a85c649f1deec90a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackHandler
+  playerDeathHandler: {fileID: 0}
+  playerTransform: {fileID: 0}
+  distanceFromPlayerWhileAttacking: 1
+  ghostController: {fileID: 4905316657505248884}
+  animHandler: {fileID: 79486277543579043}
+  timeTillStartPlayerDeath: 0.5
 --- !u!1001 &3346858878416685418
 PrefabInstance:
   m_ObjectHideFlags: 0

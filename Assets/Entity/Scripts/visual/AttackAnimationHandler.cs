@@ -15,11 +15,6 @@ public class AttackAnimationHandler : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (this.GetComponent<Collider>() == null)
-        {
-            Debug.LogWarning("Attack check script cannot find its collider! Attack checks will not work");
-            sol = true;
-        }
         if (animator == null)
         {
             Debug.LogWarning("Attack check script cannot find its animator! Animations will not work");
@@ -45,14 +40,6 @@ public class AttackAnimationHandler : MonoBehaviour
                 OnAttackAnimationFinish();
                 attackInProgress = false;
             }
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            StartAnimation();
         }
     }
 

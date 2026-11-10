@@ -5287,6 +5287,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2491489949242145722, guid: c1825f80c2c715b43b6f17d8a17e0d2d, type: 3}
   m_PrefabInstance: {fileID: 1527772685}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &413007714 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8173492064085647882, guid: f471adf5e35f066409def2495dd12705, type: 3}
+  m_PrefabInstance: {fileID: 962380753}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &414032863
 Mesh:
   m_ObjectHideFlags: 0
@@ -6806,6 +6811,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3550629327937841255, guid: 5c016986b54dfb34b8c6c8b6336f8d40, type: 3}
   m_PrefabInstance: {fileID: 484090812}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &484090815 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1188994587591213371, guid: 5c016986b54dfb34b8c6c8b6336f8d40, type: 3}
+  m_PrefabInstance: {fileID: 484090812}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8749f51091395154fae6ac6ab9061c18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDeathHandler
 --- !u!1001 &536892799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19066,6 +19082,18 @@ PrefabInstance:
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.z
       value: -0.00000009772239
       objectReference: {fileID: 0}
+    - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}
+      propertyPath: ghostRoot
+      value: 
+      objectReference: {fileID: 413007714}
+    - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 600837528}
+    - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}
+      propertyPath: playerDeathHandler
+      value: 
+      objectReference: {fileID: 484090815}
     - target: {fileID: 3939634697478936566, guid: f471adf5e35f066409def2495dd12705, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.3182627

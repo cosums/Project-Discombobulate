@@ -315,7 +315,6 @@ GameObject:
   - component: {fileID: 4294492282772136990}
   - component: {fileID: 3757958947463671211}
   - component: {fileID: 7185247578165973542}
-  - component: {fileID: 7812290628352496444}
   m_Layer: 3
   m_Name: DELETEME visual helper
   m_TagString: Untagged
@@ -395,27 +394,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7812290628352496444
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3190986901503995943}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3550629327937841255
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,6 +441,7 @@ GameObject:
   - component: {fileID: 7355506822731138778}
   - component: {fileID: 2540219744430904797}
   - component: {fileID: 4781000318243712448}
+  - component: {fileID: 1188994587591213371}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -581,6 +560,20 @@ MonoBehaviour:
   interactLayer:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &1188994587591213371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5594681434608953877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8749f51091395154fae6ac6ab9061c18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDeathHandler
+  animator: {fileID: 7629925856345902900}
+  delayBeforePlayingDeathAnimation: 0
 --- !u!1 &6079582379990860265
 GameObject:
   m_ObjectHideFlags: 0
