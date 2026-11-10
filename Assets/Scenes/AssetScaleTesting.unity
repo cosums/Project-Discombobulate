@@ -6791,8 +6791,21 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3294637062352346917, guid: 5c016986b54dfb34b8c6c8b6336f8d40, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1559914773}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3550629327937841255, guid: 5c016986b54dfb34b8c6c8b6336f8d40, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2003331118}
   m_SourcePrefab: {fileID: 100100000, guid: 5c016986b54dfb34b8c6c8b6336f8d40, type: 3}
+--- !u!95 &484090813 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7629925856345902900, guid: 5c016986b54dfb34b8c6c8b6336f8d40, type: 3}
+  m_PrefabInstance: {fileID: 484090812}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &484090814 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3550629327937841255, guid: 5c016986b54dfb34b8c6c8b6336f8d40, type: 3}
+  m_PrefabInstance: {fileID: 484090812}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &536892799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104422,6 +104435,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8564092842901239198, guid: 5c016986b54dfb34b8c6c8b6336f8d40, type: 3}
   m_PrefabInstance: {fileID: 484090812}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2003331118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484090814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b47ebf5f73a35a41ac37a493789e4aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimTestScript
+  animator: {fileID: 484090813}
+  firstTrigger: PlayerDies
+  secondTrigger: ResetCamera
 --- !u!1001 &2005998489
 PrefabInstance:
   m_ObjectHideFlags: 0
