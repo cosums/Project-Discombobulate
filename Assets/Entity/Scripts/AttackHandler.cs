@@ -7,15 +7,19 @@ using UnityEngine;
  */
 public class AttackHandler : MonoBehaviour
 {
-    // ============= gameplay effects =============
+    // ============= world effects =============
     [SerializeField] PlayerDeathHandler playerDeathHandler = null;
+    [SerializeField] Transform playerTransform = null;
+    [SerializeField] private float distanceFromPlayerWhileAttacking = 1f; // TODO fine tune
+    [SerializeField] private EntityController ghostController = null;
+    private Vector3 originalPosition = Vector3.zero;
 
     // ============= animation control ==============
     [SerializeField] private Animator animator;
     [SerializeField] private string propertyName = "PlayerIsAttacked";
     [SerializeField] private AnimationClip clip;
     private float timeTillFinished = 0;
-    private float timeTillStartPlayerDeath = 0.5f; // TODO
+    [SerializeField] private float timeTillStartPlayerDeath = 0.5f; // TODO fine tune
     public Action OnAttackAnimationStart = () => { };
     public Action OnAttackAnimationFinish = () => { };
     private bool attackInProgress = false;
@@ -34,9 +38,14 @@ public class AttackHandler : MonoBehaviour
             Debug.LogWarning("Attack check script cannot find its animator! Animations will not work");
             sol = true;
         }
-        if(playerDeathHandler == null)
+        if(playerDeathHandler == null || playerTransform == null)
         {
-            Debug.LogWarning("Attack check script cannot find its playerDeathHandler! Attacks will not kill the player");
+            Debug.LogWarning("Attack check script cannot find its player-related refs! Attacks will not kill the player");
+            sol = true;
+        }
+        if(ghostController == null)
+        {
+            Debug.LogWarning("Attack check script cannot find its ghost-related refs! Attacks will not work");
             sol = true;
         }
         OnAttackAnimationFinish += () => {
@@ -44,6 +53,11 @@ public class AttackHandler : MonoBehaviour
         };
         
         
+    }
+
+    private Vector3 getOriginalPosition()
+    {
+        return Vector3.zero; // TODO
     }
 
     // Update is called once per frame
@@ -56,9 +70,13 @@ public class AttackHandler : MonoBehaviour
             Debug.Log(timeTillFinished);
             timeTillFinished -= Time.deltaTime;
 
+            if(timeTillFinished < timeTillStartPlayerDeath)
+            {
+                playerDeathHandler.StartDeath();
+            }
+
             if(timeTillFinished <= 0)
             {
-                Debug.Log("guh");
                 // we attacked but the attack anim is no longer playing, so it is now finished\
                 OnAttackAnimationFinish();
                 attackInProgress = false;
@@ -76,12 +94,12 @@ public class AttackHandler : MonoBehaviour
 
     private bool isAtAttackPosition()
     {
-        return true; // TODO
+        return true; // TODO should only return true if distance to player transform is less than distanceFromPlayerWhileAttacking
     }
 
-    private void moveToAttackPosition()
+    private void moveTowards(Vector3 targetPos)
     {
-        // TODO
+        // TODO should steadily move towards target pos
     }
 
     private void startAttack()
@@ -89,10 +107,12 @@ public class AttackHandler : MonoBehaviour
         if (attackInProgress) { OnAttackAnimationFinish(); }
 
         attackInProgress = true;
+        playerDeathHandler.StartPreDeath();
+        // TODO freeze ghost AI
 
-        while(!isAtAttackPosition())
+        while (!isAtAttackPosition())
         {
-            moveToAttackPosition();
+            moveTowards(playerTransform.position);
         }
 
         timeTillFinished = clip.length;
