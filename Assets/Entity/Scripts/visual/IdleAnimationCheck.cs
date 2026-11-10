@@ -32,8 +32,7 @@ public class IdleAnimationCheck : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("entered " + other);
-        // TODO test compareTag works
+        // Debug.Log("entered " + other);
         if(other.CompareTag("Player"))
         {
             animator.SetBool(propertyName, true);

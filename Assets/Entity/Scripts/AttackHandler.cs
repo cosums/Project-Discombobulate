@@ -13,7 +13,7 @@ public class AttackHandler : MonoBehaviour
     // ============= world effects =============
     [SerializeField] PlayerDeathHandler playerDeathHandler = null;
 
-    // ============= movement effects ============
+    // ============= movement control ============
     private bool awaitingArrivalAtAttackLocation = false;
     [SerializeField] Transform playerTransform = null;
     [SerializeField] private float distanceFromPlayerWhileAttacking = 1f; // TODO fine tune
@@ -25,7 +25,7 @@ public class AttackHandler : MonoBehaviour
 
     // ============= animation control ==============
     [SerializeField] private AttackAnimationHandler animHandler;
-    [SerializeField] private float timeTillStartPlayerDeath = 0.5f; // TODO fine tune
+    [SerializeField] private float timeTillStartPlayerDeath = 1f; // TODO fine tune
     private float elapsedTime = 0f;
     private bool awaitingStartOfPlayerDeath = false;
 
@@ -68,6 +68,8 @@ public class AttackHandler : MonoBehaviour
 
             if(compareToAttackPosition() == 0)
             {
+                Debug.Log("Close enough to player with distance " + Vector3.Distance(ghostTransform.position, playerTransform.position));
+                Debug.Log("Ghost pos was " + ghostTransform.position + ", Player pos was " + playerTransform.position);
                 // start the sequence
                 awaitingArrivalAtAttackLocation = false;
                 awaitingStartOfPlayerDeath = true;
@@ -97,8 +99,9 @@ public class AttackHandler : MonoBehaviour
     private float compareToAttackPosition()
     {
         float distanceBetweenGhostAndPlayer = Vector3.Distance(ghostTransform.position, playerTransform.position);
-        if ((distanceBetweenGhostAndPlayer - distanceFromPlayerWhileAttacking) <= EPSILON)
+        if (Mathf.Abs(distanceBetweenGhostAndPlayer - distanceFromPlayerWhileAttacking) <= EPSILON)
         {
+            Debug.Log("compared: " + (distanceBetweenGhostAndPlayer - distanceFromPlayerWhileAttacking));
             // close enough to player
             return 0f;
         }

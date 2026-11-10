@@ -32,7 +32,7 @@ public class AttackAnimationHandler : MonoBehaviour
 
         if (attackInProgress)
         {
-            Debug.Log(timeTillFinished);
+            //Debug.Log(timeTillFinished);
             timeTillFinished -= Time.deltaTime;
 
             if (timeTillFinished <= 0)
