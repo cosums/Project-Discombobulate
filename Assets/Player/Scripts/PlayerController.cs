@@ -3,7 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    
+    public static bool movementDisabled = false;
+
     public Transform CameraAnchor;
     public float MouseSensitivity = 0.25f;
     public float Speed = 10f;
@@ -29,6 +30,10 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
+        if(movementDisabled)
+        {
+            return;
+        }
         MyInput();
         Look();
 
