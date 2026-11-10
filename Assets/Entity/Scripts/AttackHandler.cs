@@ -68,7 +68,7 @@ public class AttackHandler : MonoBehaviour
             //moveTowardsAttackPosition();
             moveTowardsPosition(currentTarget);
 
-            if (compareToAttackPosition() == 0)
+            if (arrivedAtTargetPosition())
             {
                 Debug.Log("Close enough to player with distance " + Vector3.Distance(ghostTransform.position, playerTransform.position));
                 Debug.Log("Ghost pos was " + ghostTransform.position + ", Player pos was " + playerTransform.position);
@@ -100,7 +100,8 @@ public class AttackHandler : MonoBehaviour
     /** If close enough to the target attack position, returns 0. Else, returns distance to the target attack position. */
     private float compareToAttackPosition()
     {
-        float distanceBetweenGhostAndPlayer = Vector3.Distance(ghostTransform.position, playerTransform.position);
+        float distanceBetweenGhostAndPlayer = Vector3.Distance(ghostTransform.position, new Vector3(playerTransform.position.x, ghostTransform.position.y, playerTransform.position.z));
+        Debug.Log("distanceBetweenGhostAndPlayer " + distanceBetweenGhostAndPlayer);
         if (Mathf.Abs(distanceBetweenGhostAndPlayer - distanceFromPlayerWhileAttacking) <= EPSILON)
         {
             Debug.Log("compared: " + (distanceBetweenGhostAndPlayer - distanceFromPlayerWhileAttacking));
@@ -141,6 +142,11 @@ public class AttackHandler : MonoBehaviour
         ghostTransform.position = ghostTransform.position + projectedMovement;
     }
 
+    private bool arrivedAtTargetPosition()
+    {
+        return Vector3.Magnitude(ghostTransform.position - currentTarget) < EPSILON;
+    }
+
     private Vector3 getTargetAttackPosition(Vector3 ghostPos, Vector3 playerPos)
     {
         Vector3 directionFromPlayerToGhost = ghostPos - playerPos;
@@ -153,9 +159,12 @@ public class AttackHandler : MonoBehaviour
 
     private void moveTowardsPosition(Vector3 target)
     {
+        Debug.Log("currently " + ghostTransform.position + ", moving towards " + target);
         Vector3 directionFromGhostToTarget = target - ghostTransform.position;
+        directionFromGhostToTarget.y = 0;
+        directionFromGhostToTarget = Vector3.Normalize(directionFromGhostToTarget);
         Vector3 speedVector = new Vector3(attackApproachSpeed, 0, attackApproachSpeed);
-        Vector3 movement = Vector3.Scale(directionFromGhostToTarget, speedVector);
+        Vector3 movement = new Vector3(directionFromGhostToTarget.x * attackApproachSpeed, 0, directionFromGhostToTarget.z * attackApproachSpeed);
 
         float dist = Vector3.Magnitude(directionFromGhostToTarget);
         if (Mathf.Abs(dist) < Mathf.Abs(Vector3.Magnitude(speedVector)))
