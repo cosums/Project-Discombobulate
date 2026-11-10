@@ -39,7 +39,7 @@ public class SaltMaster : MonoBehaviour
 
     private void CheckForInput()
     {
-        if (Keyboard.current.eKey.wasPressedThisFrame && _validSurface)
+        if (Keyboard.current.rKey.wasPressedThisFrame && _validSurface)
         {
             OnSaltPlaced?.Invoke(m_SaltPlaceIndicator.transform.position);
         }
