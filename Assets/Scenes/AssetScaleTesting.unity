@@ -19041,6 +19041,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StaticEntityTester
       objectReference: {fileID: 0}
+    - target: {fileID: 1247223477745455077, guid: f471adf5e35f066409def2495dd12705, type: 3}
+      propertyPath: clip
+      value: 
+      objectReference: {fileID: 496037463932586155, guid: d095f484b3ab90e4ba3ec167ff85dc77, type: 3}
     - target: {fileID: 1627912060369200039, guid: f471adf5e35f066409def2495dd12705, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.x
       value: -0.00000003546947

@@ -5,8 +5,8 @@ public class AutoAttackCheck : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private string propertyName = "PlayerIsAttacked";
-    private string ANIM_NAME_1 = "Attack_FromRelaxed";
-    private string ANIM_NAME_2 = "Attack_FromTense";
+    [SerializeField] private AnimationClip clip;
+    private float timeTillFinished = 0;
     public Action OnAttackAnimationStart = () => { };
     public Action OnAttackAnimationFinish = () => { };
     private bool attackInProgress = false;
@@ -37,16 +37,15 @@ public class AutoAttackCheck : MonoBehaviour
 
         if(attackInProgress)
         {
-            // TODO this shi dont work
-            AnimatorStateInfo i = animator.GetCurrentAnimatorStateInfo(0);
-            Debug.Log(i.fullPathHash);
-            if (!i.IsName(ANIM_NAME_1) && !i.IsName(ANIM_NAME_2) && !animator.IsInTransition(0))
+            Debug.Log(timeTillFinished);
+            timeTillFinished -= Time.deltaTime;
+
+            if(timeTillFinished <= 0)
             {
                 Debug.Log("guh");
                 // we attacked but the attack anim is no longer playing, so it is now finished\
                 OnAttackAnimationFinish();
                 attackInProgress = false;
-                
             }
         }
     }
@@ -57,6 +56,7 @@ public class AutoAttackCheck : MonoBehaviour
         {
             if (attackInProgress) { OnAttackAnimationFinish(); }
             attackInProgress = true;
+            timeTillFinished = clip.length;
             animator.SetTrigger(propertyName);
             OnAttackAnimationStart();
         }

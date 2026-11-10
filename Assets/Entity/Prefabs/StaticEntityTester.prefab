@@ -421,6 +421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AutoAttackCheck
   animator: {fileID: 2035941776235020193}
   propertyName: PlayerIsAttacked
+  clip: {fileID: 496037463932586155, guid: d095f484b3ab90e4ba3ec167ff85dc77, type: 3}
 --- !u!136 &5928160261811766665
 CapsuleCollider:
   m_ObjectHideFlags: 0
