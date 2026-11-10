@@ -17,6 +17,7 @@ public class AttackHandler : MonoBehaviour
     private bool awaitingArrivalAtAttackLocation = false;
     [SerializeField] Transform playerTransform = null;
     [SerializeField] private float distanceFromPlayerWhileAttacking = 1f; // TODO fine tune
+    [SerializeField] private float attackApproachSpeed = 0.1f; // TODO fine tune
     [SerializeField] private EntityController ghostController = null;
     [SerializeField] private Transform ghostTransform = null;
     private Vector3 originalPosition = Vector3.zero;
@@ -47,7 +48,7 @@ public class AttackHandler : MonoBehaviour
             Debug.LogWarning("Attack check script cannot find its player-related refs! Attacks will not kill the player");
             sol = true;
         }
-        if(ghostController == null || ghostTransform)
+        if(ghostController == null || ghostTransform == null)
         {
             Debug.LogWarning("Attack check script cannot find its ghost-related refs! Attacks will not work");
             //sol = true;
@@ -63,9 +64,9 @@ public class AttackHandler : MonoBehaviour
         // The ghost starts its attack only once it is at a good position next to the player
         if(awaitingArrivalAtAttackLocation)
         {
-            moveTowards(playerTransform.position);
+            moveTowardsAttackPosition();
 
-            if(isAtAttackPosition())
+            if(compareToAttackPosition() == 0)
             {
                 // start the sequence
                 awaitingArrivalAtAttackLocation = false;
@@ -92,16 +93,43 @@ public class AttackHandler : MonoBehaviour
         originalPosition = ghostTransform.position;
     }
 
-    private bool isAtAttackPosition()
+    /** If close enough to the target attack position, returns 0. Else, returns distance to the target attack position. */
+    private float compareToAttackPosition()
     {
         float distanceBetweenGhostAndPlayer = Vector3.Distance(ghostTransform.position, playerTransform.position);
-        return (distanceBetweenGhostAndPlayer - distanceFromPlayerWhileAttacking) <= EPSILON;
+        if ((distanceBetweenGhostAndPlayer - distanceFromPlayerWhileAttacking) <= EPSILON)
+        {
+            // close enough to player
+            return 0f;
+        }
+
+        return distanceBetweenGhostAndPlayer - distanceFromPlayerWhileAttacking;
     }
 
-    private void moveTowards(Vector3 targetPos)
+    private void moveTowardsAttackPosition()
     {
-        // TODO should steadily move towards target pos
-        // quickly, & ideally with slight easing at the start & end
+        // get direction towards player
+        Vector3 heading = Vector3.Normalize(ghostTransform.position - playerTransform.position);
+
+        float compared = compareToAttackPosition();
+
+        // if too close to the player, want to move backwards.
+        if(compared < 1)
+        {
+            heading = new Vector3(heading.x * -1, heading.y, heading.z * -1);
+        }
+
+        Vector3 projectedMovement = Vector3.Scale(heading, new Vector3(attackApproachSpeed, 0, attackApproachSpeed));
+
+        // if close enough to the target pos, don't overshoot.
+        // im so good at movement controllers guys
+        if(Mathf.Abs(compared) < Mathf.Abs(Vector3.Magnitude(projectedMovement)))
+        {
+            projectedMovement = Vector3.Scale(heading, new Vector3(compared, 0, compared));
+        }
+
+        // finally move towards target pos
+        ghostTransform.position = ghostTransform.position + projectedMovement;
     }
 
     public void StartAttack()
