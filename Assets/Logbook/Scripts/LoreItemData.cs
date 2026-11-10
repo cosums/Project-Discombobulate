@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewLoreItem", menuName = "Lore Items System/Lore Item Data")]
