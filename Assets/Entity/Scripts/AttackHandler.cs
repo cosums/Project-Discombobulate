@@ -54,7 +54,7 @@ public class AttackHandler : MonoBehaviour
             Debug.LogWarning("Attack check script cannot find its ghost-related refs! Attacks will not work");
             //sol = true;
         }
-
+        StartAttack(); // DELETEME just for testing
     }
 
     // Update is called once per frame
@@ -154,7 +154,7 @@ public class AttackHandler : MonoBehaviour
         Vector3 scaled = Vector3.Scale(Vector3.Normalize(directionFromPlayerToGhost), 
             new Vector3(distanceFromPlayerWhileAttacking, 1, distanceFromPlayerWhileAttacking));
 
-        return scaled + ghostPos;
+        return scaled + new Vector3(playerPos.x, ghostPos.y, playerPos.z);
     }
 
     private void moveTowardsPosition(Vector3 target)
