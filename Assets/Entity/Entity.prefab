@@ -109,6 +109,7 @@ Transform:
   - {fileID: 6371188245161732008}
   - {fileID: 3303541273862782991}
   - {fileID: 8164680459394930135}
+  - {fileID: 3689712941802822239}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3443479203015836507
@@ -485,8 +486,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3689712941802822239}
-  - component: {fileID: 1247223477745455077}
   - component: {fileID: 5928160261811766665}
+  - component: {fileID: 79486277543579043}
   m_Layer: 0
   m_Name: AutoAttackRange
   m_TagString: Untagged
@@ -502,28 +503,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7457347657982405730}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7070354, z: -0, w: 0.70717824}
-  m_LocalPosition: {x: 0, y: 1.54354, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.54354, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3303541273862782991}
+  m_Father: {fileID: 3939634697478936566}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1247223477745455077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7457347657982405730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83050e4b5bff2d44a85c649f1deec90a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AutoAttackCheck
-  animator: {fileID: 2035941776235020193}
-  propertyName: PlayerIsAttacked
-  clip: {fileID: 496037463932586155, guid: d095f484b3ab90e4ba3ec167ff85dc77, type: 3}
 --- !u!136 &5928160261811766665
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -547,6 +533,21 @@ CapsuleCollider:
   m_Height: 2.7636728
   m_Direction: 1
   m_Center: {x: 0, y: -0.15211916, z: 0.07}
+--- !u!114 &79486277543579043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7457347657982405730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c09d4517d93f1544d88a2a1ebdac186b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackAnimationHandler
+  animator: {fileID: 2035941776235020193}
+  propertyName: PlayerIsAttacked
+  clip: {fileID: 496037463932586155, guid: d095f484b3ab90e4ba3ec167ff85dc77, type: 3}
 --- !u!1001 &3346858878416685418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -653,10 +654,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 264277668886563173, guid: 774674e17973835439045abe3fa46c60, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3689712941802822239}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 774674e17973835439045abe3fa46c60, type: 3}
 --- !u!95 &2035941776235020193 stripped

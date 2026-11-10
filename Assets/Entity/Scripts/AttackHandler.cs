@@ -7,6 +7,8 @@ using UnityEngine;
  */
 public class AttackHandler : MonoBehaviour
 {
+    private bool sol = false; // shit outta luck
+
     // ============= world effects =============
     [SerializeField] PlayerDeathHandler playerDeathHandler = null;
     [SerializeField] Transform playerTransform = null;
@@ -15,15 +17,9 @@ public class AttackHandler : MonoBehaviour
     private Vector3 originalPosition = Vector3.zero;
 
     // ============= animation control ==============
-    [SerializeField] private Animator animator;
-    [SerializeField] private string propertyName = "PlayerIsAttacked";
-    [SerializeField] private AnimationClip clip;
-    private float timeTillFinished = 0;
+    [SerializeField] private AttackAnimationHandler animHandler;
     [SerializeField] private float timeTillStartPlayerDeath = 0.5f; // TODO fine tune
-    public Action OnAttackAnimationStart = () => { };
-    public Action OnAttackAnimationFinish = () => { };
-    private bool attackInProgress = false;
-    private bool sol = false; // shit outta luck
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,9 +29,9 @@ public class AttackHandler : MonoBehaviour
             Debug.LogWarning("Attack check script cannot find its collider! Auto-attack checks will not work");
             sol = true;
         }
-        if (animator == null)
+        if (animHandler == null)
         {
-            Debug.LogWarning("Attack check script cannot find its animator! Animations will not work");
+            Debug.LogWarning("Attack handler cannot find its animation handler! Animations will not work");
             sol = true;
         }
         if(playerDeathHandler == null || playerTransform == null)
@@ -48,10 +44,6 @@ public class AttackHandler : MonoBehaviour
             Debug.LogWarning("Attack check script cannot find its ghost-related refs! Attacks will not work");
             sol = true;
         }
-        OnAttackAnimationFinish += () => {
-            Debug.Log("Finished attack anim");
-        };
-        
         
     }
 
@@ -65,31 +57,6 @@ public class AttackHandler : MonoBehaviour
     {
         if (sol) return;
 
-        if(attackInProgress)
-        {
-            Debug.Log(timeTillFinished);
-            timeTillFinished -= Time.deltaTime;
-
-            if(timeTillFinished < timeTillStartPlayerDeath)
-            {
-                playerDeathHandler.StartDeath();
-            }
-
-            if(timeTillFinished <= 0)
-            {
-                // we attacked but the attack anim is no longer playing, so it is now finished\
-                OnAttackAnimationFinish();
-                attackInProgress = false;
-            }
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            startAttack();
-        }
     }
 
     private bool isAtAttackPosition()
@@ -104,9 +71,6 @@ public class AttackHandler : MonoBehaviour
 
     private void startAttack()
     {
-        if (attackInProgress) { OnAttackAnimationFinish(); }
-
-        attackInProgress = true;
         playerDeathHandler.StartPreDeath();
         // TODO freeze ghost AI
 
@@ -115,8 +79,6 @@ public class AttackHandler : MonoBehaviour
             moveTowards(playerTransform.position);
         }
 
-        timeTillFinished = clip.length;
-        animator.SetTrigger(propertyName);
-        OnAttackAnimationStart();
+        animHandler.StartAnimation();
     }
 }
