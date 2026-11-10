@@ -162,18 +162,15 @@ public class AttackHandler : MonoBehaviour
         Debug.Log("currently " + ghostTransform.position + ", moving towards " + target);
         Vector3 directionFromGhostToTarget = target - ghostTransform.position;
         directionFromGhostToTarget.y = 0;
-        directionFromGhostToTarget = Vector3.Normalize(directionFromGhostToTarget);
-        Vector3 speedVector = new Vector3(attackApproachSpeed, 0, attackApproachSpeed);
-        Vector3 movement = new Vector3(directionFromGhostToTarget.x * attackApproachSpeed, 0, directionFromGhostToTarget.z * attackApproachSpeed);
 
-        float dist = Vector3.Magnitude(directionFromGhostToTarget);
-        if (Mathf.Abs(dist) < Mathf.Abs(Vector3.Magnitude(speedVector)))
+        float dist = directionFromGhostToTarget.magnitude;
+        if (dist < attackApproachSpeed)
         {
-            Debug.Log("dist " + dist + " was less than speed " + Mathf.Abs(Vector3.Magnitude(speedVector)));
+            Debug.Log("dist " + dist + " was less than speed " + attackApproachSpeed);
             ghostTransform.position = new Vector3(target.x, ghostTransform.position.y, target.z);
             return;
         }
-
+        Vector3 movement = Vector3.Normalize(directionFromGhostToTarget) * attackApproachSpeed;
         ghostTransform.position = ghostTransform.position + movement;
     }
 
