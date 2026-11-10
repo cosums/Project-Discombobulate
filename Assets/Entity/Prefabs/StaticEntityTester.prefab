@@ -80,7 +80,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3939634697478936566}
   - component: {fileID: 3443479203015836507}
-  - component: {fileID: 7704175907043583783}
   - component: {fileID: 2328357110707670461}
   m_Layer: 3
   m_Name: StaticEntityTester
@@ -116,29 +115,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 520472271918234028}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!136 &7704175907043583783
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 520472271918234028}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!143 &2328357110707670461
 CharacterController:
   m_ObjectHideFlags: 0
@@ -573,7 +549,11 @@ PrefabInstance:
       value: Ghost Visuals
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6828193930595571950, guid: 774674e17973835439045abe3fa46c60, type: 3}
+    - {fileID: 689215186973097584, guid: 774674e17973835439045abe3fa46c60, type: 3}
+    - {fileID: 6472044191246141171, guid: 774674e17973835439045abe3fa46c60, type: 3}
+    - {fileID: 8775939810808583400, guid: 774674e17973835439045abe3fa46c60, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 264277668886563173, guid: 774674e17973835439045abe3fa46c60, type: 3}
       insertIndex: -1
