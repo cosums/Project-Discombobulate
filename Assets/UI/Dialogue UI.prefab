@@ -883,6 +883,7 @@ GameObject:
   - component: {fileID: 7289347982913878256}
   - component: {fileID: 4928948025723868702}
   - component: {fileID: 7211120807574229195}
+  - component: {fileID: 393831136549360819}
   m_Layer: 5
   m_Name: Dialogue Panel
   m_TagString: Untagged
@@ -960,6 +961,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   m_DialogueParent: {fileID: 5087178784057081517}
+--- !u!225 &393831136549360819
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4264431636589934946}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6339397446152288359
 GameObject:
   m_ObjectHideFlags: 0

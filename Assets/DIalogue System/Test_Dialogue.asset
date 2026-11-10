@@ -16,3 +16,8 @@ MonoBehaviour:
   - dialogLine: This is a test of some dialogues
     dialogAudio: {fileID: 0}
     clipLength: 5
+    speaker: 0
+  - dialogLine: And then some more testing??
+    dialogAudio: {fileID: 0}
+    clipLength: 5
+    speaker: 1
