@@ -69,6 +69,9 @@ public class GameManager : MonoBehaviour
             case GameState.Paused:
                 Time.timeScale = 0;
                 break;
+            case GameState.Therapy:
+                UIManager.DisableCursor();
+                break;
         }
     }
 
@@ -78,6 +81,9 @@ public class GameManager : MonoBehaviour
         {
             case GameState.Paused:
                 Time.timeScale = 1;
+                break;
+            case GameState.Therapy:
+                UIManager.EnableCursor();
                 break;
         }
     }
