@@ -21,6 +21,7 @@ public class AttackHandler : MonoBehaviour
     // ============= animation control ==============
     [SerializeField] private AttackAnimationHandler animHandler;
     [SerializeField] private float timeTillStartPlayerDeath = 0.5f; // TODO fine tune
+    private float elapsedTime = 0f;
     private bool awaitingStartOfPlayerDeath = false;
 
 
@@ -55,6 +56,16 @@ public class AttackHandler : MonoBehaviour
     {
         if (sol) return;
 
+        if(awaitingStartOfPlayerDeath)
+        {
+            elapsedTime += Time.deltaTime;
+            if(elapsedTime > timeTillStartPlayerDeath)
+            {
+                elapsedTime = 0f;
+                awaitingStartOfPlayerDeath = false;
+                playerDeathHandler.StartDeath();
+            }
+        }
     }
 
     private Vector3 getOriginalPosition()
