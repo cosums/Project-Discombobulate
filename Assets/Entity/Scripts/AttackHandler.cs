@@ -16,16 +16,17 @@ public class AttackHandler : MonoBehaviour
     // ============= movement control ============
     private bool awaitingArrivalAtAttackLocation = false;
     [SerializeField] Transform playerTransform = null;
-    [SerializeField] private float distanceFromPlayerWhileAttacking = 1f; // TODO fine tune
-    [SerializeField] private float attackApproachSpeed = 0.1f; // TODO fine tune
+    [SerializeField] private float distanceFromPlayerWhileAttacking = 2f; // TODO fine tune
+    [SerializeField] private float attackApproachSpeed = 0.002f; // TODO fine tune
     [SerializeField] private EntityController ghostController = null;
     [SerializeField] private Transform ghostTransform = null;
     private Vector3 originalPosition = Vector3.zero;
+    private Vector3 currentTarget;
     private const float EPSILON = 0.0001f;
 
     // ============= animation control ==============
     [SerializeField] private AttackAnimationHandler animHandler;
-    [SerializeField] private float timeTillStartPlayerDeath = 1f; // TODO fine tune
+    [SerializeField] private float timeTillStartPlayerDeath = 1.2f; // TODO fine tune
     private float elapsedTime = 0f;
     private bool awaitingStartOfPlayerDeath = false;
 
@@ -43,17 +44,17 @@ public class AttackHandler : MonoBehaviour
             Debug.LogWarning("Attack handler cannot find its animation handler! Animations will not work");
             sol = true;
         }
-        if(playerDeathHandler == null || playerTransform == null)
+        if (playerDeathHandler == null || playerTransform == null)
         {
             Debug.LogWarning("Attack check script cannot find its player-related refs! Attacks will not kill the player");
             sol = true;
         }
-        if(ghostController == null || ghostTransform == null)
+        if (ghostController == null || ghostTransform == null)
         {
             Debug.LogWarning("Attack check script cannot find its ghost-related refs! Attacks will not work");
             //sol = true;
         }
-        
+
     }
 
     // Update is called once per frame
@@ -62,11 +63,12 @@ public class AttackHandler : MonoBehaviour
         if (sol) return;
 
         // The ghost starts its attack only once it is at a good position next to the player
-        if(awaitingArrivalAtAttackLocation)
+        if (awaitingArrivalAtAttackLocation)
         {
-            moveTowardsAttackPosition();
+            //moveTowardsAttackPosition();
+            moveTowardsPosition(currentTarget);
 
-            if(compareToAttackPosition() == 0)
+            if (compareToAttackPosition() == 0)
             {
                 Debug.Log("Close enough to player with distance " + Vector3.Distance(ghostTransform.position, playerTransform.position));
                 Debug.Log("Ghost pos was " + ghostTransform.position + ", Player pos was " + playerTransform.position);
@@ -78,10 +80,10 @@ public class AttackHandler : MonoBehaviour
         }
 
         // An attack triggers the player's death animation once the ghost's animation is partially complete
-        if(awaitingStartOfPlayerDeath)
+        if (awaitingStartOfPlayerDeath)
         {
             elapsedTime += Time.deltaTime;
-            if(elapsedTime > timeTillStartPlayerDeath)
+            if (elapsedTime > timeTillStartPlayerDeath)
             {
                 elapsedTime = 0f;
                 awaitingStartOfPlayerDeath = false;
@@ -117,8 +119,9 @@ public class AttackHandler : MonoBehaviour
         float compared = compareToAttackPosition();
 
         // if too close to the player, want to move backwards.
-        if(compared < 1)
+        if (compared < 1)
         {
+            Debug.Log("inverting heading");
             heading = new Vector3(heading.x * -1, heading.y, heading.z * -1);
         }
 
@@ -126,13 +129,43 @@ public class AttackHandler : MonoBehaviour
 
         // if close enough to the target pos, don't overshoot.
         // im so good at movement controllers guys
-        if(Mathf.Abs(compared) < Mathf.Abs(Vector3.Magnitude(projectedMovement)))
+        if (Mathf.Abs(compared) < Mathf.Abs(Vector3.Magnitude(projectedMovement)))
         {
+            Debug.Log("too close, ensuring no overshoot");
             projectedMovement = Vector3.Scale(heading, new Vector3(compared, 0, compared));
         }
 
         // finally move towards target pos
+        Debug.Log("moved " + projectedMovement);
+        Debug.Log("direction was " + heading + " and distance was " + Vector3.Magnitude(projectedMovement));
         ghostTransform.position = ghostTransform.position + projectedMovement;
+    }
+
+    private Vector3 getTargetAttackPosition(Vector3 ghostPos, Vector3 playerPos)
+    {
+        Vector3 directionFromPlayerToGhost = ghostPos - playerPos;
+        directionFromPlayerToGhost.y = 0;
+        Vector3 scaled = Vector3.Scale(Vector3.Normalize(directionFromPlayerToGhost), 
+            new Vector3(distanceFromPlayerWhileAttacking, 1, distanceFromPlayerWhileAttacking));
+
+        return scaled + ghostPos;
+    }
+
+    private void moveTowardsPosition(Vector3 target)
+    {
+        Vector3 directionFromGhostToTarget = target - ghostTransform.position;
+        Vector3 speedVector = new Vector3(attackApproachSpeed, 0, attackApproachSpeed);
+        Vector3 movement = Vector3.Scale(directionFromGhostToTarget, speedVector);
+
+        float dist = Vector3.Magnitude(directionFromGhostToTarget);
+        if (Mathf.Abs(dist) < Mathf.Abs(Vector3.Magnitude(speedVector)))
+        {
+            Debug.Log("dist " + dist + " was less than speed " + Mathf.Abs(Vector3.Magnitude(speedVector)));
+            ghostTransform.position = new Vector3(target.x, ghostTransform.position.y, target.z);
+            return;
+        }
+
+        ghostTransform.position = ghostTransform.position + movement;
     }
 
     public void StartAttack()
@@ -143,6 +176,7 @@ public class AttackHandler : MonoBehaviour
 
         // move towards player
         setOriginalPosition();
+        currentTarget = getTargetAttackPosition(ghostTransform.position, playerTransform.position);
         awaitingArrivalAtAttackLocation = true;
 
         // the rest of the sequence is handled in Update()
