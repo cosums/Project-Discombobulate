@@ -8,6 +8,12 @@ public enum Speaker
     Mallory = 1
 }
 
+public enum DialogueResult
+{
+    None = 0,
+    Death = 1
+}
+
 [CreateAssetMenu(fileName = "NewDialogue", menuName = "Dialogue System/Dialogue")]
 public class Dialogue : ScriptableObject
 {
@@ -23,8 +29,9 @@ public class Dialogue : ScriptableObject
     }
 
     [SerializeField] List<DialogueLine> dialogLines = new List<DialogueLine>();
-    [SerializeField] DialogueChoice endingChoice;
-    [SerializeField] bool strictPlay;
+    public DialogueChoice endingChoice;
+    public bool strictPlay;
+    public DialogueResult result;
 
     public List<DialogueLine> GetLines()
     {

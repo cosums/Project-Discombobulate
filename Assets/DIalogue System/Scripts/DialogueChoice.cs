@@ -17,10 +17,10 @@ public class DialogueChoice : ScriptableObject
         public Dialogue nextDialogue;
     }
 
-    [SerializeField] DialogueOption[] dialogLines = new DialogueOption[2];
+    public DialogueOption[] dialogueChoices = new DialogueOption[2];
 
     public DialogueOption[] GetLines()
     {
-        return dialogLines;
+        return dialogueChoices;
     }
 }

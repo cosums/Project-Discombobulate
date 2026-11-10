@@ -10,14 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a07ca10a5917619439953c0c2b0b0c84, type: 3}
-  m_Name: Test_Dialogue
+  m_Name: Test_Result_2
   m_EditorClassIdentifier: Assembly-CSharp::Dialogue
   dialogLines:
-  - dialogLine: This is a test of some dialogues
-    dialogAudio: {fileID: 0}
-    clipLength: 5
-    speaker: 0
-  - dialogLine: And then some more testing??
+  - dialogLine: Oh actually you seem chill, i no longer angy
     dialogAudio: {fileID: 0}
     clipLength: 5
     speaker: 1
+  endingChoice: {fileID: 0}
+  strictPlay: 1

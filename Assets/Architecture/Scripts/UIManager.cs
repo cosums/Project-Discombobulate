@@ -22,4 +22,10 @@ public static class UIManager
         cursorEnabled = false;
         OnCursorStateChanged?.Invoke(cursorEnabled);
     }
+
+    public static void EnableCanvasGroup(CanvasGroup group, bool enable)
+    {
+        group.interactable = enable;
+        group.blocksRaycasts = enable;
+    }
 }
