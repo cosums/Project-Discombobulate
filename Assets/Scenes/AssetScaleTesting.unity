@@ -19087,7 +19087,7 @@ PrefabInstance:
       objectReference: {fileID: 484090815}
     - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}
       propertyPath: attackApproachSpeed
-      value: 0.01
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}
       propertyPath: timeTillStartPlayerDeath

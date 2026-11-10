@@ -160,18 +160,8 @@ public class AttackHandler : MonoBehaviour
     private void moveTowardsPosition(Vector3 target)
     {
         Debug.Log("currently " + ghostTransform.position + ", moving towards " + target);
-        Vector3 directionFromGhostToTarget = target - ghostTransform.position;
-        directionFromGhostToTarget.y = 0;
-
-        float dist = directionFromGhostToTarget.magnitude;
-        if (dist < attackApproachSpeed)
-        {
-            Debug.Log("dist " + dist + " was less than speed " + attackApproachSpeed);
-            ghostTransform.position = new Vector3(target.x, ghostTransform.position.y, target.z);
-            return;
-        }
-        Vector3 movement = Vector3.Normalize(directionFromGhostToTarget) * attackApproachSpeed;
-        ghostTransform.position = ghostTransform.position + movement;
+        Vector3 cur = ghostTransform.position;
+        ghostTransform.position = Vector3.MoveTowards(cur, target, attackApproachSpeed);
     }
 
     public void StartAttack()
