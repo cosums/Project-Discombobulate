@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class DialogueSystem : MonoBehaviour
 {
-    [SerializeField] DialogueUI dialogUI;
+    [SerializeField] DialogueUIPanel dialogUI;
     [SerializeField] Dialogue redDialogue;
 
     Coroutine currentRoutine;
@@ -61,8 +61,8 @@ public class DialogueSystem : MonoBehaviour
             currentVoice = null;
         }
 
-        if (clearUI && dialogUI != null)
-            dialogUI.ClearDialog();
+        //if (clearUI && dialogUI != null)
+            //dialogUI.ClearDialog();
     }
 
     IEnumerator PlayRoutine(Dialogue dialogue)
@@ -70,11 +70,11 @@ public class DialogueSystem : MonoBehaviour
         foreach (var line in dialogue.GetLines())
         {
             if (dialogUI == null) break;
-            dialogUI.SetDialog(line.dialogLine);
+            GameObject lineObj = dialogUI.AddLine(line.dialogLine);
 
             if (line.dialogAudio != null)
             {
-                // currentVoice = AudioBus.Instance.PlaySFX(line.dialogAudio, 2, false, false);
+                AudioManager.Instance.PlayOneShot(line.dialogAudio, 2);
 
                 yield return new WaitForSeconds(line.clipLength == 0 ? line.dialogAudio.length : line.clipLength);
             }
@@ -82,10 +82,28 @@ public class DialogueSystem : MonoBehaviour
             {
                 yield return new WaitForSeconds(3);
             }
+
+            Destroy(lineObj);
         }
 
         currentVoice = null;
         currentRoutine = null;
-        if (dialogUI != null) dialogUI.ClearDialog();
+
+        if (dialogue.endingChoice != null) {
+           HandleChoiceSetup(dialogue.endingChoice);
+        }
+
+        if (dialogue.result != DialogueResult.None)
+        {
+            Debug.Log("Then you would: " + dialogue.result);
+        }
+    }
+
+    private void HandleChoiceSetup(DialogueChoice choice)
+    {
+        foreach (var option in choice.dialogueChoices)
+        {
+            dialogUI.AddOption(option.dialogLine);
+        }
     }
 }

@@ -16,6 +16,7 @@ public class EntityController : MonoBehaviour
 
     public NavMeshAgent Agent;
     public AIPathfollower Pathfollower;
+    public SummonManager SummoningManager;
 
     public float CenterFOV = 30f;
     public float PeripheryFOV = 40f;
@@ -33,13 +34,15 @@ public class EntityController : MonoBehaviour
     public float StalkFollowSpeed = 0f;
     public float StalkHideSpeed = 0f;
     public float StalkTargetDistance = 10f;
-     public float StalkMinDistance = 5f;
-     public float StalkMaxDistance = 30f;
+    public float StalkMinDistance = 5f;
+    public float StalkMaxDistance = 30f;
 
     // behavior
     private IEntityBehavior _currentBehavior;
 
     public readonly StalkingBehavior StalkingBehavior = new StalkingBehavior();
+
+    private bool _therapyMode;
     
     void Start()
     {
@@ -51,15 +54,44 @@ public class EntityController : MonoBehaviour
         Agent.Warp(CurrentTarget.transform.position);
     }
 
+    void OnEnable()
+    {
+        GameManager.OnStateEntered += HandleStateEnter;
+    }
+
+    void OnDisable()
+    {
+        GameManager.OnStateEntered -= HandleStateEnter;
+    }
+
     void Update()
     {
         if(movementDisabled) return;
-
+        if (_therapyMode) return;
+        
         UpdateVisibility();
 
         LookAtPlayer();
 
         _currentBehavior.Tick(this);
+    }
+
+    private void HandleStateEnter(GameState state)
+    {
+        switch (state)
+        {
+            case GameState.Therapy:
+                EnterTherapy();
+                break;
+        }
+    }
+
+    private void EnterTherapy()
+    {
+        _therapyMode = true;
+        Freeze();
+        transform.position = SummoningManager.transform.position;
+        LookAtPlayer();
     }
 
     public bool SmartMoveToNode(AINode target, System.Func<AINode, AINode, float, float> costFn = null)

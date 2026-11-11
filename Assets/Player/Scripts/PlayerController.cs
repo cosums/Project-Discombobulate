@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,12 +6,25 @@ public class PlayerController : MonoBehaviour
 {
     public static bool movementDisabled = false;
 
+    private enum MovementMode
+    {
+        Walking,
+        Crouching,
+        Sprinting
+    }
+
+    public static bool CanMove = true;
     public Transform CameraAnchor;
     public float MouseSensitivity = 0.25f;
-    public float Speed = 10f;
+    public float WalkSpeed = 4.5f;
+    public float SprintSpeed = 7f;
+    public float CrouchSpeed = 2f;
     public float Gravity = -20f;
     public float JumpHeight = 1.5f;
     public float CrouchScale = 0.5f;
+    public float CrouchTime = 0.3f;
+
+    private float _crouchVelocity;
 
     [SerializeField] AudioClip footsteps;
     [SerializeField] float footstepInterval = 0.45f;
@@ -21,11 +35,17 @@ public class PlayerController : MonoBehaviour
     float camX, camY;
     float verticalVelocity;
     
+    bool isCrouching;
+    bool isSprinting;
+
+    private Vector3 _initialScale;
+    private MovementMode _currentMovementMode = MovementMode.Walking;
+    
     void Start()
     {
         m_CharacterController = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        UIManager.DisableCursor();
+        _initialScale = transform.localScale;
     }
     
     void Update()
@@ -34,10 +54,27 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+        if (GameManager.Instance.CurrentState != GameState.Playing) return;
+        
         MyInput();
         Look();
 
         HandleMovement();
+    }
+
+    private void OnEnable()
+    {
+        UIManager.OnCursorStateChanged += UpdateCanMove;
+    }
+
+    private void OnDisable()
+    {
+        UIManager.OnCursorStateChanged -= UpdateCanMove;
+    }
+
+    private void UpdateCanMove(bool cursorEnabled)
+    {
+        CanMove = !cursorEnabled;
     }
 
     private void MyInput()
@@ -52,10 +89,20 @@ public class PlayerController : MonoBehaviour
 
         camY += Mouse.current.delta.x.ReadValue() * MouseSensitivity;
         camX -= Mouse.current.delta.y.ReadValue() * MouseSensitivity;
+
+        // reorder if we want, but i imagine crouching is prioritized
+        isCrouching = Keyboard.current.ctrlKey.isPressed;
+        isSprinting = Keyboard.current.shiftKey.isPressed;
+
+        if (isCrouching) _currentMovementMode = MovementMode.Crouching;
+        else if (isSprinting) _currentMovementMode = MovementMode.Sprinting;
+        else _currentMovementMode = MovementMode.Walking;
     }
 
     private void Look()
     {
+        if (!CanMove) return;
+
         camX = Mathf.Clamp(camX, -90f, 90f);
         
         CameraAnchor.localRotation = Quaternion.Euler(camX, 0, 0);
@@ -64,6 +111,8 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovement()
     {
+        if (!CanMove) return;
+
         Vector3 move = transform.right * x + transform.forward * y;
         move.Normalize();
 
@@ -81,12 +130,18 @@ public class PlayerController : MonoBehaviour
 
         verticalVelocity += Gravity * Time.deltaTime;
 
-        Vector3 velocity = move * Speed;
+        float speed = GetCurrentSpeed();
+
+        Vector3 velocity = speed * move;
         velocity.y = verticalVelocity;
 
         m_CharacterController.Move(velocity * Time.deltaTime);
 
         HandleFootsteps(grounded, move);
+
+        float targetY = _currentMovementMode == MovementMode.Crouching ? CrouchScale : _initialScale.y;
+        float currentYScale = Mathf.SmoothDamp(transform.localScale.y, targetY, ref _crouchVelocity, CrouchTime);
+        transform.localScale = new Vector3(_initialScale.x, currentYScale, _initialScale.z);
     }
 
     private void HandleFootsteps(bool grounded, Vector3 move)
@@ -105,6 +160,17 @@ public class PlayerController : MonoBehaviour
         {
             footstepTimer -= footstepInterval;
             AudioManager.Instance.PlayOneShot(footsteps, 0.8f, null, 0.05f);
+        }
+    }
+
+    private float GetCurrentSpeed()
+    {
+        switch (_currentMovementMode)
+        {
+            case MovementMode.Walking: return WalkSpeed;
+            case MovementMode.Crouching: return CrouchSpeed;
+            case MovementMode.Sprinting: return SprintSpeed;
+            default: return WalkSpeed;
         }
     }
 }

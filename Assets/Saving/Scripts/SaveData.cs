@@ -3,8 +3,10 @@ using UnityEngine;
 [System.Serializable]
 public class SaveData
 {
-    public string uuid; // just for testing if this works how I think it might
+    public string uuid;
 
+    public float Playtime;
+    
     /*
     Some thoughts on how this can expand.
     Log the player's last position from a save state?
@@ -16,20 +18,32 @@ public class SaveData
 
     Like Deltarune! But at least our flags have names lol
     */
+    
+    public float MouseSensitivity;
+    public float Brightness;
+
+    // player state
+    public Vector3 PlayerPosition;
+    public Vector3 PlayerRotation;
+    public bool FlashLightOn;
+
+    // ghost state
+    public int CurrentPhase;
+    public float CurrentAnger;
 
     // key flags
-    public bool hasLibraryKey;
-    public bool hasOfficeKey;
-    public bool hasMasterBedroomKey;
-    public bool hasMalloryBedroomKey;
-    public bool hasSecretRoomKey;
+    public bool HasLibraryKey;
+    public bool HasOfficeKey;
+    public bool HasMasterBedroomKey;
+    public bool HasMalloryBedroomKey;
+    public bool HasSecretRoomKey;
 
     // item flags
     public bool HasMotherDeadNotice;
     public bool HasFatherJournal;
-    public bool Hs1873Newspaper;
+    public bool Has1873Newspaper;
     public bool HasRosethroneLedger;
-    public bool HsCreditorTelegram;
+    public bool HasLondonLetter;
     public bool HasMallorysJournal;
     public bool HasTrainTicket;
     public bool HasPackedTrunk;
@@ -37,6 +51,9 @@ public class SaveData
     public bool HasMurderWeapon;
     public bool HasSuicideWeapon;
     public bool HasFathersNote;
+
+    // keep a list of journal entries
+    public bool HasJournal1;
 
     /*
     Mother's death notice → Mallory's mother died giving birth to her.

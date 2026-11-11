@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Father's Old Journal
   m_EditorClassIdentifier: Assembly-CSharp::LoreItem
   Name: Father's Old Journal
-  Description: A journal of Mallory's father
+  Description: A journal of Mallory's father.
   Icon: {fileID: 0}
   modelPrefab: {fileID: 0}
-  itemGroup: -1
+  groupIndex: -1

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07ca10a5917619439953c0c2b0b0c84, type: 3}
+  m_Name: Test_Dialogue
+  m_EditorClassIdentifier: Assembly-CSharp::Dialogue
+  dialogLines:
+  - dialogLine: Hi I am Mallory and I am ver angy
+    dialogAudio: {fileID: 0}
+    clipLength: 2
+    speaker: 1
+  - dialogLine: Hi I am James and I am ver scared
+    dialogAudio: {fileID: 0}
+    clipLength: 2
+    speaker: 0
+  endingChoice: {fileID: 11400000, guid: 4e036df905a9abe44acb42141d4333cd, type: 2}
+  strictPlay: 1
+  result: 0
