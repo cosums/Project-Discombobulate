@@ -19124,6 +19124,10 @@ PrefabInstance:
       value: 1.13
       objectReference: {fileID: 0}
     - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}
+      propertyPath: cooldownTimeAfterAttackFinished
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}
       propertyPath: distanceFromPlayerWhileAttacking
       value: 1.8
       objectReference: {fileID: 0}

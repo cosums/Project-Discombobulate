@@ -9,7 +9,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: TriggerFadeFromBlack
+    m_ConditionEvent: TriggerFadeToBlack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 933363460480470863}
@@ -17,9 +17,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0
+  m_TransitionDuration: 0.029749691
   m_TransitionOffset: 0
-  m_ExitTime: 1
+  m_ExitTime: 0.9643004
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -229,7 +229,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: TriggerFadeToBlack
+    m_ConditionEvent: TriggerFadeFromBlack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2291299529439178955}
@@ -237,9 +237,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0
+  m_TransitionDuration: 0.029166281
   m_TransitionOffset: 0
-  m_ExitTime: 0.98539996
+  m_ExitTime: 0.9504005
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
