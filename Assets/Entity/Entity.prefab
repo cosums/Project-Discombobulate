@@ -209,7 +209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6371188245161732008
 Transform:
   m_ObjectHideFlags: 0
@@ -497,6 +497,7 @@ MonoBehaviour:
   distanceFromPlayerWhileAttacking: 1.8
   ghostTransform: {fileID: 3939634697478936566}
   headBoneTransform: {fileID: 6851542079027077835}
+  secondsUntilAutoStartAnimation: 1
   animHandler: {fileID: 79486277543579043}
   timeTillStartPlayerDeath: 1.13
 --- !u!1001 &3346858878416685418
@@ -585,11 +586,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5037132675930843841, guid: 774674e17973835439045abe3fa46c60, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.x
-      value: -3.54774e-11
+      value: -4.2109892e-11
       objectReference: {fileID: 0}
     - target: {fileID: 5037132675930843841, guid: 774674e17973835439045abe3fa46c60, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.z
-      value: -0.00000006191637
+      value: -0.00000009529499
       objectReference: {fileID: 0}
     - target: {fileID: 5037132675930843841, guid: 774674e17973835439045abe3fa46c60, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[2].m_Value.x
