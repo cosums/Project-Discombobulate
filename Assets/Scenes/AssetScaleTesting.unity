@@ -19090,17 +19090,25 @@ PrefabInstance:
     - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}
       propertyPath: lookTarget
       value: 
-      objectReference: {fileID: 789720193}
+      objectReference: {fileID: 2003331117}
     - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}
       propertyPath: ghostTransform
       value: 
       objectReference: {fileID: 413007714}
+    - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}
+      propertyPath: headTurnTarget
+      value: 
+      objectReference: {fileID: 789720193}
     - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 600837528}
     - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}
       propertyPath: playerLookTarget
+      value: 
+      objectReference: {fileID: 901387948}
+    - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}
+      propertyPath: headBoneTransform
       value: 
       objectReference: {fileID: 901387948}
     - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}

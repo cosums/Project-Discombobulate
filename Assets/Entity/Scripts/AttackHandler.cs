@@ -27,10 +27,13 @@ public class AttackHandler : MonoBehaviour
     // ============= animation control ==============
     [SerializeField] private AttackAnimationHandler animHandler;
     [SerializeField] private Transform lookTarget = null;
-    [SerializeField] private Transform playerLookTarget = null;
+    [SerializeField] private Transform headTurnTarget = null;
+    [SerializeField] private Transform headBoneTransform = null;
     [SerializeField] private float timeTillStartPlayerDeath = 1.13f;
     private float elapsedTime = 0f;
     private bool awaitingStartOfPlayerDeath = false;
+    private bool shouldRotateHead = false;
+    private float animatorSpeed = 0f;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -56,6 +59,7 @@ public class AttackHandler : MonoBehaviour
             Debug.LogWarning("Attack check script cannot find its ghost-related refs! Attacks will not work");
             //sol = true;
         }
+        animHandler.OnAttackAnimationFinish += () => { shouldRotateHead = true; Debug.Log("set shouldRotateHead"); };
         // StartAttack(); // DELETEME just for testing
     }
 
@@ -69,7 +73,7 @@ public class AttackHandler : MonoBehaviour
         {
             //moveTowardsAttackPosition();
             moveTowardsPosition(currentTarget);
-            rotateTowardsTarget();
+            rotateTowardsTarget(ghostTransform, playerTransform);
 
             if (arrivedAtTargetPosition())
             {
@@ -90,6 +94,12 @@ public class AttackHandler : MonoBehaviour
                 awaitingStartOfPlayerDeath = false;
                 playerDeathHandler.StartDeath();
             }
+        }
+
+        // Looks at the downed player with just her head
+        if (shouldRotateHead)
+        {
+            rotateTowardsTarget(headBoneTransform, headTurnTarget);
         }
     }
 
@@ -119,19 +129,20 @@ public class AttackHandler : MonoBehaviour
         ghostTransform.position = Vector3.MoveTowards(cur, target, attackApproachSpeed);
     }
 
-    private void rotateTowardsTarget()
+    // TODO doesnt work, probably because the animator has control
+    private void rotateTowardsTarget(Transform self, Transform target)
     {
-        Vector3 direction = playerTransform.position - ghostTransform.position;
+        Vector3 direction = target.position - self.position;
         direction.y = 0;
-        ghostTransform.rotation = Quaternion.Slerp(ghostTransform.rotation, Quaternion.LookRotation(direction), 0.05f);
-        Vector3 euler = ghostTransform.eulerAngles; // idk where its getting that x rotation from but this removes it
-        ghostTransform.rotation = Quaternion.Euler(new Vector3(0, euler.y, 0));
+        self.rotation = Quaternion.Slerp(self.rotation, Quaternion.LookRotation(direction), 0.05f);
+        Vector3 euler = self.eulerAngles; // idk where its getting that x rotation from but this removes it
+        self.rotation = Quaternion.Euler(new Vector3(0, euler.y, 0));
     }
 
     public void StartAttack()
     {
         // freeze player & ghost movements to take manual control
-        playerDeathHandler.StartPreDeath(playerLookTarget);
+        playerDeathHandler.StartPreDeath(headBoneTransform);
         // TODO freeze ghost AI
 
         // move towards player
