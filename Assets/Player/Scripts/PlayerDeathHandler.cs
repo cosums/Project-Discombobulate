@@ -111,14 +111,16 @@ public class PlayerDeathHandler : MonoBehaviour
 
     private void onResetLocal()
     {
-        animator.SetTrigger(ANIM_TRIGGER_RESET);
-        PlayerController.movementDisabled = false;
         isDying = false;
         isAwaitingDeathStart = false;
         cameraAnimIsFinished = false;
         fadeToBlackIsFinished = false;
         fadeToBlackTransition.OnTransitionToFinished -= setFadeFinished;
         if (saveManager != null) saveManager.LoadGame();
-        fadeToBlackTransition.FadeFromBlack(); // TODO might want to remove this later
+
+        // TODO this things should wait for the save to be loaded somehow
+        fadeToBlackTransition.FadeFromBlack();
+        animator.SetTrigger(ANIM_TRIGGER_RESET);
+        PlayerController.movementDisabled = false;
     }
 }
