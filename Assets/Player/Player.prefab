@@ -576,6 +576,7 @@ MonoBehaviour:
   animator: {fileID: 7629925856345902900}
   clip: {fileID: 7400000, guid: a7ee126e00b127140ac7d33470af918d, type: 2}
   cameraTransform: {fileID: 8564092842901239198}
+  fadeToBlackTransition: {fileID: 5405868299079488421}
 --- !u!1 &6079582379990860265
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,6 +1037,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfd24a7be6e9fb840ada476446f563b5, type: 3}
+--- !u!114 &5405868299079488421 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7340813032599832592, guid: bfd24a7be6e9fb840ada476446f563b5, type: 3}
+  m_PrefabInstance: {fileID: 3376096756181130165}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4981e43e13d09a94a8fd868d43a154c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FadeToBlackTransition
 --- !u!224 &9079253628354409940 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5991391755893468769, guid: bfd24a7be6e9fb840ada476446f563b5, type: 3}

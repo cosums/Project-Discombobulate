@@ -18,6 +18,7 @@ public class PlayerDeathHandler : MonoBehaviour
     private Transform lookTransform;
     public Action OnReset = () => { };
     private float elapsedTime = 0f;
+    [SerializeField] private FadeToBlackTransition fadeToBlackTransition;
 
     // ================== Other stuff =======================
     SaveManager saveManager;
@@ -71,9 +72,9 @@ public class PlayerDeathHandler : MonoBehaviour
 
         if(!isAwaitingDeathStart && cameraAnimIsFinished)
         {
-            // TODO start fade to black
-            // TODO check if fade to black is finished
-            fadeToBlackIsFinished = true;
+            
+            fadeToBlackTransition.OnTransitionToFinished += setFadeFinished;
+            fadeToBlackTransition.FadeToBlack();
         }
     }
 
@@ -103,6 +104,11 @@ public class PlayerDeathHandler : MonoBehaviour
         isDead = true;
     }
 
+    private void setFadeFinished()
+    {
+        fadeToBlackIsFinished = true;
+    }
+
     private void onResetLocal()
     {
         animator.SetTrigger(ANIM_TRIGGER_RESET);
@@ -111,6 +117,8 @@ public class PlayerDeathHandler : MonoBehaviour
         isAwaitingDeathStart = false;
         cameraAnimIsFinished = false;
         fadeToBlackIsFinished = false;
+        fadeToBlackTransition.OnTransitionToFinished -= setFadeFinished;
         if (saveManager != null) saveManager.LoadGame();
+        fadeToBlackTransition.FadeFromBlack(); // TODO might want to remove this later
     }
 }
