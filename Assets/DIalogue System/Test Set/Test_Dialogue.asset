@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Dialogue
   dialogLines:
   - dialogLine: Hi I am Mallory and I am ver angy
-    dialogAudio: {fileID: 0}
-    clipLength: 2
+    dialogAudio: {fileID: 8300000, guid: 0df1a4d76941b7046bf0ee0340ca7ebc, type: 3}
+    clipLength: 5
     speaker: 1
   - dialogLine: Hi I am James and I am ver scared
-    dialogAudio: {fileID: 0}
-    clipLength: 2
+    dialogAudio: {fileID: 8300000, guid: 0df1a4d76941b7046bf0ee0340ca7ebc, type: 3}
+    clipLength: 5
     speaker: 0
   endingChoice: {fileID: 11400000, guid: 4e036df905a9abe44acb42141d4333cd, type: 2}
   strictPlay: 1
