@@ -34071,8 +34071,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4099945880046725837, guid: 774674e17973835439045abe3fa46c60, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.x
+      value: -0.000000039718543
+      objectReference: {fileID: 0}
+    - target: {fileID: 4099945880046725837, guid: 774674e17973835439045abe3fa46c60, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.y
-      value: 0.000000059604645
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4099945880046725837, guid: 774674e17973835439045abe3fa46c60, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.z
+      value: -0.000000042223235
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037132675930843841, guid: 774674e17973835439045abe3fa46c60, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.x
+      value: -0.000000047683727
       objectReference: {fileID: 0}
     - target: {fileID: 7566431108441137534, guid: 774674e17973835439045abe3fa46c60, type: 3}
       propertyPath: m_Name
@@ -38031,6 +38043,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Entity
       objectReference: {fileID: 0}
+    - target: {fileID: 1627912060369200039, guid: 1e2d22dac4d306049a37b8e390996ad7, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.x
+      value: 0.00000018567549
+      objectReference: {fileID: 0}
+    - target: {fileID: 1627912060369200039, guid: 1e2d22dac4d306049a37b8e390996ad7, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.z
+      value: 0.00000006304347
+      objectReference: {fileID: 0}
     - target: {fileID: 3939634697478936566, guid: 1e2d22dac4d306049a37b8e390996ad7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -38090,6 +38110,14 @@ PrefabInstance:
     - target: {fileID: 4905316657505248884, guid: 1e2d22dac4d306049a37b8e390996ad7, type: 3}
       propertyPath: StalkTargetDistance
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752123301521875883, guid: 1e2d22dac4d306049a37b8e390996ad7, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.x
+      value: -4.2109892e-11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752123301521875883, guid: 1e2d22dac4d306049a37b8e390996ad7, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.z
+      value: -0.00000009529499
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
