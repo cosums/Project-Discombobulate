@@ -123,10 +123,6 @@ public class PlayerDeathHandler : MonoBehaviour
         fadeToBlackTransition.OnTransitionToFinished -= setFadeFinished;
         if (saveManager != null) saveManager.LoadGame();
 
-        // WHY! WHY WHY WHY WHY WHY!!!
-        Transform cameraAnchor = animator.transform;
-        cameraAnchor.localPosition = new Vector3(0f, 1.25f, 0f);
-
         // TODO these things should probably wait for the save to be loaded somehow
         animator.SetTrigger(ANIM_TRIGGER_RESET);
         PlayerController.movementDisabled = false;

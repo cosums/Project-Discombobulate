@@ -2,8 +2,6 @@ using System;
 using UnityEngine;
 
 // TODO
-// - player camera animation is now too low
-// - animation doesnt get reset correctly
 // - sometimes attack animation just doesnt start
 // - movementDisabled might be insufficient to disable movement if entity is within a loop somewhere
 
