@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class EntityController : MonoBehaviour
 {
-    public static bool movementDisabled = true;
+    public static bool movementDisabled = false;
 
     public Transform HeadAnchor;
     public MeshRenderer Renderer;
@@ -121,6 +121,11 @@ public class EntityController : MonoBehaviour
         Pathfollower.Stop();
         Agent.isStopped = true;
         Agent.velocity = Vector3.zero;
+    }
+
+    public void Unfreeze()
+    {
+        Agent.isStopped = false;
     }
 
     public void MoveToNode(AINode target)

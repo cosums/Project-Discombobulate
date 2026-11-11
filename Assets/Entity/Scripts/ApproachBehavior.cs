@@ -3,9 +3,10 @@ using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
 /// <summary>
-///  Behavior for when the ghost has initiated an attack and needs to go within range of the player for the animation to make sense
+///  Behavior for when the ghost has initiated an attack and needs to go within range of the player for the animation to make sense,
+///  or any other time the ghost needs to go in front of the player
 /// </summary>
-public class AttackApproachBehavior : IEntityBehavior
+public class ApproachBehavior : IEntityBehavior
 {
     private Transform victimTransform;
     private Vector3 targetPosition;
@@ -17,7 +18,7 @@ public class AttackApproachBehavior : IEntityBehavior
     private bool hasArrived;
     private float EPSILON = 0.001f;
 
-    public AttackApproachBehavior(float distanceToStandAwayFromVictim, Transform victimTransform)
+    public ApproachBehavior(float distanceToStandAwayFromVictim, Transform victimTransform)
     {
         this.victimTransform = victimTransform;
         this.distance = distanceToStandAwayFromVictim;
@@ -29,7 +30,8 @@ public class AttackApproachBehavior : IEntityBehavior
         entity.Freeze();
         this.targetPosition = getTargetPosition(entity.transform.position, victimTransform.position);
         this.targetFacing = victimTransform.position;
-        this.targetFacing.y = entity.transform.position.y;
+        //this.targetFacing.y = entity.transform.position.y;
+        this.targetFacing.y = 0;
         this.entity = entity;
         tickLookAtPlayer();
     }
@@ -37,6 +39,7 @@ public class AttackApproachBehavior : IEntityBehavior
     public void Exit(EntityController entity)
     {
         Debug.Log("Exiting AttackApproachBehavior");
+        entity.Unfreeze();
     }
 
     public void Tick(EntityController entity)
@@ -56,14 +59,16 @@ public class AttackApproachBehavior : IEntityBehavior
 
     private void tickLookAtPlayer()
     {
+        // getting rid of y doesnt work, probably because EntityController also has a look at player?
+        // regardless it's not a big priority
         targetFacing = victimTransform.position;
-        targetFacing.y = entity.transform.position.y;
+        targetFacing.y = 0;
         entity.transform.LookAt(victimTransform);
     }
 
     private void tickMoveToAttackPosition()
     {
-        // TODO
+        entity.transform.position = Vector3.MoveTowards(entity.transform.position, targetPosition, 0.1f);
     }
 
     private Vector3 getTargetPosition(Vector3 ghostPos, Vector3 victimPos)

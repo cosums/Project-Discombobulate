@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 // TODO
 // - sometimes attack animation just doesnt start
@@ -21,6 +22,7 @@ public class AttackHandler : MonoBehaviour
     private float elapsedCooldownTime = 0f;
 
     // ============= movement control ============
+    [SerializeField] EntityController entityController;
     private bool awaitingArrivalAtAttackLocation = false;
     [SerializeField] Transform playerTransform = null;
     [SerializeField] private float distanceFromPlayerWhileAttacking = 1.8f;
@@ -74,6 +76,10 @@ public class AttackHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Keyboard.current.qKey.wasPressedThisFrame) { // DELETEME debug
+            Debug.Log("q pressed triggering attack");
+            StartAttack();
+        }
         if (sol) return;
 
         if(isOnCooldown)
@@ -88,11 +94,10 @@ public class AttackHandler : MonoBehaviour
         // The ghost starts its attack only once it is at a good position next to the player
         if (awaitingArrivalAtAttackLocation)
         {
-            //moveTowardsAttackPosition();
-            moveTowardsPosition(currentTarget);
-            rotateTowardsTarget(ghostTransform, playerTransform);
+            //moveTowardsPosition(currentTarget);
+            //rotateTowardsTarget(ghostTransform, playerTransform);
 
-            if (arrivedAtTargetPosition())
+            if (arrivedAtTargetPosition)
             {
                 // start the sequence
                 awaitingArrivalAtAttackLocation = false;
@@ -125,10 +130,10 @@ public class AttackHandler : MonoBehaviour
         originalPosition = ghostTransform.position;
     }
 
-    private bool arrivedAtTargetPosition()
+    /*private bool arrivedAtTargetPosition()
     {
         return Vector3.Magnitude(ghostTransform.position - currentTarget) < EPSILON;
-    }
+    }*/
 
     private Vector3 getTargetAttackPosition(Vector3 ghostPos, Vector3 playerPos)
     {
@@ -156,6 +161,7 @@ public class AttackHandler : MonoBehaviour
         self.rotation = Quaternion.Euler(new Vector3(0, euler.y, 0));
     }
 
+    bool arrivedAtTargetPosition = false;
     public void StartAttack()
     {
         if(isOnCooldown) {
@@ -165,12 +171,14 @@ public class AttackHandler : MonoBehaviour
 
         // freeze player & ghost movements to take manual control
         playerDeathHandler.StartPreDeath(headBoneTransform);
-        EntityController.movementDisabled = true;
+        ApproachBehavior behavior = new ApproachBehavior(distanceFromPlayerWhileAttacking, playerTransform);
+        behavior.OnArriveAtTarget += () => { arrivedAtTargetPosition = true; };
+        entityController.ChangeBehavior(behavior);
 
         // move towards player
-        if (lookTarget != null) ghostTransform.LookAt(lookTarget);
-        setOriginalPosition();
-        currentTarget = getTargetAttackPosition(ghostTransform.position, playerTransform.position);
+        //if (lookTarget != null) ghostTransform.LookAt(lookTarget);
+        //setOriginalPosition();
+        //currentTarget = getTargetAttackPosition(ghostTransform.position, playerTransform.position);
         awaitingArrivalAtAttackLocation = true;
 
         // the rest of the sequence is handled in Update()
@@ -178,7 +186,7 @@ public class AttackHandler : MonoBehaviour
 
     public void PostAttackCleanup()
     {
-        EntityController.movementDisabled = false;
+        entityController.ChangeBehavior(new StalkingBehavior()); // TODO change to different behaviors based on game state
         ghostTransform.position = originalPosition;
         ghostTransform.rotation = Quaternion.identity;
         resetToDefaults();

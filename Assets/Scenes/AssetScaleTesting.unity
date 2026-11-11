@@ -4635,6 +4635,17 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!114 &373344910 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4905316657505248884, guid: 1e2d22dac4d306049a37b8e390996ad7, type: 3}
+  m_PrefabInstance: {fileID: 1745851181}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61a498d87c995f940ae6b76e3d2abfcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &374877650
 GameObject:
   m_ObjectHideFlags: 0
@@ -19396,6 +19407,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 413007714}
     - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}
       propertyPath: lookTarget
       value: 
       objectReference: {fileID: 2003331117}
@@ -30487,6 +30502,10 @@ PrefabInstance:
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 600837528}
+    - target: {fileID: 7560147489570512845, guid: 1e2d22dac4d306049a37b8e390996ad7, type: 3}
+      propertyPath: entityController
+      value: 
+      objectReference: {fileID: 373344910}
     - target: {fileID: 7560147489570512845, guid: 1e2d22dac4d306049a37b8e390996ad7, type: 3}
       propertyPath: playerDeathHandler
       value: 
