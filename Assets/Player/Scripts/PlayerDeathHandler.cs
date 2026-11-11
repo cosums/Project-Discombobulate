@@ -20,11 +20,12 @@ public class PlayerDeathHandler : MonoBehaviour
     private float elapsedTime = 0f;
 
     // ================== Other stuff =======================
-    // TODO ref for however you reset to last save
+    SaveManager saveManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if(saveManager == null) Debug.LogWarning("PlayerDeathHandler cannot find its saveManager, deaths will not restart to last save");
         OnReset += onResetLocal;
     }
 
@@ -110,6 +111,6 @@ public class PlayerDeathHandler : MonoBehaviour
         isAwaitingDeathStart = false;
         cameraAnimIsFinished = false;
         fadeToBlackIsFinished = false;
-        // TODO load to last save
+        if (saveManager != null) saveManager.LoadGame();
     }
 }
