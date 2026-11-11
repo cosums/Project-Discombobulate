@@ -19113,15 +19113,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}
       propertyPath: timeTillStartPlayerDeath
-      value: 1.2
+      value: 1.13
       objectReference: {fileID: 0}
     - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}
       propertyPath: distanceFromPlayerWhileAttacking
-      value: 2
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 3939634697478936566, guid: f471adf5e35f066409def2495dd12705, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.3182627
+      value: -2.7
       objectReference: {fileID: 0}
     - target: {fileID: 3939634697478936566, guid: f471adf5e35f066409def2495dd12705, type: 3}
       propertyPath: m_LocalPosition.y
@@ -19129,7 +19129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3939634697478936566, guid: f471adf5e35f066409def2495dd12705, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.715934
+      value: 13.38
       objectReference: {fileID: 0}
     - target: {fileID: 3939634697478936566, guid: f471adf5e35f066409def2495dd12705, type: 3}
       propertyPath: m_LocalRotation.w

@@ -16,7 +16,7 @@ public class AttackHandler : MonoBehaviour
     // ============= movement control ============
     private bool awaitingArrivalAtAttackLocation = false;
     [SerializeField] Transform playerTransform = null;
-    [SerializeField] private float distanceFromPlayerWhileAttacking = 2f; // TODO fine tune
+    [SerializeField] private float distanceFromPlayerWhileAttacking = 1.8f; // TODO fine tune
     [SerializeField] private float attackApproachSpeed = 0.1f;
     [SerializeField] private EntityController ghostController = null;
     [SerializeField] private Transform ghostTransform = null;
@@ -28,7 +28,7 @@ public class AttackHandler : MonoBehaviour
     [SerializeField] private AttackAnimationHandler animHandler;
     [SerializeField] private Transform lookTarget = null;
     [SerializeField] private Transform playerLookTarget = null;
-    [SerializeField] private float timeTillStartPlayerDeath = 1.2f;
+    [SerializeField] private float timeTillStartPlayerDeath = 1.13f;
     private float elapsedTime = 0f;
     private bool awaitingStartOfPlayerDeath = false;
 

@@ -29,7 +29,7 @@ public class PlayerDeathHandler : MonoBehaviour
     {
         if (isDying)
         {
-            if(!cameraAnimIsFinished) lookTowardsGhost();
+            if(isAwaitingDeathStart) lookTowardsGhost();
 
             UpdateDeathAnimation();
             if(cameraAnimIsFinished && fadeToBlackIsFinished)
