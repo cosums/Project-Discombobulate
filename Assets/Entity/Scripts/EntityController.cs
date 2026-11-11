@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class EntityController : MonoBehaviour
 {
-    public static bool movementDisabled = false;
+    public static bool movementDisabled = true;
 
     public Transform HeadAnchor;
     public MeshRenderer Renderer;
