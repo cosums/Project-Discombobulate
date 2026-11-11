@@ -492,14 +492,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackHandler
   playerDeathHandler: {fileID: 0}
   cooldownTimeAfterAttackFinished: 2
+  entityController: {fileID: 4905316657505248884}
   playerTransform: {fileID: 0}
   distanceFromPlayerWhileAttacking: 1.8
-  attackApproachSpeed: 0.1
   ghostTransform: {fileID: 3939634697478936566}
-  animHandler: {fileID: 79486277543579043}
-  lookTarget: {fileID: 0}
-  headTurnTarget: {fileID: 0}
   headBoneTransform: {fileID: 6851542079027077835}
+  animHandler: {fileID: 79486277543579043}
   timeTillStartPlayerDeath: 1.13
 --- !u!1001 &3346858878416685418
 PrefabInstance:
@@ -587,11 +585,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5037132675930843841, guid: 774674e17973835439045abe3fa46c60, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.x
-      value: -4.2109892e-11
+      value: -3.54774e-11
       objectReference: {fileID: 0}
     - target: {fileID: 5037132675930843841, guid: 774674e17973835439045abe3fa46c60, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.z
-      value: -0.00000009529499
+      value: -0.00000006191637
       objectReference: {fileID: 0}
     - target: {fileID: 5037132675930843841, guid: 774674e17973835439045abe3fa46c60, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[2].m_Value.x

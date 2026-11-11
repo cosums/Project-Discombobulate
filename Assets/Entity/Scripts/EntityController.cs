@@ -3,8 +3,6 @@ using UnityEngine.AI;
 
 public class EntityController : MonoBehaviour
 {
-    public static bool movementDisabled = false;
-
     public Transform HeadAnchor;
     public MeshRenderer Renderer;
 
@@ -66,7 +64,6 @@ public class EntityController : MonoBehaviour
 
     void Update()
     {
-        if(movementDisabled) return;
         if (_therapyMode) return;
         
         UpdateVisibility();

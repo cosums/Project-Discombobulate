@@ -3,8 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 // TODO
-// - sometimes attack animation just doesnt start
-// - movementDisabled might be insufficient to disable movement if entity is within a loop somewhere
+// - fadeIn still plays twice
 
 /** AttackHandler is responsible for auto-attacks when the player has collided with the ghost,
  * for providing the means to manually attack when therapy goes wrong,
@@ -23,25 +22,20 @@ public class AttackHandler : MonoBehaviour
 
     // ============= movement control ============
     [SerializeField] EntityController entityController;
-    private bool awaitingArrivalAtAttackLocation = false;
     [SerializeField] Transform playerTransform = null;
     [SerializeField] private float distanceFromPlayerWhileAttacking = 1.8f;
-    [SerializeField] private float attackApproachSpeed = 0.1f;
     [SerializeField] private Transform ghostTransform = null;
+    [SerializeField] private Transform headBoneTransform;
+    [SerializeField] private float secondsUntilAutoStartAnimation = 1f; // sometimes something breaks with the sequence and the anim never starts :P
     private Vector3 originalPosition = Vector3.zero;
-    private Vector3 currentTarget;
-    private const float EPSILON = 0.0001f;
+    private float elapsedMovementTime = 0f;
+    private bool isAwaitingArrival;
 
     // ============= animation control ==============
     [SerializeField] private AttackAnimationHandler animHandler;
-    [SerializeField] private Transform lookTarget = null;
-    [SerializeField] private Transform headTurnTarget = null;
-    [SerializeField] private Transform headBoneTransform = null;
     [SerializeField] private float timeTillStartPlayerDeath = 1.13f;
     private float elapsedTime = 0f;
     private bool awaitingStartOfPlayerDeath = false;
-    private bool shouldRotateHead = false;
-    //private float animatorSpeed = 0f;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -67,19 +61,17 @@ public class AttackHandler : MonoBehaviour
             Debug.LogWarning("Attack check script cannot find its ghost-related refs! Attacks will not work");
             //sol = true;
         }
-        animHandler.OnAttackAnimationFinish += () => { shouldRotateHead = true; };
         playerDeathHandler.OnReset += PostAttackCleanup;
         if (elapsedCooldownTime >= cooldownTimeAfterAttackFinished) isOnCooldown = false;
-        //StartAttack(); // DELETEME just for testing
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.qKey.wasPressedThisFrame) { // DELETEME debug
+        /*if (Keyboard.current.qKey.wasPressedThisFrame) { // DELETEME debug
             Debug.Log("q pressed triggering attack");
             StartAttack();
-        }
+        }*/
         if (sol) return;
 
         if(isOnCooldown)
@@ -90,20 +82,22 @@ public class AttackHandler : MonoBehaviour
                 isOnCooldown = false;
             }
         }
+        
+        if(isAwaitingArrival && !arrivedAtTargetPosition)
+        {
+            elapsedMovementTime += Time.deltaTime;
+            if(elapsedMovementTime >= secondsUntilAutoStartAnimation)
+            {
+                arrivedAtTargetPosition = true;
+            }
+        }
 
         // The ghost starts its attack only once it is at a good position next to the player
-        if (awaitingArrivalAtAttackLocation)
+        if (arrivedAtTargetPosition)
         {
-            //moveTowardsPosition(currentTarget);
-            //rotateTowardsTarget(ghostTransform, playerTransform);
-
-            if (arrivedAtTargetPosition)
-            {
-                // start the sequence
-                awaitingArrivalAtAttackLocation = false;
-                awaitingStartOfPlayerDeath = true;
-                animHandler.StartAnimation();
-            }
+            isAwaitingArrival = false;
+            awaitingStartOfPlayerDeath = true;
+            animHandler.StartAnimation();
         }
 
         // An attack triggers the player's death animation once the ghost's animation is partially complete
@@ -117,48 +111,6 @@ public class AttackHandler : MonoBehaviour
                 playerDeathHandler.StartDeath();
             }
         }
-
-        // Looks at the downed player with just her head
-        if (shouldRotateHead)
-        {
-            rotateTowardsTarget(headBoneTransform, headTurnTarget);
-        }
-    }
-
-    private void setOriginalPosition()
-    {
-        originalPosition = ghostTransform.position;
-    }
-
-    /*private bool arrivedAtTargetPosition()
-    {
-        return Vector3.Magnitude(ghostTransform.position - currentTarget) < EPSILON;
-    }*/
-
-    private Vector3 getTargetAttackPosition(Vector3 ghostPos, Vector3 playerPos)
-    {
-        Vector3 directionFromPlayerToGhost = ghostPos - playerPos;
-        directionFromPlayerToGhost.y = 0;
-        Vector3 scaled = Vector3.Scale(Vector3.Normalize(directionFromPlayerToGhost), 
-            new Vector3(distanceFromPlayerWhileAttacking, 1, distanceFromPlayerWhileAttacking));
-
-        return scaled + new Vector3(playerPos.x, ghostPos.y, playerPos.z);
-    }
-
-    private void moveTowardsPosition(Vector3 target)
-    {
-        Vector3 cur = ghostTransform.position;
-        ghostTransform.position = Vector3.MoveTowards(cur, target, attackApproachSpeed);
-    }
-
-    // TODO doesnt work, probably because the animator has control
-    private void rotateTowardsTarget(Transform self, Transform target)
-    {
-        Vector3 direction = target.position - self.position;
-        direction.y = 0;
-        self.rotation = Quaternion.Slerp(self.rotation, Quaternion.LookRotation(direction), 0.05f);
-        Vector3 euler = self.eulerAngles; // idk where its getting that x rotation from but this removes it
-        self.rotation = Quaternion.Euler(new Vector3(0, euler.y, 0));
     }
 
     bool arrivedAtTargetPosition = false;
@@ -175,11 +127,9 @@ public class AttackHandler : MonoBehaviour
         behavior.OnArriveAtTarget += () => { arrivedAtTargetPosition = true; };
         entityController.ChangeBehavior(behavior);
 
-        // move towards player
-        //if (lookTarget != null) ghostTransform.LookAt(lookTarget);
-        //setOriginalPosition();
-        //currentTarget = getTargetAttackPosition(ghostTransform.position, playerTransform.position);
-        awaitingArrivalAtAttackLocation = true;
+        // failsafe against getting stuck
+        elapsedMovementTime = 0;
+        isAwaitingArrival = true;
 
         // the rest of the sequence is handled in Update()
     }
@@ -194,12 +144,12 @@ public class AttackHandler : MonoBehaviour
 
     private void resetToDefaults()
     {
-        awaitingArrivalAtAttackLocation = false;
         elapsedTime = 0;
-        awaitingStartOfPlayerDeath = false;
-        shouldRotateHead = false;
-        isOnCooldown = true;
+        elapsedMovementTime = 0;
         elapsedCooldownTime = 0f;
+        awaitingStartOfPlayerDeath = false;
+        isOnCooldown = true;
+        isAwaitingArrival = false;
     }
 
     private void OnTriggerEnter(Collider other)
