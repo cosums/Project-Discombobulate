@@ -70,8 +70,6 @@ public class AttackHandler : MonoBehaviour
 
             if (arrivedAtTargetPosition())
             {
-                Debug.Log("Close enough to player with distance " + Vector3.Distance(ghostTransform.position, playerTransform.position));
-                Debug.Log("Ghost pos was " + ghostTransform.position + ", Player pos was " + playerTransform.position);
                 // start the sequence
                 awaitingArrivalAtAttackLocation = false;
                 awaitingStartOfPlayerDeath = true;
@@ -97,51 +95,6 @@ public class AttackHandler : MonoBehaviour
         originalPosition = ghostTransform.position;
     }
 
-    /** If close enough to the target attack position, returns 0. Else, returns distance to the target attack position. */
-    private float compareToAttackPosition()
-    {
-        float distanceBetweenGhostAndPlayer = Vector3.Distance(ghostTransform.position, new Vector3(playerTransform.position.x, ghostTransform.position.y, playerTransform.position.z));
-        Debug.Log("distanceBetweenGhostAndPlayer " + distanceBetweenGhostAndPlayer);
-        if (Mathf.Abs(distanceBetweenGhostAndPlayer - distanceFromPlayerWhileAttacking) <= EPSILON)
-        {
-            Debug.Log("compared: " + (distanceBetweenGhostAndPlayer - distanceFromPlayerWhileAttacking));
-            // close enough to player
-            return 0f;
-        }
-
-        return distanceBetweenGhostAndPlayer - distanceFromPlayerWhileAttacking;
-    }
-
-    private void moveTowardsAttackPosition()
-    {
-        // get direction towards player
-        Vector3 heading = Vector3.Normalize(ghostTransform.position - playerTransform.position);
-
-        float compared = compareToAttackPosition();
-
-        // if too close to the player, want to move backwards.
-        if (compared < 1)
-        {
-            Debug.Log("inverting heading");
-            heading = new Vector3(heading.x * -1, heading.y, heading.z * -1);
-        }
-
-        Vector3 projectedMovement = Vector3.Scale(heading, new Vector3(attackApproachSpeed, 0, attackApproachSpeed));
-
-        // if close enough to the target pos, don't overshoot.
-        // im so good at movement controllers guys
-        if (Mathf.Abs(compared) < Mathf.Abs(Vector3.Magnitude(projectedMovement)))
-        {
-            Debug.Log("too close, ensuring no overshoot");
-            projectedMovement = Vector3.Scale(heading, new Vector3(compared, 0, compared));
-        }
-
-        // finally move towards target pos
-        Debug.Log("moved " + projectedMovement);
-        Debug.Log("direction was " + heading + " and distance was " + Vector3.Magnitude(projectedMovement));
-        ghostTransform.position = ghostTransform.position + projectedMovement;
-    }
-
     private bool arrivedAtTargetPosition()
     {
         return Vector3.Magnitude(ghostTransform.position - currentTarget) < EPSILON;
@@ -159,7 +112,6 @@ public class AttackHandler : MonoBehaviour
 
     private void moveTowardsPosition(Vector3 target)
     {
-        Debug.Log("currently " + ghostTransform.position + ", moving towards " + target);
         Vector3 cur = ghostTransform.position;
         ghostTransform.position = Vector3.MoveTowards(cur, target, attackApproachSpeed);
     }

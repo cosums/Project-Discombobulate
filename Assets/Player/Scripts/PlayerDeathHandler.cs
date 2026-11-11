@@ -8,11 +8,7 @@ public class PlayerDeathHandler : MonoBehaviour
 
     // ================ Animation stuff ===================
     [SerializeField] private Animator animator;
-    // this is so that the player dying looks in sync with the ghost attacking him.
-    // rather than sync up animations in some fancy sophisticated way, Im just gonna delay it
-    [SerializeField] private float delayBeforePlayingDeathAnimation = 0.1f; // in seconds
     private bool isAwaitingDeathStart = false;
-    private float elapsedDelay = 0f;
     private bool cameraAnimIsFinished = false;
     private bool fadeToBlackIsFinished = false;
     private const string ANIM_TRIGGER_RESET = "ResetCamera";
@@ -87,7 +83,6 @@ public class PlayerDeathHandler : MonoBehaviour
 
         isDying = false;
         isAwaitingDeathStart = false;
-        elapsedDelay = 0f;
         cameraAnimIsFinished = false;
         fadeToBlackIsFinished = false;
 
