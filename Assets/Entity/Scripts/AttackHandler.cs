@@ -12,7 +12,7 @@ public class AttackHandler : MonoBehaviour
 
     // ============= world effects =============
     [SerializeField] PlayerDeathHandler playerDeathHandler = null;
-    [SerializeField] float cooldownTimeAfterAttackFinished = 3f;
+    [SerializeField] float cooldownTimeAfterAttackFinished = 2f;
     private bool isOnCooldown = true;
     private float elapsedCooldownTime = 0f;
 
@@ -63,7 +63,8 @@ public class AttackHandler : MonoBehaviour
         }
         animHandler.OnAttackAnimationFinish += () => { shouldRotateHead = true; };
         playerDeathHandler.OnReset += PostAttackCleanup;
-        // StartAttack(); // DELETEME just for testing
+        if (elapsedCooldownTime >= cooldownTimeAfterAttackFinished) isOnCooldown = false;
+        //StartAttack(); // DELETEME just for testing
     }
 
     // Update is called once per frame
@@ -74,7 +75,7 @@ public class AttackHandler : MonoBehaviour
         if(isOnCooldown)
         {
             elapsedCooldownTime += Time.deltaTime;
-            if(elapsedCooldownTime > cooldownTimeAfterAttackFinished)
+            if(elapsedCooldownTime >= cooldownTimeAfterAttackFinished)
             {
                 isOnCooldown = false;
             }

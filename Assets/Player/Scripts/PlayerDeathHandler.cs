@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using UnityEngine;
 
 public class PlayerDeathHandler : MonoBehaviour
@@ -120,9 +121,9 @@ public class PlayerDeathHandler : MonoBehaviour
         fadeToBlackTransition.OnTransitionToFinished -= setFadeFinished;
         if (saveManager != null) saveManager.LoadGame();
 
-        // TODO this things should wait for the save to be loaded somehow
-        fadeToBlackTransition.FadeFromBlack();
+        // TODO these things should probably wait for the save to be loaded somehow
         animator.SetTrigger(ANIM_TRIGGER_RESET);
         PlayerController.movementDisabled = false;
+        fadeToBlackTransition.FadeFromBlack();
     }
 }
