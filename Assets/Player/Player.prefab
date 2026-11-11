@@ -495,6 +495,7 @@ MonoBehaviour:
   JumpHeight: 1.5
   CrouchScale: 0.5
   CrouchTime: 0.3
+  m_GhostFocusTransform: {fileID: 0}
   footsteps: {fileID: 8300000, guid: 8523b480d24d5bb4089dd7cc4683c672, type: 3}
   footstepInterval: 0.45
 --- !u!114 &4781000318243712448
@@ -690,7 +691,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6079582379990860265}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -801,7 +802,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6412294346110806696}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1176,6 +1177,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6059777262806743904, guid: bfd24a7be6e9fb840ada476446f563b5, type: 3}
       propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6059777262806743904, guid: bfd24a7be6e9fb840ada476446f563b5, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
