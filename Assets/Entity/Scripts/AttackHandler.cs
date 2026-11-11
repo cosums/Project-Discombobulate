@@ -17,7 +17,7 @@ public class AttackHandler : MonoBehaviour
     private bool awaitingArrivalAtAttackLocation = false;
     [SerializeField] Transform playerTransform = null;
     [SerializeField] private float distanceFromPlayerWhileAttacking = 2f; // TODO fine tune
-    [SerializeField] private float attackApproachSpeed = 0.002f; // TODO fine tune
+    [SerializeField] private float attackApproachSpeed = 0.1f;
     [SerializeField] private EntityController ghostController = null;
     [SerializeField] private Transform ghostTransform = null;
     private Vector3 originalPosition = Vector3.zero;
@@ -26,7 +26,9 @@ public class AttackHandler : MonoBehaviour
 
     // ============= animation control ==============
     [SerializeField] private AttackAnimationHandler animHandler;
-    [SerializeField] private float timeTillStartPlayerDeath = 1.2f; // TODO fine tune
+    [SerializeField] private Transform lookTarget = null;
+    [SerializeField] private Transform playerLookTarget = null;
+    [SerializeField] private float timeTillStartPlayerDeath = 1.2f;
     private float elapsedTime = 0f;
     private bool awaitingStartOfPlayerDeath = false;
 
@@ -54,7 +56,7 @@ public class AttackHandler : MonoBehaviour
             Debug.LogWarning("Attack check script cannot find its ghost-related refs! Attacks will not work");
             //sol = true;
         }
-        StartAttack(); // DELETEME just for testing
+        // StartAttack(); // DELETEME just for testing
     }
 
     // Update is called once per frame
@@ -67,6 +69,7 @@ public class AttackHandler : MonoBehaviour
         {
             //moveTowardsAttackPosition();
             moveTowardsPosition(currentTarget);
+            rotateTowardsTarget();
 
             if (arrivedAtTargetPosition())
             {
@@ -116,13 +119,23 @@ public class AttackHandler : MonoBehaviour
         ghostTransform.position = Vector3.MoveTowards(cur, target, attackApproachSpeed);
     }
 
+    private void rotateTowardsTarget()
+    {
+        Vector3 direction = playerTransform.position - ghostTransform.position;
+        direction.y = 0;
+        ghostTransform.rotation = Quaternion.Slerp(ghostTransform.rotation, Quaternion.LookRotation(direction), 0.05f);
+        Vector3 euler = ghostTransform.eulerAngles; // idk where its getting that x rotation from but this removes it
+        ghostTransform.rotation = Quaternion.Euler(new Vector3(0, euler.y, 0));
+    }
+
     public void StartAttack()
     {
         // freeze player & ghost movements to take manual control
-        playerDeathHandler.StartPreDeath();
+        playerDeathHandler.StartPreDeath(playerLookTarget);
         // TODO freeze ghost AI
 
         // move towards player
+        if (lookTarget != null) ghostTransform.LookAt(lookTarget);
         setOriginalPosition();
         currentTarget = getTargetAttackPosition(ghostTransform.position, playerTransform.position);
         awaitingArrivalAtAttackLocation = true;

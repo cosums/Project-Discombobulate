@@ -6718,6 +6718,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1188994587591213371, guid: 5c016986b54dfb34b8c6c8b6336f8d40, type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 2003331117}
     - target: {fileID: 2540219744430904797, guid: 5c016986b54dfb34b8c6c8b6336f8d40, type: 3}
       propertyPath: Speed
       value: 5
@@ -10175,6 +10179,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789184020}
   m_Mesh: {fileID: -6740031397551154228, guid: a241d71f0ffae8f4cb5c986d7109b35b, type: 3}
+--- !u!4 &789720193 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1638397932876398193, guid: 5c016986b54dfb34b8c6c8b6336f8d40, type: 3}
+  m_PrefabInstance: {fileID: 484090812}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &793278497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18345,6 +18354,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883972909}
   m_Mesh: {fileID: -4930194293119932124, guid: a241d71f0ffae8f4cb5c986d7109b35b, type: 3}
+--- !u!4 &901387948 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1790152676999780151, guid: f471adf5e35f066409def2495dd12705, type: 3}
+  m_PrefabInstance: {fileID: 962380753}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &901488070 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2491489949242145722, guid: c1825f80c2c715b43b6f17d8a17e0d2d, type: 3}
@@ -19074,6 +19088,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 413007714}
     - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}
+      propertyPath: lookTarget
+      value: 
+      objectReference: {fileID: 789720193}
+    - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}
       propertyPath: ghostTransform
       value: 
       objectReference: {fileID: 413007714}
@@ -19081,6 +19099,10 @@ PrefabInstance:
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 600837528}
+    - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}
+      propertyPath: playerLookTarget
+      value: 
+      objectReference: {fileID: 901387948}
     - target: {fileID: 3398385169184123441, guid: f471adf5e35f066409def2495dd12705, type: 3}
       propertyPath: playerDeathHandler
       value: 

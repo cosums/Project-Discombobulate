@@ -8,11 +8,13 @@ public class PlayerDeathHandler : MonoBehaviour
 
     // ================ Animation stuff ===================
     [SerializeField] private Animator animator;
+    [SerializeField] private Transform cameraTransform;
     private bool isAwaitingDeathStart = false;
     private bool cameraAnimIsFinished = false;
     private bool fadeToBlackIsFinished = false;
     private const string ANIM_TRIGGER_RESET = "ResetCamera";
     private const string ANIM_TRIGGER_DEATH = "PlayerDies";
+    private Transform lookTransform;
 
     // ================== Other stuff =======================
     // TODO ref for however you reset to last save
@@ -27,6 +29,8 @@ public class PlayerDeathHandler : MonoBehaviour
     {
         if (isDying)
         {
+            if(!cameraAnimIsFinished) lookTowardsGhost();
+
             UpdateDeathAnimation();
             if(cameraAnimIsFinished && fadeToBlackIsFinished)
             {
@@ -37,6 +41,15 @@ public class PlayerDeathHandler : MonoBehaviour
         if(isResetting)
         {
             // TODO once previous save is loaded, call onResetFinished
+        }
+    }
+
+    private void lookTowardsGhost()
+    {
+        if(lookTransform != null)
+        {
+            Vector3 direction = lookTransform.position - cameraTransform.position;
+            cameraTransform.rotation = Quaternion.Slerp(cameraTransform.rotation, Quaternion.LookRotation(direction), 0.1f);
         }
     }
 
@@ -56,8 +69,9 @@ public class PlayerDeathHandler : MonoBehaviour
     }
 
     /** Should be called when an attack is initiated */
-    public void StartPreDeath()
+    public void StartPreDeath(Transform ghostTransform)
     {
+        this.lookTransform = ghostTransform;
         isDying = true;
         isAwaitingDeathStart = true;
         PlayerController.movementDisabled = true;
