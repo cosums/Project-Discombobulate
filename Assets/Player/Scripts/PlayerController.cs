@@ -101,8 +101,8 @@ public class PlayerController : MonoBehaviour
 
     private void Look()
     {
-        if (!CanMove) return;
-
+        if (!CanMove) return; 
+        
         camX = Mathf.Clamp(camX, -90f, 90f);
         
         CameraAnchor.localRotation = Quaternion.Euler(camX, 0, 0);
