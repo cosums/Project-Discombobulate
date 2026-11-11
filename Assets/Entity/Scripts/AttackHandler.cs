@@ -2,10 +2,10 @@ using System;
 using UnityEngine;
 
 // TODO
-// - merging somehow broke the entire fucking camera controller idk man
-// - the LookAt functionality is also broken, just for the player camera rotations to forcedly look at the ghost
 // - player camera animation is now too low
-// - movementDisabled might be insufficient to disable movement
+// - animation doesnt get reset correctly
+// - sometimes attack animation just doesnt start
+// - movementDisabled might be insufficient to disable movement if entity is within a long loop somewhere
 
 /** AttackHandler is responsible for auto-attacks when the player has collided with the ghost,
  * for providing the means to manually attack when therapy goes wrong,

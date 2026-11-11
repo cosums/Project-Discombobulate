@@ -137,7 +137,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8564092842901239198}
   - component: {fileID: 1847817119496563352}
-  - component: {fileID: 7063607553468553112}
   m_Layer: 3
   m_Name: Camera Anchor
   m_TagString: Untagged
@@ -181,28 +180,6 @@ MonoBehaviour:
     m_Bits: 1
   m_SaltPlaceIndicator: {fileID: 5720770750368724727}
   m_FloorAngle: 10
---- !u!95 &7063607553468553112
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3550629327937841255}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2d9f833d6756e3a468d4996cedc0744d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3788858954456708489
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,7 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8749f51091395154fae6ac6ab9061c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDeathHandler
-  animator: {fileID: 7063607553468553112}
+  animator: {fileID: 6697983885617248221}
   clip: {fileID: 7400000, guid: a7ee126e00b127140ac7d33470af918d, type: 2}
   cameraTransform: {fileID: 8564092842901239198}
   fadeToBlackTransition: {fileID: 6064551142128116050}
@@ -925,6 +902,7 @@ GameObject:
   - component: {fileID: 1858826913072957926}
   - component: {fileID: 7853113803498488317}
   - component: {fileID: 5240610180231457465}
+  - component: {fileID: 6697983885617248221}
   m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1050,6 +1028,28 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!95 &6697983885617248221
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8045254833234867110}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2d9f833d6756e3a468d4996cedc0744d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &3600156961973709122
 PrefabInstance:
   m_ObjectHideFlags: 0
