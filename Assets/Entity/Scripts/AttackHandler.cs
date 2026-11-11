@@ -5,7 +5,7 @@ using UnityEngine;
 // - player camera animation is now too low
 // - animation doesnt get reset correctly
 // - sometimes attack animation just doesnt start
-// - movementDisabled might be insufficient to disable movement if entity is within a long loop somewhere
+// - movementDisabled might be insufficient to disable movement if entity is within a loop somewhere
 
 /** AttackHandler is responsible for auto-attacks when the player has collided with the ghost,
  * for providing the means to manually attack when therapy goes wrong,

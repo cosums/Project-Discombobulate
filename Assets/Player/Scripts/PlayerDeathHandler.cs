@@ -34,6 +34,8 @@ public class PlayerDeathHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("ResetCamera " + animator.GetCurrentAnimatorStateInfo(0).IsName("Static"));
+        Debug.Log("PlayerDies " + animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerDeathAnimation"));
         if (isDying)
         {
             if(isAwaitingDeathStart) lookTowardsGhost();
@@ -120,6 +122,10 @@ public class PlayerDeathHandler : MonoBehaviour
         elapsedTime = 0;
         fadeToBlackTransition.OnTransitionToFinished -= setFadeFinished;
         if (saveManager != null) saveManager.LoadGame();
+
+        // WHY! WHY WHY WHY WHY WHY!!!
+        Transform cameraAnchor = animator.transform;
+        cameraAnchor.localPosition = new Vector3(0f, 1.25f, 0f);
 
         // TODO these things should probably wait for the save to be loaded somehow
         animator.SetTrigger(ANIM_TRIGGER_RESET);
