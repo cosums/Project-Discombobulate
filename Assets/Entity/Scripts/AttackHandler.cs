@@ -16,9 +16,8 @@ public class AttackHandler : MonoBehaviour
     // ============= movement control ============
     private bool awaitingArrivalAtAttackLocation = false;
     [SerializeField] Transform playerTransform = null;
-    [SerializeField] private float distanceFromPlayerWhileAttacking = 1.8f; // TODO fine tune
+    [SerializeField] private float distanceFromPlayerWhileAttacking = 1.8f;
     [SerializeField] private float attackApproachSpeed = 0.1f;
-    [SerializeField] private EntityController ghostController = null;
     [SerializeField] private Transform ghostTransform = null;
     private Vector3 originalPosition = Vector3.zero;
     private Vector3 currentTarget;
@@ -33,7 +32,7 @@ public class AttackHandler : MonoBehaviour
     private float elapsedTime = 0f;
     private bool awaitingStartOfPlayerDeath = false;
     private bool shouldRotateHead = false;
-    private float animatorSpeed = 0f;
+    //private float animatorSpeed = 0f;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -54,12 +53,13 @@ public class AttackHandler : MonoBehaviour
             Debug.LogWarning("Attack check script cannot find its player-related refs! Attacks will not kill the player");
             sol = true;
         }
-        if (ghostController == null || ghostTransform == null)
+        if (ghostTransform == null)
         {
             Debug.LogWarning("Attack check script cannot find its ghost-related refs! Attacks will not work");
             //sol = true;
         }
-        animHandler.OnAttackAnimationFinish += () => { shouldRotateHead = true; Debug.Log("set shouldRotateHead"); };
+        animHandler.OnAttackAnimationFinish += () => { shouldRotateHead = true; };
+        playerDeathHandler.OnReset += PostAttackCleanup;
         // StartAttack(); // DELETEME just for testing
     }
 
@@ -143,7 +143,7 @@ public class AttackHandler : MonoBehaviour
     {
         // freeze player & ghost movements to take manual control
         playerDeathHandler.StartPreDeath(headBoneTransform);
-        // TODO freeze ghost AI
+        EntityController.movementDisabled = true;
 
         // move towards player
         if (lookTarget != null) ghostTransform.LookAt(lookTarget);
@@ -152,6 +152,13 @@ public class AttackHandler : MonoBehaviour
         awaitingArrivalAtAttackLocation = true;
 
         // the rest of the sequence is handled in Update()
+    }
+
+    public void PostAttackCleanup()
+    {
+        EntityController.movementDisabled = false;
+        ghostTransform.position = originalPosition;
+        ghostTransform.rotation = Quaternion.identity;
     }
 
     private void OnTriggerEnter(Collider other)

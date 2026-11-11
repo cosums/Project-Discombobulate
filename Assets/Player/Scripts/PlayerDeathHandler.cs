@@ -4,10 +4,11 @@ using UnityEngine;
 public class PlayerDeathHandler : MonoBehaviour
 {
     private bool isDying = false;
-    private bool isResetting = false;
+    private bool isDead = false;
 
     // ================ Animation stuff ===================
     [SerializeField] private Animator animator;
+    [SerializeField] private AnimationClip clip;
     [SerializeField] private Transform cameraTransform;
     private bool isAwaitingDeathStart = false;
     private bool cameraAnimIsFinished = false;
@@ -15,6 +16,8 @@ public class PlayerDeathHandler : MonoBehaviour
     private const string ANIM_TRIGGER_RESET = "ResetCamera";
     private const string ANIM_TRIGGER_DEATH = "PlayerDies";
     private Transform lookTransform;
+    public Action OnReset = () => { };
+    private float elapsedTime = 0f;
 
     // ================== Other stuff =======================
     // TODO ref for however you reset to last save
@@ -22,6 +25,7 @@ public class PlayerDeathHandler : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        OnReset += onResetLocal;
     }
 
     // Update is called once per frame
@@ -38,9 +42,9 @@ public class PlayerDeathHandler : MonoBehaviour
             }
         }
 
-        if(isResetting)
+        if(isDead)
         {
-            // TODO once previous save is loaded, call onResetFinished
+            OnReset();
         }
     }
 
@@ -57,14 +61,18 @@ public class PlayerDeathHandler : MonoBehaviour
     {
         if(isDying && !isAwaitingDeathStart)
         {
-            
-            
+            elapsedTime += Time.deltaTime;
+            if(elapsedTime > clip.length)
+            {
+                cameraAnimIsFinished = true;
+            }
         }
 
         if(!isAwaitingDeathStart && cameraAnimIsFinished)
         {
             // TODO start fade to black
             // TODO check if fade to black is finished
+            fadeToBlackIsFinished = true;
         }
     }
 
@@ -75,7 +83,6 @@ public class PlayerDeathHandler : MonoBehaviour
         isDying = true;
         isAwaitingDeathStart = true;
         PlayerController.movementDisabled = true;
-        // TODO look at ghost
     }
 
     /** Should be called when it's time to start the animation sequence */
@@ -92,21 +99,17 @@ public class PlayerDeathHandler : MonoBehaviour
 
     private void finishDeath()
     {
-        isResetting = true;
-        animator.SetTrigger(ANIM_TRIGGER_RESET);
+        isDead = true;
+    }
 
+    private void onResetLocal()
+    {
+        animator.SetTrigger(ANIM_TRIGGER_RESET);
+        PlayerController.movementDisabled = false;
         isDying = false;
         isAwaitingDeathStart = false;
         cameraAnimIsFinished = false;
         fadeToBlackIsFinished = false;
-
         // TODO load to last save
-    }
-
-    private void onResetFinished()
-    {
-        isResetting = false;
-        PlayerController.movementDisabled = false;
-        // TODO fade from black into level
     }
 }

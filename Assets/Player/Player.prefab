@@ -573,7 +573,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDeathHandler
   animator: {fileID: 7629925856345902900}
-  delayBeforePlayingDeathAnimation: 0
+  clip: {fileID: 7400000, guid: a7ee126e00b127140ac7d33470af918d, type: 2}
+  cameraTransform: {fileID: 8564092842901239198}
 --- !u!1 &6079582379990860265
 GameObject:
   m_ObjectHideFlags: 0
