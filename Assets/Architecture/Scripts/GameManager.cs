@@ -53,8 +53,8 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("[GameManager]: Changing state to " + state);
         
-        ExitState(state);
-        OnStateExited?.Invoke(state);
+        ExitState(CurrentState);
+        OnStateExited?.Invoke(CurrentState);
 
         CurrentState = state;
 

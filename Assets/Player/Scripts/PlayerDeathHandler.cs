@@ -34,8 +34,8 @@ public class PlayerDeathHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("ResetCamera " + animator.GetCurrentAnimatorStateInfo(0).IsName("Static"));
-        Debug.Log("PlayerDies " + animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerDeathAnimation"));
+        //Debug.Log("ResetCamera " + animator.GetCurrentAnimatorStateInfo(0).IsName("Static"));
+        //Debug.Log("PlayerDies " + animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerDeathAnimation"));
         if (isDying)
         {
             if(isAwaitingDeathStart) lookTowardsGhost();

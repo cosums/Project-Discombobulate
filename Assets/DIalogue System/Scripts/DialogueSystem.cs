@@ -61,8 +61,8 @@ public class DialogueSystem : MonoBehaviour
             currentVoice = null;
         }
 
-        //if (clearUI && dialogUI != null)
-            //dialogUI.ClearDialog();
+        if (clearUI && dialogUI != null)
+            dialogUI.ClearUI();
     }
 
     IEnumerator PlayRoutine(Dialogue dialogue)
@@ -93,9 +93,16 @@ public class DialogueSystem : MonoBehaviour
            HandleChoiceSetup(dialogue.endingChoice);
         }
 
-        if (dialogue.result != DialogueResult.None)
+        if (dialogue.result == DialogueResult.Death)
         {
-            Debug.Log("Then you would: " + dialogue.result);
+            AttackHandler.KillPlayer();
+            GameManager.Instance.ChangeState(GameState.Playing);
+            // teehee
+        }
+
+        if (dialogue.result == DialogueResult.HappyHappyHappy)
+        {
+            GameManager.Instance.ChangeState(GameState.Playing);
         }
     }
 
@@ -103,7 +110,13 @@ public class DialogueSystem : MonoBehaviour
     {
         foreach (var option in choice.dialogueChoices)
         {
-            dialogUI.AddOption(option.dialogLine);
+            dialogUI.AddOption(option.dialogLine, () => HandleChoice(option.nextDialogue));
         }
+    }
+
+    private void HandleChoice(Dialogue next)
+    {
+        dialogUI.ClearUI();
+        PlayDialogue(next);
     }
 }

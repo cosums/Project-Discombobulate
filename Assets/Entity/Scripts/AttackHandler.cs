@@ -37,6 +37,7 @@ public class AttackHandler : MonoBehaviour
     private float elapsedTime = 0f;
     private bool awaitingStartOfPlayerDeath = false;
 
+    private static event Action OnKillPlayer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -63,6 +64,8 @@ public class AttackHandler : MonoBehaviour
         }
         playerDeathHandler.OnReset += PostAttackCleanup;
         if (elapsedCooldownTime >= cooldownTimeAfterAttackFinished) isOnCooldown = false;
+
+        OnKillPlayer += StartAttack;
     }
 
     // Update is called once per frame
@@ -158,5 +161,10 @@ public class AttackHandler : MonoBehaviour
         {
             StartAttack();
         }
+    }
+
+    public static void KillPlayer()
+    {
+        OnKillPlayer?.Invoke();
     }
 }

@@ -16,8 +16,8 @@ MonoBehaviour:
   - dialogLine: This is a dialogues choice!
     dialogAudio: {fileID: 0}
     clipLength: 1
-    nextDialogue: {fileID: 0}
+    nextDialogue: {fileID: 11400000, guid: 3966d7cd76466ff49841284d6542187e, type: 2}
   - dialogLine: This is a cooler dialogues choice!
     dialogAudio: {fileID: 0}
     clipLength: 1
-    nextDialogue: {fileID: 0}
+    nextDialogue: {fileID: 11400000, guid: fd775aac0343195438aebad42959d94e, type: 2}
