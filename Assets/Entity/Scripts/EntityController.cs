@@ -120,6 +120,11 @@ public class EntityController : MonoBehaviour
         Agent.velocity = Vector3.zero;
     }
 
+    public void Unfreeze()
+    {
+        Agent.isStopped = false;
+    }
+
     public void MoveToNode(AINode target)
     {
         if (target == null) return;
