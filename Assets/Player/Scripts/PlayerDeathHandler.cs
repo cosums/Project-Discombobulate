@@ -112,9 +112,11 @@ public class PlayerDeathHandler : MonoBehaviour
     private void onResetLocal()
     {
         isDying = false;
+        isDead = false;
         isAwaitingDeathStart = false;
         cameraAnimIsFinished = false;
         fadeToBlackIsFinished = false;
+        elapsedTime = 0;
         fadeToBlackTransition.OnTransitionToFinished -= setFadeFinished;
         if (saveManager != null) saveManager.LoadGame();
 

@@ -12,6 +12,9 @@ public class AttackHandler : MonoBehaviour
 
     // ============= world effects =============
     [SerializeField] PlayerDeathHandler playerDeathHandler = null;
+    [SerializeField] float cooldownTimeAfterAttackFinished = 3f;
+    private bool isOnCooldown = true;
+    private float elapsedCooldownTime = 0f;
 
     // ============= movement control ============
     private bool awaitingArrivalAtAttackLocation = false;
@@ -67,6 +70,15 @@ public class AttackHandler : MonoBehaviour
     void Update()
     {
         if (sol) return;
+
+        if(isOnCooldown)
+        {
+            elapsedCooldownTime += Time.deltaTime;
+            if(elapsedCooldownTime > cooldownTimeAfterAttackFinished)
+            {
+                isOnCooldown = false;
+            }
+        }
 
         // The ghost starts its attack only once it is at a good position next to the player
         if (awaitingArrivalAtAttackLocation)
@@ -141,6 +153,11 @@ public class AttackHandler : MonoBehaviour
 
     public void StartAttack()
     {
+        if(isOnCooldown) {
+            Debug.Log("Attack blocked due to cooldown");
+            return; 
+        }
+
         // freeze player & ghost movements to take manual control
         playerDeathHandler.StartPreDeath(headBoneTransform);
         EntityController.movementDisabled = true;
@@ -159,6 +176,17 @@ public class AttackHandler : MonoBehaviour
         EntityController.movementDisabled = false;
         ghostTransform.position = originalPosition;
         ghostTransform.rotation = Quaternion.identity;
+        resetToDefaults();
+    }
+
+    private void resetToDefaults()
+    {
+        awaitingArrivalAtAttackLocation = false;
+        elapsedTime = 0;
+        awaitingStartOfPlayerDeath = false;
+        shouldRotateHead = false;
+        isOnCooldown = true;
+        elapsedCooldownTime = 0f;
     }
 
     private void OnTriggerEnter(Collider other)
