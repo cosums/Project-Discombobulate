@@ -45,7 +45,7 @@ public class AttackAnimationHandler : MonoBehaviour
 
     public void StartAnimation()
     {
-        if (attackInProgress) { OnAttackAnimationFinish(); }
+        if (!attackInProgress) { OnAttackAnimationFinish(); }
         attackInProgress = true;
         timeTillFinished = clip.length;
         animator.SetTrigger(propertyName);

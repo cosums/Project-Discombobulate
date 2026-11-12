@@ -50,9 +50,7 @@ public class PlayerController : MonoBehaviour
     }
     
     void Update()
-    {
-        Debug.Log(GameManager.Instance.CurrentState);
-        
+    {   
         if (GameManager.Instance.CurrentState == GameState.Therapy)
         {
             LookTowardsGhost();

@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,6 +20,8 @@ public class GameManager : MonoBehaviour
     public static event Action<GameState> OnStateEntered;
 
     [SerializeField] private string m_StartScene;
+    [SerializeField] private string m_LevelScene;
+    [SerializeField] private FadeToBlackTransition m_FadeToBlackTransitioner;
 
     public void Awake()
     {
@@ -60,6 +64,27 @@ public class GameManager : MonoBehaviour
 
         EnterState(state);
         OnStateEntered?.Invoke(state);
+    }
+
+    public void RestoreSave()
+    {
+        m_FadeToBlackTransitioner.OnTransitionToFinished += Reload;
+        m_FadeToBlackTransitioner.FadeToBlack();
+    }
+
+    private void Reload()
+    {
+        StartCoroutine(ReloadRoutine());
+    }
+
+    private IEnumerator ReloadRoutine()
+    {
+        yield return SceneManager.LoadSceneAsync(m_LevelScene);
+
+        yield return new WaitForSeconds(5f);
+        
+        m_FadeToBlackTransitioner.FadeFromBlack();
+        PlayerDeathHandler.ForceReset?.Invoke();
     }
 
     private void ExitState(GameState state)

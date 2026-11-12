@@ -65,7 +65,7 @@ public class AttackHandler : MonoBehaviour
         playerDeathHandler.OnReset += PostAttackCleanup;
         if (elapsedCooldownTime >= cooldownTimeAfterAttackFinished) isOnCooldown = false;
 
-        OnKillPlayer += StartAttack;
+        OnKillPlayer += TherapyAttack;
     }
 
     // Update is called once per frame
@@ -135,6 +135,11 @@ public class AttackHandler : MonoBehaviour
         isAwaitingArrival = true;
 
         // the rest of the sequence is handled in Update()
+    }
+
+    private void TherapyAttack()
+    {
+        StartAttack();
     }
 
     public void PostAttackCleanup()

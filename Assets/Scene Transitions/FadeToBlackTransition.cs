@@ -46,7 +46,7 @@ public class FadeToBlackTransition : MonoBehaviour
 
     private void Update()
     {
-        if(playingTo)
+        if (playingTo)
         {
             elapsedTime += Time.deltaTime;
             if(elapsedTime > clipTo.length)

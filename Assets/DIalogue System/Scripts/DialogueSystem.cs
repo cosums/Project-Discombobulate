@@ -97,12 +97,13 @@ public class DialogueSystem : MonoBehaviour
         {
             AttackHandler.KillPlayer();
             GameManager.Instance.ChangeState(GameState.Playing);
-            // teehee
+            yield break;
         }
 
         if (dialogue.result == DialogueResult.HappyHappyHappy)
         {
             GameManager.Instance.ChangeState(GameState.Playing);
+            yield break;
         }
     }
 
