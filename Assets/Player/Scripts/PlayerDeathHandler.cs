@@ -18,7 +18,6 @@ public class PlayerDeathHandler : MonoBehaviour
     private const string ANIM_TRIGGER_DEATH = "PlayerDies";
     private Transform lookTransform;
     public Action OnReset = () => { };
-    public static Action ForceReset;
     private float elapsedTime = 0f;
     [SerializeField] private FadeToBlackTransition fadeToBlackTransition;
 
@@ -29,8 +28,6 @@ public class PlayerDeathHandler : MonoBehaviour
     void Start()
     {
         if(saveManager == null) Debug.LogWarning("PlayerDeathHandler cannot find its saveManager, deaths will not restart to last save");
-        OnReset += onResetLocal;
-        ForceReset += onResetLocal;
     }
 
     // Update is called once per frame
@@ -90,7 +87,6 @@ public class PlayerDeathHandler : MonoBehaviour
         this.lookTransform = ghostTransform;
         isDying = true;
         isAwaitingDeathStart = true;
-        PlayerController.movementDisabled = true;
     }
 
     /** Should be called when it's time to start the animation sequence */
@@ -108,27 +104,5 @@ public class PlayerDeathHandler : MonoBehaviour
     private void finishDeath()
     {
         isDead = true;
-    }
-
-    private void setFadeFinished()
-    {
-        fadeToBlackIsFinished = true;
-    }
-
-    private void onResetLocal()
-    {
-        isDying = false;
-        isDead = false;
-        isAwaitingDeathStart = false;
-        cameraAnimIsFinished = false;
-        fadeToBlackIsFinished = false;
-        elapsedTime = 0;
-        fadeToBlackTransition.OnTransitionToFinished -= setFadeFinished;
-        if (saveManager != null) saveManager.LoadGame();
-        triggeredRestore = false;
-
-        // TODO these things should probably wait for the save to be loaded somehow
-        animator.SetTrigger(ANIM_TRIGGER_RESET);
-        PlayerController.movementDisabled = false;
     }
 }

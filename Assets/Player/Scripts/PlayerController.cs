@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+        
         if (GameManager.Instance.CurrentState != GameState.Playing) return;
         
         MyInput();

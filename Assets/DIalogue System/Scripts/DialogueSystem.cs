@@ -96,7 +96,6 @@ public class DialogueSystem : MonoBehaviour
         if (dialogue.result == DialogueResult.Death)
         {
             AttackHandler.KillPlayer();
-            GameManager.Instance.ChangeState(GameState.Playing);
             yield break;
         }
 

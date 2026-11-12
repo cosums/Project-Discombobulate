@@ -8,7 +8,8 @@ public enum GameState {
     MainMenu = 0, 
     Playing = 1, 
     Paused = 2,
-    Therapy = 3
+    Therapy = 3,
+    Dying = 4
 }
 
 public class GameManager : MonoBehaviour
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private string m_StartScene;
     [SerializeField] private string m_LevelScene;
-    [SerializeField] private FadeToBlackTransition m_FadeToBlackTransitioner;
+    [SerializeField] private SceneFader m_SceneFader;
 
     public void Awake()
     {
@@ -68,23 +69,7 @@ public class GameManager : MonoBehaviour
 
     public void RestoreSave()
     {
-        m_FadeToBlackTransitioner.OnTransitionToFinished += Reload;
-        m_FadeToBlackTransitioner.FadeToBlack();
-    }
-
-    private void Reload()
-    {
-        StartCoroutine(ReloadRoutine());
-    }
-
-    private IEnumerator ReloadRoutine()
-    {
-        yield return SceneManager.LoadSceneAsync(m_LevelScene);
-
-        yield return new WaitForSeconds(5f);
-        
-        m_FadeToBlackTransitioner.FadeFromBlack();
-        PlayerDeathHandler.ForceReset?.Invoke();
+        m_SceneFader.FadeToScene(m_LevelScene);
     }
 
     private void ExitState(GameState state)
@@ -96,6 +81,8 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Therapy:
                 UIManager.DisableCursor();
+                break;
+            case GameState.Dying:
                 break;
         }
     }
@@ -109,6 +96,8 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Therapy:
                 UIManager.EnableCursor();
+                break;
+            case GameState.Dying:
                 break;
         }
     }
