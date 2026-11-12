@@ -61,11 +61,6 @@ public class SaveManager : MonoBehaviour
     void OnDestroy()
     {
         if (!_debugMode) SaveGame(CurrentSave); 
-        // to not override our saved games later on
-        // also this doesn't work with webgl i'm suddenly realizing, uhh
-
-        // so there are ways around this that forces unity to save these files to the browser cache
-        // im not doing this tonight though lmao, TODO HERE
     }
 
     private void Save() => SaveGame(CurrentSave);

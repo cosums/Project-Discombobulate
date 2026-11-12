@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "id": "mansion-cartography",
+  "title": "Mystery Mansion Cartography & Journal",
+  "revision": "0.1.0-r1",
+  "icons": {
+    "compass-rose": {
+      "file": "icons/compass-rose.png",
+      "width": 80,
+      "height": 80
+    },
+    "folded-map": {
+      "file": "icons/folded-map.png",
+      "width": 80,
+      "height": 80
+    },
+    "keyhole-marker": {
+      "file": "icons/keyhole-marker.png",
+      "width": 80,
+      "height": 80
+    },
+    "footprint-pin": {
+      "file": "icons/footprint-pin.png",
+      "width": 80,
+      "height": 80
+    },
+    "player-marker": {
+      "file": "icons/player-marker.png",
+      "width": 80,
+      "height": 80
+    },
+    "objective-marker": {
+      "file": "icons/objective-marker.png",
+      "width": 80,
+      "height": 80
+    },
+    "door-locked": {
+      "file": "icons/door-locked.png",
+      "width": 80,
+      "height": 80
+    },
+    "door-open": {
+      "file": "icons/door-open.png",
+      "width": 80,
+      "height": 80
+    },
+    "detective-notebook": {
+      "file": "icons/detective-notebook.png",
+      "width": 80,
+      "height": 80
+    },
+    "clue-note": {
+      "file": "icons/clue-note.png",
+      "width": 80,
+      "height": 80
+    },
+    "quill-inkwell": {
+      "file": "icons/quill-inkwell.png",
+      "width": 80,
+      "height": 80
+    },
+    "paperclip": {
+      "file": "icons/paperclip.png",
+      "width": 80,
+      "height": 80
+    },
+    "wax-seal": {
+      "file": "icons/wax-seal.png",
+      "width": 80,
+      "height": 80
+    },
+    "bookmark": {
+      "file": "icons/bookmark.png",
+      "width": 80,
+      "height": 80
+    },
+    "pocket-watch": {
+      "file": "icons/pocket-watch.png",
+      "width": 80,
+      "height": 80
+    },
+    "sealed-envelope": {
+      "file": "icons/sealed-envelope.png",
+      "width": 80,
+      "height": 80
+    }
+  },
+  "glyphs": {},
+  "pieces": {
+    "journal-page": {
+      "file": "pieces/journal-page.png",
+      "width": 384,
+      "height": 512,
+      "nineSlice": [
+        51,
+        42,
+        61,
+        77
+      ],
+      "slices": [
+        "slices/journal-page-0-0.png",
+        "slices/journal-page-0-1.png",
+        "slices/journal-page-0-2.png",
+        "slices/journal-page-1-0.png",
+        "slices/journal-page-1-1.png",
+        "slices/journal-page-1-2.png",
+        "slices/journal-page-2-0.png",
+        "slices/journal-page-2-1.png",
+        "slices/journal-page-2-2.png"
+      ]
+    },
+    "map-folio": {
+      "file": "pieces/map-folio.png",
+      "width": 358,
+      "height": 512,
+      "nineSlice": [
+        82,
+        54,
+        82,
+        54
+      ],
+      "slices": [
+        "slices/map-folio-0-0.png",
+        "slices/map-folio-0-1.png",
+        "slices/map-folio-0-2.png",
+        "slices/map-folio-1-0.png",
+        "slices/map-folio-1-1.png",
+        "slices/map-folio-1-2.png",
+        "slices/map-folio-2-0.png",
+        "slices/map-folio-2-1.png",
+        "slices/map-folio-2-2.png"
+      ]
+    },
+    "room-plaque": {
+      "file": "pieces/room-plaque.png",
+      "width": 512,
+      "height": 144,
+      "nineSlice": [
+        39,
+        72,
+        39,
+        72
+      ],
+      "slices": [
+        "slices/room-plaque-0-0.png",
+        "slices/room-plaque-0-1.png",
+        "slices/room-plaque-0-2.png",
+        "slices/room-plaque-1-0.png",
+        "slices/room-plaque-1-1.png",
+        "slices/room-plaque-1-2.png",
+        "slices/room-plaque-2-0.png",
+        "slices/room-plaque-2-1.png",
+        "slices/room-plaque-2-2.png"
+      ]
+    },
+    "leather-tab": {
+      "file": "pieces/leather-tab.png",
+      "width": 433,
+      "height": 130,
+      "nineSlice": [
+        30,
+        65,
+        30,
+        65
+      ],
+      "slices": [
+        "slices/leather-tab-0-0.png",
+        "slices/leather-tab-0-1.png",
+        "slices/leather-tab-0-2.png",
+        "slices/leather-tab-1-0.png",
+        "slices/leather-tab-1-1.png",
+        "slices/leather-tab-1-2.png",
+        "slices/leather-tab-2-0.png",
+        "slices/leather-tab-2-1.png",
+        "slices/leather-tab-2-2.png"
+      ]
+    }
+  },
+  "font": {
+    "cellHeight": 64,
+    "baseline": 54
+  },
+  "artisticApproval": "pending"
+}

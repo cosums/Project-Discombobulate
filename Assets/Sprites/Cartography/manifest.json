@@ -1,0 +1,628 @@
+{
+  "id": "mansion-cartography",
+  "revision": "0.1.0-r1",
+  "specSha256": "b5619850c30a14db9f8f77095e79f3038302eec984641b2dd078533c9f075f86",
+  "sources": {
+    "map": {
+      "file": "map-emblems.png",
+      "sha256": "925182852e3be0408c339ed3431b69823600931e192f36a832aea7dde0de9410"
+    },
+    "journal": {
+      "file": "journal-accessories.png",
+      "sha256": "f6f343bc1873899125d30ee45c25bbac9a069878ce0a7709f48cb5d13186bb31"
+    },
+    "paper": {
+      "file": "paper-pieces.png",
+      "sha256": "3e33b6ef65bd16428c7990c8226daec039fc8780561c7e3eab28a7ea63ed3575"
+    }
+  },
+  "records": [
+    {
+      "id": "compass-rose",
+      "kind": "icons",
+      "source": "map",
+      "sourceWindow": {
+        "x": 60,
+        "y": 37,
+        "w": 378,
+        "h": 371
+      },
+      "sourceBounds": {
+        "l": 8,
+        "r": 369,
+        "t": 8,
+        "b": 362,
+        "w": 362,
+        "h": 355
+      },
+      "crop": {
+        "left": 4,
+        "top": 4,
+        "width": 370,
+        "height": 363
+      },
+      "scale": 0.17679558011049723,
+      "file": "icons/compass-rose.png"
+    },
+    {
+      "id": "folded-map",
+      "kind": "icons",
+      "source": "map",
+      "sourceWindow": {
+        "x": 496,
+        "y": 81,
+        "w": 374,
+        "h": 297
+      },
+      "sourceBounds": {
+        "l": 8,
+        "r": 365,
+        "t": 8,
+        "b": 288,
+        "w": 358,
+        "h": 281
+      },
+      "crop": {
+        "left": 4,
+        "top": 4,
+        "width": 366,
+        "height": 289
+      },
+      "scale": 0.1787709497206704,
+      "file": "icons/folded-map.png"
+    },
+    {
+      "id": "keyhole-marker",
+      "kind": "icons",
+      "source": "map",
+      "sourceWindow": {
+        "x": 958,
+        "y": 37,
+        "w": 305,
+        "h": 389
+      },
+      "sourceBounds": {
+        "l": 8,
+        "r": 296,
+        "t": 8,
+        "b": 380,
+        "w": 289,
+        "h": 373
+      },
+      "crop": {
+        "left": 4,
+        "top": 4,
+        "width": 297,
+        "height": 381
+      },
+      "scale": 0.17158176943699732,
+      "file": "icons/keyhole-marker.png"
+    },
+    {
+      "id": "footprint-pin",
+      "kind": "icons",
+      "source": "map",
+      "sourceWindow": {
+        "x": 1422,
+        "y": 72,
+        "w": 246,
+        "h": 324
+      },
+      "sourceBounds": {
+        "l": 8,
+        "r": 237,
+        "t": 8,
+        "b": 315,
+        "w": 230,
+        "h": 308
+      },
+      "crop": {
+        "left": 4,
+        "top": 4,
+        "width": 238,
+        "height": 316
+      },
+      "scale": 0.2077922077922078,
+      "file": "icons/footprint-pin.png"
+    },
+    {
+      "id": "player-marker",
+      "kind": "icons",
+      "source": "map",
+      "sourceWindow": {
+        "x": 63,
+        "y": 456,
+        "w": 368,
+        "h": 370
+      },
+      "sourceBounds": {
+        "l": 8,
+        "r": 359,
+        "t": 8,
+        "b": 361,
+        "w": 352,
+        "h": 354
+      },
+      "crop": {
+        "left": 4,
+        "top": 4,
+        "width": 360,
+        "height": 362
+      },
+      "scale": 0.1807909604519774,
+      "file": "icons/player-marker.png"
+    },
+    {
+      "id": "objective-marker",
+      "kind": "icons",
+      "source": "map",
+      "sourceWindow": {
+        "x": 525,
+        "y": 458,
+        "w": 320,
+        "h": 362
+      },
+      "sourceBounds": {
+        "l": 8,
+        "r": 311,
+        "t": 8,
+        "b": 353,
+        "w": 304,
+        "h": 346
+      },
+      "crop": {
+        "left": 4,
+        "top": 4,
+        "width": 312,
+        "height": 354
+      },
+      "scale": 0.18497109826589594,
+      "file": "icons/objective-marker.png"
+    },
+    {
+      "id": "door-locked",
+      "kind": "icons",
+      "source": "map",
+      "sourceWindow": {
+        "x": 941,
+        "y": 457,
+        "w": 338,
+        "h": 366
+      },
+      "sourceBounds": {
+        "l": 8,
+        "r": 329,
+        "t": 8,
+        "b": 357,
+        "w": 322,
+        "h": 350
+      },
+      "crop": {
+        "left": 4,
+        "top": 4,
+        "width": 330,
+        "height": 358
+      },
+      "scale": 0.18285714285714286,
+      "file": "icons/door-locked.png"
+    },
+    {
+      "id": "door-open",
+      "kind": "icons",
+      "source": "map",
+      "sourceWindow": {
+        "x": 1372,
+        "y": 457,
+        "w": 339,
+        "h": 366
+      },
+      "sourceBounds": {
+        "l": 8,
+        "r": 330,
+        "t": 8,
+        "b": 357,
+        "w": 323,
+        "h": 350
+      },
+      "crop": {
+        "left": 4,
+        "top": 4,
+        "width": 331,
+        "height": 358
+      },
+      "scale": 0.18285714285714286,
+      "file": "icons/door-open.png"
+    },
+    {
+      "id": "detective-notebook",
+      "kind": "icons",
+      "source": "journal",
+      "sourceWindow": {
+        "x": 93,
+        "y": 42,
+        "w": 350,
+        "h": 407
+      },
+      "sourceBounds": {
+        "l": 8,
+        "r": 341,
+        "t": 8,
+        "b": 398,
+        "w": 334,
+        "h": 391
+      },
+      "crop": {
+        "left": 4,
+        "top": 4,
+        "width": 342,
+        "height": 399
+      },
+      "scale": 0.1636828644501279,
+      "file": "icons/detective-notebook.png"
+    },
+    {
+      "id": "clue-note",
+      "kind": "icons",
+      "source": "journal",
+      "sourceWindow": {
+        "x": 527,
+        "y": 48,
+        "w": 360,
+        "h": 392
+      },
+      "sourceBounds": {
+        "l": 8,
+        "r": 351,
+        "t": 8,
+        "b": 383,
+        "w": 344,
+        "h": 376
+      },
+      "crop": {
+        "left": 4,
+        "top": 4,
+        "width": 352,
+        "height": 384
+      },
+      "scale": 0.1702127659574468,
+      "file": "icons/clue-note.png"
+    },
+    {
+      "id": "quill-inkwell",
+      "kind": "icons",
+      "source": "journal",
+      "sourceWindow": {
+        "x": 992,
+        "y": 21,
+        "w": 321,
+        "h": 428
+      },
+      "sourceBounds": {
+        "l": 8,
+        "r": 312,
+        "t": 8,
+        "b": 419,
+        "w": 305,
+        "h": 412
+      },
+      "crop": {
+        "left": 4,
+        "top": 4,
+        "width": 313,
+        "height": 420
+      },
+      "scale": 0.1553398058252427,
+      "file": "icons/quill-inkwell.png"
+    },
+    {
+      "id": "paperclip",
+      "kind": "icons",
+      "source": "journal",
+      "sourceWindow": {
+        "x": 1388,
+        "y": 94,
+        "w": 302,
+        "h": 335
+      },
+      "sourceBounds": {
+        "l": 8,
+        "r": 293,
+        "t": 8,
+        "b": 326,
+        "w": 286,
+        "h": 319
+      },
+      "crop": {
+        "left": 4,
+        "top": 4,
+        "width": 294,
+        "height": 327
+      },
+      "scale": 0.2006269592476489,
+      "file": "icons/paperclip.png"
+    },
+    {
+      "id": "wax-seal",
+      "kind": "icons",
+      "source": "journal",
+      "sourceWindow": {
+        "x": 97,
+        "y": 505,
+        "w": 335,
+        "h": 323
+      },
+      "sourceBounds": {
+        "l": 8,
+        "r": 326,
+        "t": 8,
+        "b": 314,
+        "w": 319,
+        "h": 307
+      },
+      "crop": {
+        "left": 4,
+        "top": 4,
+        "width": 327,
+        "height": 315
+      },
+      "scale": 0.2006269592476489,
+      "file": "icons/wax-seal.png"
+    },
+    {
+      "id": "bookmark",
+      "kind": "icons",
+      "source": "journal",
+      "sourceWindow": {
+        "x": 600,
+        "y": 452,
+        "w": 228,
+        "h": 385
+      },
+      "sourceBounds": {
+        "l": 8,
+        "r": 219,
+        "t": 8,
+        "b": 376,
+        "w": 212,
+        "h": 369
+      },
+      "crop": {
+        "left": 4,
+        "top": 4,
+        "width": 220,
+        "height": 377
+      },
+      "scale": 0.17344173441734417,
+      "file": "icons/bookmark.png"
+    },
+    {
+      "id": "pocket-watch",
+      "kind": "icons",
+      "source": "journal",
+      "sourceWindow": {
+        "x": 938,
+        "y": 456,
+        "w": 313,
+        "h": 395
+      },
+      "sourceBounds": {
+        "l": 8,
+        "r": 304,
+        "t": 8,
+        "b": 386,
+        "w": 297,
+        "h": 379
+      },
+      "crop": {
+        "left": 4,
+        "top": 4,
+        "width": 305,
+        "height": 387
+      },
+      "scale": 0.16886543535620052,
+      "file": "icons/pocket-watch.png"
+    },
+    {
+      "id": "sealed-envelope",
+      "kind": "icons",
+      "source": "journal",
+      "sourceWindow": {
+        "x": 1347,
+        "y": 524,
+        "w": 380,
+        "h": 278
+      },
+      "sourceBounds": {
+        "l": 8,
+        "r": 371,
+        "t": 8,
+        "b": 269,
+        "w": 364,
+        "h": 262
+      },
+      "crop": {
+        "left": 4,
+        "top": 4,
+        "width": 372,
+        "height": 270
+      },
+      "scale": 0.17582417582417584,
+      "file": "icons/sealed-envelope.png"
+    },
+    {
+      "id": "journal-page",
+      "kind": "pieces",
+      "source": "paper",
+      "sourceWindow": {
+        "x": 29,
+        "y": 55,
+        "w": 591,
+        "h": 785
+      },
+      "sourceBounds": {
+        "l": 8,
+        "r": 582,
+        "t": 8,
+        "b": 776,
+        "w": 575,
+        "h": 769
+      },
+      "crop": {
+        "left": 4,
+        "top": 4,
+        "width": 583,
+        "height": 777
+      },
+      "scale": 0.6589446589446589,
+      "file": "pieces/journal-page.png"
+    },
+    {
+      "id": "map-folio",
+      "kind": "pieces",
+      "source": "paper",
+      "sourceWindow": {
+        "x": 676,
+        "y": 56,
+        "w": 548,
+        "h": 781
+      },
+      "sourceBounds": {
+        "l": 8,
+        "r": 539,
+        "t": 8,
+        "b": 772,
+        "w": 532,
+        "h": 765
+      },
+      "crop": {
+        "left": 4,
+        "top": 4,
+        "width": 540,
+        "height": 773
+      },
+      "scale": 0.6623544631306598,
+      "file": "pieces/map-folio.png"
+    },
+    {
+      "id": "room-plaque",
+      "kind": "pieces",
+      "source": "paper",
+      "sourceWindow": {
+        "x": 22,
+        "y": 935,
+        "w": 731,
+        "h": 211
+      },
+      "sourceBounds": {
+        "l": 8,
+        "r": 722,
+        "t": 8,
+        "b": 202,
+        "w": 715,
+        "h": 195
+      },
+      "crop": {
+        "left": 4,
+        "top": 4,
+        "width": 723,
+        "height": 203
+      },
+      "scale": 0.7081604426002767,
+      "file": "pieces/room-plaque.png"
+    },
+    {
+      "id": "leather-tab",
+      "kind": "pieces",
+      "source": "paper",
+      "sourceWindow": {
+        "x": 788,
+        "y": 973,
+        "w": 441,
+        "h": 138
+      },
+      "sourceBounds": {
+        "l": 8,
+        "r": 432,
+        "t": 8,
+        "b": 129,
+        "w": 425,
+        "h": 122
+      },
+      "crop": {
+        "left": 4,
+        "top": 4,
+        "width": 433,
+        "height": 130
+      },
+      "scale": 1,
+      "file": "pieces/leather-tab.png"
+    }
+  ],
+  "files": {
+    "icons/compass-rose.png": "899235c801b60d25d0f0ffdb21abcd405d66839eab333e24c503525fe3df24dc",
+    "icons/folded-map.png": "e27262bad82ce57beb7d253b2a7de9b30ad4543a80ba1cacfdd165971751e249",
+    "icons/keyhole-marker.png": "a5a3fc8a7ec73717c059d51d3490efc42fd9c9602f1e37636ce16a67399c9e1d",
+    "icons/footprint-pin.png": "822c1d6ded31168ac9419db43f24860748fa3001819f5609ae426b11dca13e38",
+    "icons/player-marker.png": "4dee7af41aadea183edf07da96275447771ae6f8472cb8d45dc6916a395243c5",
+    "icons/objective-marker.png": "8e99208e17d469039fa1fe405f00af287a539fe25fb1be8d2ee2dcf6a02f95ef",
+    "icons/door-locked.png": "5b2b6970dbb8a6baa10692d3ae0b1622c481a23945a8748d9372f8c89be46c29",
+    "icons/door-open.png": "b637069ee20776f2eabb00a0b11df19f9d9fa339de6b3f0d340c2fc16d8c1b34",
+    "icons/detective-notebook.png": "aa525f4a194a3e2551892bd40b7cedd7da5917ffabf448b4788031e11bdabe40",
+    "icons/clue-note.png": "c4db9430db4ef04dc73011cd66074ca74e62ff5b561931560e3cb0de5c3e01a7",
+    "icons/quill-inkwell.png": "54f949c913ca790dfc747666b13adc9ae1f455d3e8b94cf827da729d76aa9b8d",
+    "icons/paperclip.png": "71329e107ce6cb7704d5d666e5381aa14ce63863efd47f0484ecc3840ace7928",
+    "icons/wax-seal.png": "fb513582147f61bd4cf8d19578881664a343dfecaa110f87ada2243ce0810922",
+    "icons/bookmark.png": "95c872344f7a862a99006a8499d063c241569f0c202f73beb30b97ef5723175f",
+    "icons/pocket-watch.png": "b260efacd03ad93236f8008106a673676033aed2b80a654b71661f7c00b92ad3",
+    "icons/sealed-envelope.png": "e6681d99d0a5505edd41df3b92d96f2540d484640db339cc5385490d9e584ab3",
+    "pieces/journal-page.png": "f177a4d0ab650262f3c0a6cc4e99c51aa73c6169c975193a8a5761394b1f8845",
+    "slices/journal-page-0-0.png": "3f2564515c8778b673a22051116ff3f141431949b2194d3fb4464b22895763cd",
+    "slices/journal-page-0-1.png": "370c32d5b5641304d1692836e65668dff587a5a57b0d6899de0d7bb31577168e",
+    "slices/journal-page-0-2.png": "952701a7cc9a5adf389a2d2ca7dc19d136c010d8db04d0aa9793e5eb5e7f2f0c",
+    "slices/journal-page-1-0.png": "6629b67141f99e100c52b3c709a13c174e5781b1b37de7d5bf932f40d5bf5fc7",
+    "slices/journal-page-1-1.png": "30ed0bdc3be22504a48da69db4146384344db81e738a1a5b095ab35dd13aac12",
+    "slices/journal-page-1-2.png": "df1b46c8b28e75ce95b1c90e0fd5ac603d79e8e64e19b7262ed7fc488d2a18cd",
+    "slices/journal-page-2-0.png": "deeab1b8557a4a709b5b1580514cac57348e08519fbf406d9b8fbf65384c9f63",
+    "slices/journal-page-2-1.png": "f037fe64140d15b1c713771d641b45e9185215291041abf1ee86e967111ea5ff",
+    "slices/journal-page-2-2.png": "87f832a9b418a0245a72888b840656bf9d475f5ce8afeb52c024148360ae02ce",
+    "pieces/map-folio.png": "76eddee00453127add0f22c0ee6e530a792b2d1e07d4aa9cf3b1bc8645b5e7c3",
+    "slices/map-folio-0-0.png": "3cd8d0ab102ca50e19da8a0b2979301db1323fb1065a1f595605a3d26b2348ad",
+    "slices/map-folio-0-1.png": "b8dd88b8ee227c4446be8cefd924c4bc661e49cfbf5c74e066841d2ad49d0fb7",
+    "slices/map-folio-0-2.png": "68b85b55ad11ba86e3dc09ff4192e12b4deaae22962c3bbb65b44b0060ef3849",
+    "slices/map-folio-1-0.png": "87974264577dfdbd0991633da44a1771b67f0cf478e9153966317b3a68bd142c",
+    "slices/map-folio-1-1.png": "adf33c3e43236d5a0c78c6761cf172429c75e31025b1fe354ad3cf2ab4c56336",
+    "slices/map-folio-1-2.png": "ca7d74f11dfc89080202cb0e3c5a03d4b35534c77711253082c8b05842a5d58c",
+    "slices/map-folio-2-0.png": "5e6bb8cf7820a1f5e759ff59e0fad04c94f262394d6c5e430f908722f50c5a78",
+    "slices/map-folio-2-1.png": "ceb1bf069696067b3f64881340d0ed6c983cb42e8be078152e2a03f54548c81a",
+    "slices/map-folio-2-2.png": "4c2279eaa8f3ca19318cdb90606592478703e8d732e1a4b5ac022638c7152e50",
+    "pieces/room-plaque.png": "63c9b1efa070ad9bfb8c31c1a260305b83d7cd63f72ef01e444686b2059033df",
+    "slices/room-plaque-0-0.png": "143b2b14825381751c0f7c47024fc3792251f669b3efc1e7fc8cf2a83dcd3e7c",
+    "slices/room-plaque-0-1.png": "4f25e81cab5a58ba0b4ef67495569523041636a1f2459958abbb5ada4f7d67e9",
+    "slices/room-plaque-0-2.png": "3038837a8383bfa1aec623371efa2eb429d0507b030a2e5750d136b8f3983aeb",
+    "slices/room-plaque-1-0.png": "836cedea386abb3b39030da77c7f10cce7f8f317ca08fec0648f2b1ea321010f",
+    "slices/room-plaque-1-1.png": "069fff3a06b32b12087d26a0c60a04c07a12a119cc5db3a9a3bb035e632083ce",
+    "slices/room-plaque-1-2.png": "0f4aeec404fa86847461c4e238df0dfe9760ae18c060f6fe21d28be88392d977",
+    "slices/room-plaque-2-0.png": "e3ba48f7cefdf63732db76f771f53e3eb791175f79b4b6eaf9f3dc76a8fb77d0",
+    "slices/room-plaque-2-1.png": "a0e04ac9ba4a7f3f0894ee6dd25fa5a419a21692dc3d1d64f010880616fdb2f8",
+    "slices/room-plaque-2-2.png": "35a3ae3b6bfa638a22f131bb66fd05a1601622ec0cdea2f645330d6985e80246",
+    "pieces/leather-tab.png": "4c1e0d7d0fdb0b19edb83ed8bab45feebe5167137c08157d698bc61cc7b899c4",
+    "slices/leather-tab-0-0.png": "9f1607d29af60003d1483ab92471558e19eb5c49d7eb090652dc13615ee88da8",
+    "slices/leather-tab-0-1.png": "6f94c987e4faf55b8d46138f8f0d92cba9ddb8aad7890719b945af874acb3da9",
+    "slices/leather-tab-0-2.png": "8867e6b93612c2aa5c087181b4e46e3d9ded4c411ad53aa4674b0fb5faac8885",
+    "slices/leather-tab-1-0.png": "0243c32b5a4221492379bb26ed3a39969e80521a6a5087b78ffa59219a846c43",
+    "slices/leather-tab-1-1.png": "2e68470b0a743cfc8732dfa22088aa5556e447a1a2006a45c62ccf6c4cacba80",
+    "slices/leather-tab-1-2.png": "ed674348e185315853bca19f3ab43ea0e76d922b6091ae1dcf0b9bf8c85a6712",
+    "slices/leather-tab-2-0.png": "e757794ed170eb2114fa1bed2ec5f1bfaa394e228a9d9cdc51e8470b3e0fccb7",
+    "slices/leather-tab-2-1.png": "e97a21a4a5f7652d336d8f12503a5f3ea1386b6a17a1504877722e0cf22befce",
+    "slices/leather-tab-2-2.png": "cc59e7e9a4b8fb98af595de6c9cf5c91a03c96ee8b285cb294c0556ff7386329",
+    "ui.json": "293a3401120b7d3555965b0b8ea06db81080c901c678ff02c1cbcb7eff8ffd06"
+  },
+  "operations": [
+    "native PNG extraction",
+    "nearest resampling",
+    "registered placement",
+    "nine-slice extraction"
+  ],
+  "creativeRetouching": false,
+  "artisticApproval": "pending"
+}

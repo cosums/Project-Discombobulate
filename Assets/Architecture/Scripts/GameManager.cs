@@ -1,18 +1,41 @@
+using System;
+using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public enum GameState { 
+    MainMenu = 0, 
+    Playing = 1, 
+    Paused = 2,
+    Therapy = 3
+}
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
-    public enum GameState { MainMenu, Playing, Paused }
     public GameState CurrentState { get; private set; }
     
+    public static event Action<GameState> OnStateExited;
+    public static event Action<GameState> OnStateEntered;
+
+    [SerializeField] private string m_StartScene;
+    [SerializeField] private string m_LevelScene;
+    [SerializeField] private FadeToBlackTransition m_FadeToBlackTransitioner;
+
     public void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            // for debug purposes!
+            if (SceneManager.GetActiveScene().name != m_StartScene)
+            {
+                ChangeState(GameState.Playing);
+            }
+
         } else
         {
             Debug.LogWarning(">1 Game Manager in scene!");
@@ -20,5 +43,78 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
+    public void OnEnable() 
+    {
+        SummonManager.OnSummonStart += HandleSummoning;
+    }
+
+    public void OnDisable()
+    {
+        SummonManager.OnSummonStart -= HandleSummoning;
+    }
+
+    public void ChangeState(GameState state)
+    {
+        Debug.Log("[GameManager]: Changing state to " + state);
+        
+        ExitState(CurrentState);
+        OnStateExited?.Invoke(CurrentState);
+
+        CurrentState = state;
+
+        EnterState(state);
+        OnStateEntered?.Invoke(state);
+    }
+
+    public void RestoreSave()
+    {
+        m_FadeToBlackTransitioner.OnTransitionToFinished += Reload;
+        m_FadeToBlackTransitioner.FadeToBlack();
+    }
+
+    private void Reload()
+    {
+        StartCoroutine(ReloadRoutine());
+    }
+
+    private IEnumerator ReloadRoutine()
+    {
+        yield return SceneManager.LoadSceneAsync(m_LevelScene);
+
+        yield return new WaitForSeconds(5f);
+        
+        m_FadeToBlackTransitioner.FadeFromBlack();
+        PlayerDeathHandler.ForceReset?.Invoke();
+    }
+
+    private void ExitState(GameState state)
+    {
+        switch (state)
+        {
+            case GameState.Paused:
+                Time.timeScale = 0;
+                break;
+            case GameState.Therapy:
+                UIManager.DisableCursor();
+                break;
+        }
+    }
+
+    private void EnterState(GameState state)
+    {
+        switch (state)
+        {
+            case GameState.Paused:
+                Time.timeScale = 1;
+                break;
+            case GameState.Therapy:
+                UIManager.EnableCursor();
+                break;
+        }
+    }
+
+    private void HandleSummoning()
+    {
+        ChangeState(GameState.Therapy);
+    }
 }
