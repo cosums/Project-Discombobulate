@@ -28,12 +28,13 @@ public class PlayerDeathHandler : MonoBehaviour
     void Start()
     {
         if(saveManager == null) Debug.LogWarning("PlayerDeathHandler cannot find its saveManager, deaths will not restart to last save");
-        OnReset += onResetLocal;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log("ResetCamera " + animator.GetCurrentAnimatorStateInfo(0).IsName("Static"));
+        //Debug.Log("PlayerDies " + animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerDeathAnimation"));
         if (isDying)
         {
             if(isAwaitingDeathStart) lookTowardsGhost();
@@ -60,6 +61,8 @@ public class PlayerDeathHandler : MonoBehaviour
         }
     }
 
+    private bool triggeredRestore = false;
+
     private void UpdateDeathAnimation()
     {
         if(isDying && !isAwaitingDeathStart)
@@ -71,11 +74,10 @@ public class PlayerDeathHandler : MonoBehaviour
             }
         }
 
-        if(!isAwaitingDeathStart && cameraAnimIsFinished)
+        if(!isAwaitingDeathStart && cameraAnimIsFinished && !triggeredRestore)
         {
-            
-            fadeToBlackTransition.OnTransitionToFinished += setFadeFinished;
-            fadeToBlackTransition.FadeToBlack();
+            GameManager.Instance.RestoreSave();
+            triggeredRestore = true;
         }
     }
 
@@ -85,7 +87,6 @@ public class PlayerDeathHandler : MonoBehaviour
         this.lookTransform = ghostTransform;
         isDying = true;
         isAwaitingDeathStart = true;
-        PlayerController.movementDisabled = true;
     }
 
     /** Should be called when it's time to start the animation sequence */
@@ -103,27 +104,5 @@ public class PlayerDeathHandler : MonoBehaviour
     private void finishDeath()
     {
         isDead = true;
-    }
-
-    private void setFadeFinished()
-    {
-        fadeToBlackIsFinished = true;
-    }
-
-    private void onResetLocal()
-    {
-        isDying = false;
-        isDead = false;
-        isAwaitingDeathStart = false;
-        cameraAnimIsFinished = false;
-        fadeToBlackIsFinished = false;
-        elapsedTime = 0;
-        fadeToBlackTransition.OnTransitionToFinished -= setFadeFinished;
-        if (saveManager != null) saveManager.LoadGame();
-
-        // TODO these things should probably wait for the save to be loaded somehow
-        animator.SetTrigger(ANIM_TRIGGER_RESET);
-        PlayerController.movementDisabled = false;
-        fadeToBlackTransition.FadeFromBlack();
     }
 }

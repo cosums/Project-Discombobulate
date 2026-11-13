@@ -17,7 +17,7 @@ public class SummonManager : MonoBehaviour
 
     public void OnDisable()
     {
-        SaltMaster.OnSaltPlaced += HandleSaltPlace;
+        SaltMaster.OnSaltPlaced -= HandleSaltPlace;
     }
 
     public void Update()

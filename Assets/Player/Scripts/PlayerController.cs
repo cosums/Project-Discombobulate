@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public float CrouchTime = 0.3f;
 
     private float _crouchVelocity;
+    [SerializeField] private Transform m_GhostFocusTransform;
 
     [SerializeField] AudioClip footsteps;
     [SerializeField] float footstepInterval = 0.45f;
@@ -49,17 +50,29 @@ public class PlayerController : MonoBehaviour
     }
     
     void Update()
-    {
+    {   
+        if (GameManager.Instance.CurrentState == GameState.Therapy)
+        {
+            LookTowardsGhost();
+        }
+
         if(movementDisabled)
         {
             return;
         }
+        
         if (GameManager.Instance.CurrentState != GameState.Playing) return;
         
         MyInput();
         Look();
 
         HandleMovement();
+    }
+
+    private void LookTowardsGhost()
+    {
+        Vector3 direction = m_GhostFocusTransform.position - CameraAnchor.position;
+        CameraAnchor.rotation = Quaternion.Slerp(CameraAnchor.rotation, Quaternion.LookRotation(direction), 0.1f);
     }
 
     private void OnEnable()

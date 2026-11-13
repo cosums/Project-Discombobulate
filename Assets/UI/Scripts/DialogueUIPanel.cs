@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class DialogueUIPanel : MonoBehaviour
@@ -39,17 +40,34 @@ public class DialogueUIPanel : MonoBehaviour
         return subtitleObj;
     }
 
-    public GameObject AddOption(string text)
+    public GameObject AddOption(string text, UnityAction onClick)
     {
         GameObject optionObj = Instantiate(DialogueOptionPrefab);
         optionObj.transform.SetParent(m_DialogueParent, false);
 
         DialogueOption subtitle = optionObj.GetComponent<DialogueOption>();
         subtitle.OptionText.text = text;
+        Button optButton = subtitle.OptionButton;
+
+        optButton.onClick.AddListener(() => HandleButtonClick(subtitle));
+        optButton.onClick.AddListener(onClick);
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(m_DialogueParent);
 
         return optionObj;
+    }
+
+    private void HandleButtonClick(DialogueOption subtitle)
+    {
+        Destroy(subtitle.gameObject);
+    }
+
+    public void ClearUI()
+    {
+        for (int i = 0; i < m_DialogueParent.transform.childCount; i++)
+        {
+            Destroy(m_DialogueParent.transform.GetChild(i).gameObject);
+        }
     }
 
     private void HandleTestSummon(GameState state) {

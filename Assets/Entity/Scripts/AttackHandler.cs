@@ -17,8 +17,6 @@ public class AttackHandler : MonoBehaviour
     // ============= world effects =============
     [SerializeField] PlayerDeathHandler playerDeathHandler = null;
     [SerializeField] float cooldownTimeAfterAttackFinished = 2f;
-    private bool isOnCooldown = true;
-    private float elapsedCooldownTime = 0f;
 
     // ============= movement control ============
     [SerializeField] EntityController entityController;
@@ -36,7 +34,9 @@ public class AttackHandler : MonoBehaviour
     [SerializeField] private float timeTillStartPlayerDeath = 1.13f;
     private float elapsedTime = 0f;
     private bool awaitingStartOfPlayerDeath = false;
+    bool arrivedAtTargetPosition = false;
 
+    private static event Action OnKillPlayer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -62,7 +62,14 @@ public class AttackHandler : MonoBehaviour
             //sol = true;
         }
         playerDeathHandler.OnReset += PostAttackCleanup;
-        if (elapsedCooldownTime >= cooldownTimeAfterAttackFinished) isOnCooldown = false;
+
+        OnKillPlayer += TherapyAttack;
+    }
+
+    void OnDestroy()
+    {
+        playerDeathHandler.OnReset -= PostAttackCleanup;
+        OnKillPlayer -= TherapyAttack;
     }
 
     // Update is called once per frame
@@ -73,15 +80,6 @@ public class AttackHandler : MonoBehaviour
             StartAttack();
         }*/
         if (sol) return;
-
-        if(isOnCooldown)
-        {
-            elapsedCooldownTime += Time.deltaTime;
-            if(elapsedCooldownTime >= cooldownTimeAfterAttackFinished)
-            {
-                isOnCooldown = false;
-            }
-        }
         
         if(isAwaitingArrival && !arrivedAtTargetPosition)
         {
@@ -113,15 +111,11 @@ public class AttackHandler : MonoBehaviour
         }
     }
 
-    bool arrivedAtTargetPosition = false;
     public void StartAttack()
     {
-        if(isOnCooldown) {
-            Debug.Log("Attack blocked due to cooldown");
-            return; 
-        }
-
         // freeze player & ghost movements to take manual control
+        GameManager.Instance.ChangeState(GameState.Dying);
+
         playerDeathHandler.StartPreDeath(headBoneTransform);
         ApproachBehavior behavior = new ApproachBehavior(distanceFromPlayerWhileAttacking, playerTransform);
         behavior.OnArriveAtTarget += () => { arrivedAtTargetPosition = true; };
@@ -132,6 +126,20 @@ public class AttackHandler : MonoBehaviour
         isAwaitingArrival = true;
 
         // the rest of the sequence is handled in Update()
+    }
+
+    private void TherapyAttack()
+    {
+        StartAttack();
+    }
+
+    // Attack Trigger
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            StartAttack();
+        }
     }
 
     public void PostAttackCleanup()
@@ -146,17 +154,12 @@ public class AttackHandler : MonoBehaviour
     {
         elapsedTime = 0;
         elapsedMovementTime = 0;
-        elapsedCooldownTime = 0f;
         awaitingStartOfPlayerDeath = false;
-        isOnCooldown = true;
         isAwaitingArrival = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public static void KillPlayer()
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            StartAttack();
-        }
+        OnKillPlayer?.Invoke();
     }
 }

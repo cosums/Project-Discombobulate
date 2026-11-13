@@ -11,7 +11,8 @@ public enum Speaker
 public enum DialogueResult
 {
     None = 0,
-    Death = 1
+    Death = 1,
+    HappyHappyHappy = 2
 }
 
 [CreateAssetMenu(fileName = "NewDialogue", menuName = "Dialogue System/Dialogue")]

@@ -19,4 +19,4 @@ MonoBehaviour:
     speaker: 1
   endingChoice: {fileID: 0}
   strictPlay: 1
-  result: 0
+  result: 1

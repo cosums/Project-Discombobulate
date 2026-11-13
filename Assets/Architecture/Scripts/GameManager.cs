@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,7 +8,8 @@ public enum GameState {
     MainMenu = 0, 
     Playing = 1, 
     Paused = 2,
-    Therapy = 3
+    Therapy = 3,
+    Dying = 4
 }
 
 public class GameManager : MonoBehaviour
@@ -18,6 +21,8 @@ public class GameManager : MonoBehaviour
     public static event Action<GameState> OnStateEntered;
 
     [SerializeField] private string m_StartScene;
+    [SerializeField] private string m_LevelScene;
+    [SerializeField] private SceneFader m_SceneFader;
 
     public void Awake()
     {
@@ -53,13 +58,18 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("[GameManager]: Changing state to " + state);
         
-        ExitState(state);
-        OnStateExited?.Invoke(state);
+        ExitState(CurrentState);
+        OnStateExited?.Invoke(CurrentState);
 
         CurrentState = state;
 
         EnterState(state);
         OnStateEntered?.Invoke(state);
+    }
+
+    public void RestoreSave()
+    {
+        m_SceneFader.FadeToScene(m_LevelScene);
     }
 
     private void ExitState(GameState state)
@@ -71,6 +81,8 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Therapy:
                 UIManager.DisableCursor();
+                break;
+            case GameState.Dying:
                 break;
         }
     }
@@ -84,6 +96,8 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Therapy:
                 UIManager.EnableCursor();
+                break;
+            case GameState.Dying:
                 break;
         }
     }
