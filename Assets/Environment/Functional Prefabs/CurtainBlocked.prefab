@@ -127,6 +127,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5384115961563762299}
+  - component: {fileID: 4030615394458519194}
   m_Layer: 0
   m_Name: CurtainBlocked
   m_TagString: Untagged
@@ -152,6 +153,27 @@ Transform:
   - {fileID: 693535091437446149}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4030615394458519194
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3260674629841640797}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.7565904, y: 4.7958126, z: 0.4553269}
+  m_Center: {x: 1.58723, y: 2.4759955, z: 0.9690077}
 --- !u!1 &7954139909595780528
 GameObject:
   m_ObjectHideFlags: 0
