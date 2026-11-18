@@ -16,7 +16,7 @@ public class AttackHandler : MonoBehaviour
 
     // ============= world effects =============
     [SerializeField] PlayerDeathHandler playerDeathHandler = null;
-    [SerializeField] float cooldownTimeAfterAttackFinished = 2f;
+    //[SerializeField] float cooldownTimeAfterAttackFinished = 2f;
 
     // ============= movement control ============
     [SerializeField] EntityController entityController;

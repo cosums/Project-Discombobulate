@@ -27,7 +27,7 @@ public class PlayerDeathHandler : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if(saveManager == null) Debug.LogWarning("PlayerDeathHandler cannot find its saveManager, deaths will not restart to last save");
+        //if(saveManager == null) Debug.LogWarning("PlayerDeathHandler cannot find its saveManager, deaths will not restart to last save");
     }
 
     // Update is called once per frame
