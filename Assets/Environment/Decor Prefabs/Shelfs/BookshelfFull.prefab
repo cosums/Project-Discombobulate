@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2495639337396871021}
+  - component: {fileID: 7799435424128753886}
   m_Layer: 0
   m_Name: BookshelfFull
   m_TagString: Untagged
@@ -32,6 +33,27 @@ Transform:
   - {fileID: 7949213226544690220}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7799435424128753886
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10069770554445995}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1400394, y: 3.4694154, z: 4.26}
+  m_Center: {x: -0.07001972, y: 1.7482711, z: 0}
 --- !u!1001 &7627969864899302343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42,7 +64,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 57fa27e647d29e143a5efdbe2bdd125c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.5746002
+      value: -0.59
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 57fa27e647d29e143a5efdbe2bdd125c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -50,7 +72,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 57fa27e647d29e143a5efdbe2bdd125c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.24006987
+      value: -2.13
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 57fa27e647d29e143a5efdbe2bdd125c, type: 3}
       propertyPath: m_LocalRotation.w

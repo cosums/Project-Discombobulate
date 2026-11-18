@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8639288646544916647}
+  - component: {fileID: 1195733838031310810}
   m_Layer: 0
   m_Name: BathroomSink
   m_TagString: Untagged
@@ -32,6 +33,27 @@ Transform:
   - {fileID: 522477583721158904}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1195733838031310810
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5560562339175459472}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.34, y: 1.3720915, z: 0.9613898}
+  m_Center: {x: 0, y: 0.67, z: -0.01930511}
 --- !u!1001 &57016160657391379
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54,7 +76,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 650fd61f2051c8043a0811f0eb0187a3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.797
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 650fd61f2051c8043a0811f0eb0187a3, type: 3}
       propertyPath: m_LocalPosition.z
