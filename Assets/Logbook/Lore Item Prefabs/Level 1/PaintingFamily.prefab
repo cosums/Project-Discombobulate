@@ -157,7 +157,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: b3d6701a822d67a46b61ef749f2085a5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 2f14fb3f285fe5c4693db8c39c72e7bc, type: 2}
+      objectReference: {fileID: 2100000, guid: ae391057f0c14554c8957d44cde183c0, type: 2}
     - target: {fileID: 919132149155446097, guid: b3d6701a822d67a46b61ef749f2085a5, type: 3}
       propertyPath: m_Name
       value: painting_frame (2)
