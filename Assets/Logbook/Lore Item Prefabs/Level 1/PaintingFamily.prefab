@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2264812168987846058}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.67559016, z: 0, w: 0.7372774}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1.75, z: 1.75}
   m_ConstrainProportionsScale: 0
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 2176733864225154766}
   - {fileID: 3329661260321145639}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 85, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4978378645218034408
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -75,10 +75,34 @@ MonoBehaviour:
       m_Calls: []
   OnHoverEnter:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -1543366135358266090}
+        m_TargetAssemblyTypeName: HighlightObject, Assembly-CSharp
+        m_MethodName: Highlight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHoverExit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -1543366135358266090}
+        m_TargetAssemblyTypeName: HighlightObject, Assembly-CSharp
+        m_MethodName: DeHighlight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-1543366135358266090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HighlightObject
   highlightedColor: {r: 1, g: 1, b: 1, a: 1}
-  rendererParent: {fileID: 0}
+  rendererParent: {fileID: 2264812168987846058}
   renderers: []
 --- !u!1001 &1855472703474581797
 PrefabInstance:

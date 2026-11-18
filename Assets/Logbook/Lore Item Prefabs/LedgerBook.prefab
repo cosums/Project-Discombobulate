@@ -74,10 +74,34 @@ MonoBehaviour:
       m_Calls: []
   OnHoverEnter:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -1723686734445358921}
+        m_TargetAssemblyTypeName: HighlightObject, Assembly-CSharp
+        m_MethodName: Highlight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHoverExit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -1723686734445358921}
+        m_TargetAssemblyTypeName: HighlightObject, Assembly-CSharp
+        m_MethodName: DeHighlight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-1723686734445358921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,8 +115,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HighlightObject
   highlightedColor: {r: 1, g: 1, b: 1, a: 1}
-  rendererParent: {fileID: 0}
-  renderers: []
+  rendererParent: {fileID: 1684163364376329077}
+  renderers:
+  - {fileID: 1839665016821004047}
+  - {fileID: 2284094577482245113}
 --- !u!1001 &3765681034780690043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -150,6 +176,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 696955a15b988c740a1b14e86979936c, type: 3}
+--- !u!23 &1839665016821004047 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3298235158612898164, guid: 696955a15b988c740a1b14e86979936c, type: 3}
+  m_PrefabInstance: {fileID: 3765681034780690043}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2284094577482245113 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -6057102794266057342, guid: 696955a15b988c740a1b14e86979936c, type: 3}
+  m_PrefabInstance: {fileID: 3765681034780690043}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3731473695839494544 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 696955a15b988c740a1b14e86979936c, type: 3}

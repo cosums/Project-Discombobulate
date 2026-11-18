@@ -75,10 +75,34 @@ MonoBehaviour:
       m_Calls: []
   OnHoverEnter:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -8981966897008451800}
+        m_TargetAssemblyTypeName: HighlightObject, Assembly-CSharp
+        m_MethodName: Highlight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHoverExit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -8981966897008451800}
+        m_TargetAssemblyTypeName: HighlightObject, Assembly-CSharp
+        m_MethodName: DeHighlight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-8981966897008451800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HighlightObject
   highlightedColor: {r: 1, g: 1, b: 1, a: 1}
-  rendererParent: {fileID: 0}
+  rendererParent: {fileID: 3609056796175034818}
   renderers: []
 --- !u!1001 &8636497784062425607
 PrefabInstance:
