@@ -677,7 +677,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3796862453003946883}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3611827393769299838, guid: 18031d5d877c3294990ed1b74ed3b61d, type: 3}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: c483c02a9e97a784fa40cc39dc495e01, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5825168691592656352
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +810,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5158142615555923143}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3611827393769299838, guid: 18031d5d877c3294990ed1b74ed3b61d, type: 3}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: c483c02a9e97a784fa40cc39dc495e01, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6262708081071933848
 GameObject:
   m_ObjectHideFlags: 0

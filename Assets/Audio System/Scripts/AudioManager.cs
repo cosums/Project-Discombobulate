@@ -112,6 +112,14 @@ public class AudioManager : MonoBehaviour
         Destroy(source.gameObject, lifetime);
     }
 
+    // PlayOneShot() w/ 4 parameyer does not show up for OnClick
+    // so this is here for UI conveince
+    public void PlayOneShot(AudioClip clip)
+    {
+        PlayOneShot(clip, 1f, null, 0f);
+    }
+
+
     private AudioSource CreateSource(AudioClip clip, float volume, Transform spawnTransform)
     {
         Vector3 position = spawnTransform != null ? spawnTransform.position : transform.position;

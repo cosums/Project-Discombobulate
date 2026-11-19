@@ -121,8 +121,9 @@ GameObject:
   - component: {fileID: 3902583355417213243}
   - component: {fileID: 8880384112955917563}
   - component: {fileID: 1841256413477876120}
+  - component: {fileID: 1206418513676165569}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: SavesPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,6 +189,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1206418513676165569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273660130297090112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80de608038539004c92556df59174460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  GameManager: {fileID: 0}
 --- !u!1 &2073356369089611689
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,7 +724,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1636625029722487376}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3611827393769299838, guid: 18031d5d877c3294990ed1b74ed3b61d, type: 3}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: c483c02a9e97a784fa40cc39dc495e01, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3385114214087755434
 GameObject:
   m_ObjectHideFlags: 0
@@ -1327,15 +1353,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4023402789523333845, guid: 5bf167e994941c24a96c00e114011512, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4023402789523333845, guid: 5bf167e994941c24a96c00e114011512, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4023402789523333845, guid: 5bf167e994941c24a96c00e114011512, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023402789523333845, guid: 5bf167e994941c24a96c00e114011512, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3611827393769299838, guid: 18031d5d877c3294990ed1b74ed3b61d, type: 3}
+    - target: {fileID: 4023402789523333845, guid: 5bf167e994941c24a96c00e114011512, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023402789523333845, guid: 5bf167e994941c24a96c00e114011512, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayOneShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023402789523333845, guid: 5bf167e994941c24a96c00e114011512, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AudioManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023402789523333845, guid: 5bf167e994941c24a96c00e114011512, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: c483c02a9e97a784fa40cc39dc495e01, type: 3}
+    - target: {fileID: 4023402789523333845, guid: 5bf167e994941c24a96c00e114011512, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.AudioClip, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4553291386244715465, guid: 5bf167e994941c24a96c00e114011512, type: 3}
       propertyPath: m_Name
