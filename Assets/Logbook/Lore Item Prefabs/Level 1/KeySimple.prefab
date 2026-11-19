@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoreItemCollectible
   loreItemData: {fileID: 11400000, guid: 8edfa763ab93fd14fa49e1d2b0f7ae25, type: 2}
-  dialogueOnPickup: {fileID: 0}
+  dialogueOnPickup: {fileID: 11400000, guid: c6543b85628f2364e9473f967d978a82, type: 2}
   OnInteractEnter:
     m_PersistentCalls:
       m_Calls: []

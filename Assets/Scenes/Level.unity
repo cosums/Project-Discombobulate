@@ -17480,6 +17480,10 @@ PrefabInstance:
       propertyPath: loreItemData
       value: 
       objectReference: {fileID: 11400000, guid: ee000abcac1f81e48b35aaa2323fbd02, type: 2}
+    - target: {fileID: 929724925214642814, guid: 273e4e49b78d73741bd64f66d49ea53c, type: 3}
+      propertyPath: dialogueOnPickup
+      value: 
+      objectReference: {fileID: 11400000, guid: d989eaeb4df68f74ea1e66fae3e0bfa4, type: 2}
     - target: {fileID: 1160299670909165185, guid: 273e4e49b78d73741bd64f66d49ea53c, type: 3}
       propertyPath: m_Name
       value: MothersDeathNotice
@@ -22633,6 +22637,10 @@ PrefabInstance:
       propertyPath: loreItemData
       value: 
       objectReference: {fileID: 11400000, guid: b83c9078697b60c4695dca41e6e0a361, type: 2}
+    - target: {fileID: -5349625222717588610, guid: dac073ac6d9e7d943a2c3567382adad7, type: 3}
+      propertyPath: dialogueOnPickup
+      value: 
+      objectReference: {fileID: 11400000, guid: 0eb3e80a18897bb41bf279fecc876e56, type: 2}
     - target: {fileID: 4222043137706690455, guid: dac073ac6d9e7d943a2c3567382adad7, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.099
