@@ -851,6 +851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSystem
   dialogUI: {fileID: 0}
   redDialogue: {fileID: 0}
+  TestDialogue: {fileID: 11400000, guid: 5f58c66038340b44fa61f49bcd232a28, type: 2}
 --- !u!1 &6550322378172262882
 GameObject:
   m_ObjectHideFlags: 0

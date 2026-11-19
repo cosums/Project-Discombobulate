@@ -10,23 +10,11 @@ public class DialogueUIPanel : MonoBehaviour
     public GameObject SubtitlePrefab;
     public GameObject DialogueOptionPrefab;
 
-    public Dialogue TestDialogue;
-
     void Start()
     {
         LayoutRebuilder.ForceRebuildLayoutImmediate(m_DialogueParent);
         m_Group.alpha = 0;
         UIManager.EnableCanvasGroup(m_Group, false);
-    }
-
-    void OnEnable()
-    {
-        GameManager.OnStateEntered += HandleTestSummon;
-    }
-
-    void OnDisable()
-    {
-        GameManager.OnStateEntered -= HandleTestSummon;
     }
 
     public GameObject AddLine(string text)
@@ -70,12 +58,9 @@ public class DialogueUIPanel : MonoBehaviour
         }
     }
 
-    private void HandleTestSummon(GameState state) {
-        if (state != GameState.Therapy) return;
-
-        m_Group.alpha = 1;
-        UIManager.EnableCanvasGroup(m_Group, true);
-
-        DialogueSystem.Instance.PlayDialogue(TestDialogue);
+    public void ShowUI(bool show)
+    {
+        m_Group.alpha = show ? 1 : 0;
+        UIManager.EnableCanvasGroup(m_Group, show);
     }
 }

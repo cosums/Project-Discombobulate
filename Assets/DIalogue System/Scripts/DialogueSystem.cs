@@ -13,6 +13,9 @@ public class DialogueSystem : MonoBehaviour
     public static DialogueSystem Instance { get; private set; }
     public bool IsPlaying => currentRoutine != null;
 
+    
+    public Dialogue TestDialogue;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -24,8 +27,17 @@ public class DialogueSystem : MonoBehaviour
         Instance = this;
     }
 
-    void OnEnable() { SceneManager.sceneLoaded += OnSceneLoaded; }
-    void OnDisable() { SceneManager.sceneLoaded -= OnSceneLoaded; }
+    void OnEnable()
+    {
+        GameManager.OnStateEntered += HandleTestSummon;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        GameManager.OnStateEntered -= HandleTestSummon;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
     void OnDestroy()
     {
@@ -41,9 +53,7 @@ public class DialogueSystem : MonoBehaviour
 
     public void PlayDialogue(Dialogue dialogue)
     {
-        Debug.Log("Playing " + dialogue);
-        if (dialogue == null) return;
-
+        dialogUI.ShowUI(true);
         StopDialogue(clearUI: false);
         currentRoutine = StartCoroutine(PlayRoutine(dialogue));
     }
@@ -123,5 +133,13 @@ public class DialogueSystem : MonoBehaviour
     {
         dialogUI.ClearUI();
         PlayDialogue(next);
+    }
+
+    private void HandleTestSummon(GameState state) {
+        if (state != GameState.Therapy) return;
+
+        dialogUI.ShowUI(true);
+        
+        Instance.PlayDialogue(TestDialogue);
     }
 }
