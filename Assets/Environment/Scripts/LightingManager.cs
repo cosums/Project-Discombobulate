@@ -60,8 +60,8 @@ public class LightingManager : MonoBehaviour
 
     public void Flicker(float duration, Action onBlackout = null)
     {
-        if (_routine != null) StopCoroutine(_routine);
-        _routine = StartCoroutine(FlickerRoutine(duration, onBlackout));
+        // if (_routine != null) StopCoroutine(_routine);
+        // _routine = StartCoroutine(FlickerRoutine(duration, onBlackout));
     }
 
     private IEnumerator FlickerRoutine(float duration, Action onBlackout)

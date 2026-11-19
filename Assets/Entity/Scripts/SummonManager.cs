@@ -10,6 +10,13 @@ public class SummonManager : MonoBehaviour
     private bool _playerTooClose;
     private bool _trySummon;
 
+    private Vector3 _initialPos;
+
+    public void Start()
+    {
+        _initialPos = transform.position;
+    }
+
     public void OnEnable()
     {
         SaltMaster.OnSaltPlaced += HandleSaltPlace;
