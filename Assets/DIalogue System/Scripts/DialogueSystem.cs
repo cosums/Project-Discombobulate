@@ -41,6 +41,7 @@ public class DialogueSystem : MonoBehaviour
 
     public void PlayDialogue(Dialogue dialogue)
     {
+        Debug.Log("Playing " + dialogue);
         if (dialogue == null) return;
 
         StopDialogue(clearUI: false);
@@ -62,13 +63,17 @@ public class DialogueSystem : MonoBehaviour
         }
 
         if (clearUI && dialogUI != null)
+        {
             dialogUI.ClearUI();
+        }
+            
     }
 
     IEnumerator PlayRoutine(Dialogue dialogue)
     {
         foreach (var line in dialogue.GetLines())
         {
+            Debug.Log("Line " + line.dialogLine);
             if (dialogUI == null) break;
             GameObject lineObj = dialogUI.AddLine(line.dialogLine);
 

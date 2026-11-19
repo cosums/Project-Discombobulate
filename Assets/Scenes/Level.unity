@@ -3220,6 +3220,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2491489949242145722, guid: c1825f80c2c715b43b6f17d8a17e0d2d, type: 3}
   m_PrefabInstance: {fileID: 989574061}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &163294350 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6851542079027077835, guid: 1e2d22dac4d306049a37b8e390996ad7, type: 3}
+  m_PrefabInstance: {fileID: 1745851181}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &169550399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9238,6 +9243,10 @@ PrefabInstance:
       propertyPath: m_OcclusionCulling
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2540219744430904797, guid: 5c016986b54dfb34b8c6c8b6336f8d40, type: 3}
+      propertyPath: m_GhostFocusTransform
+      value: 
+      objectReference: {fileID: 163294350}
     - target: {fileID: 3294637062352346917, guid: 5c016986b54dfb34b8c6c8b6336f8d40, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.5
@@ -36517,6 +36526,10 @@ PrefabInstance:
       propertyPath: dialogUI
       value: 
       objectReference: {fileID: 1728779100}
+    - target: {fileID: 721852333528602348, guid: b8207ca11ea38384d941ed3f6d5acc98, type: 3}
+      propertyPath: dialogueUI2
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6550322378172262882, guid: b8207ca11ea38384d941ed3f6d5acc98, type: 3}
       propertyPath: m_Name
       value: Core Systems

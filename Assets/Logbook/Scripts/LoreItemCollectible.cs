@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class LoreItemCollectible : MonoBehaviour, IInteractable
 {
     [SerializeField] LoreItemData loreItemData;
+    [SerializeField] Dialogue dialogueOnPickup;
 
     [SerializeField] UnityEvent OnInteractEnter;
     [SerializeField] UnityEvent OnHoverEnter;
@@ -21,9 +22,11 @@ public class LoreItemCollectible : MonoBehaviour, IInteractable
         if (LoreItemManager.Instance.Collect(loreItemData))
         {
             OnInteractEnter.Invoke();
+            DialogueSystem.Instance.PlayDialogue(dialogueOnPickup);
         }
 
-        InspectObjectUI.Instance.Show(loreItemData);
+        //InspectObjectUI.Instance.Show(loreItemData); // TODO UNCOMMENT ME
+        // commented out to test if subtitles work at base
     }
 
     public void HoverExit()

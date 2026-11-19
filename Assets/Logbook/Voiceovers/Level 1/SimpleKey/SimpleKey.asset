@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogLines:
   - dialogLine: Hm. This ought to fit a lock somewhere on this floor. Only one way
       to find out.
-    dialogAudio: {fileID: 0}
+    dialogAudio: {fileID: 8300000, guid: d740122bc6de72643801cc184286eda9, type: 3}
     clipLength: 5
     speaker: 0
   endingChoice: {fileID: 0}

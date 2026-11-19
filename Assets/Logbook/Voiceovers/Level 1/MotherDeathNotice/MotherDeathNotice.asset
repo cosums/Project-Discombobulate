@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Dialogue
   dialogLines:
   - dialogLine: Lady Rosethorne. Died in childbirth, 1852. Good heavens.
-    dialogAudio: {fileID: 0}
+    dialogAudio: {fileID: 8300000, guid: d740122bc6de72643801cc184286eda9, type: 3}
     clipLength: 4
     speaker: 0
   - dialogLine: A husband left without his wife, and a little girl who never knew
       her mother. Dreadful business.
-    dialogAudio: {fileID: 0}
+    dialogAudio: {fileID: 8300000, guid: d740122bc6de72643801cc184286eda9, type: 3}
     clipLength: 6
     speaker: 0
   endingChoice: {fileID: 0}

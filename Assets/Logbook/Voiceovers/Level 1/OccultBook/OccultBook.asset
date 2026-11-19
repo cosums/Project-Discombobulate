@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Dialogue
   dialogLines:
   - dialogLine: Hm. Looks as though someone left this in rather a hurry.
-    dialogAudio: {fileID: 0}
+    dialogAudio: {fileID: 8300000, guid: 97860d911b7f5eb4b9307bfc246979b8, type: 3}
     clipLength: 3
     speaker: 0
   - dialogLine: Salt, candles, and conversations with the dearly departed.
-    dialogAudio: {fileID: 0}
+    dialogAudio: {fileID: 8300000, guid: 97860d911b7f5eb4b9307bfc246979b8, type: 3}
     clipLength: 6
     speaker: 0
   - dialogLine: Good Lord. And I thought my own family was peculiar.
-    dialogAudio: {fileID: 0}
+    dialogAudio: {fileID: 8300000, guid: 97860d911b7f5eb4b9307bfc246979b8, type: 3}
     clipLength: 6
     speaker: 0
   endingChoice: {fileID: 0}

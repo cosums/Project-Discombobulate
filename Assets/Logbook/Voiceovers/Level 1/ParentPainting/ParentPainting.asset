@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Dialogue
   dialogLines:
   - dialogLine: Young love. How touching.
-    dialogAudio: {fileID: 0}
+    dialogAudio: {fileID: 8300000, guid: d740122bc6de72643801cc184286eda9, type: 3}
     clipLength: 4
     speaker: 0
   - dialogLine: The late Lord and Lady Rosethorne, I presume.
-    dialogAudio: {fileID: 0}
+    dialogAudio: {fileID: 8300000, guid: d740122bc6de72643801cc184286eda9, type: 3}
     clipLength: 4
     speaker: 0
   endingChoice: {fileID: 0}

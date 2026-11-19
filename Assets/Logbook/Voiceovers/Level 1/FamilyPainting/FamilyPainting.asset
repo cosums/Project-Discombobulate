@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Dialogue
   dialogLines:
   - dialogLine: Lord Rosethorne and his daughter Mallory, I should think.
-    dialogAudio: {fileID: 0}
+    dialogAudio: {fileID: 8300000, guid: d740122bc6de72643801cc184286eda9, type: 3}
     clipLength: 3
     speaker: 0
   - dialogLine: Rather stiff, aren't they? Even our regimental photographs had a
       bit more life in them.
-    dialogAudio: {fileID: 0}
+    dialogAudio: {fileID: 8300000, guid: d740122bc6de72643801cc184286eda9, type: 3}
     clipLength: 5
     speaker: 0
   endingChoice: {fileID: 0}

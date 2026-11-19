@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Dialogue
   dialogLines:
   - dialogLine: To love someone so dearly, only to lose them...
-    dialogAudio: {fileID: 0}
+    dialogAudio: {fileID: 8300000, guid: d740122bc6de72643801cc184286eda9, type: 3}
     clipLength: 4
     speaker: 0
   - dialogLine: I know something of that. Far too many good men never came home.
-    dialogAudio: {fileID: 0}
+    dialogAudio: {fileID: 8300000, guid: d740122bc6de72643801cc184286eda9, type: 3}
     clipLength: 4
     speaker: 0
   endingChoice: {fileID: 0}
