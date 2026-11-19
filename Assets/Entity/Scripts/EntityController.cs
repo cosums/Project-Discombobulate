@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class EntityController : MonoBehaviour
 {
     public Transform HeadAnchor;
+    public Transform BodyAnchor;
     public MeshRenderer Renderer;
 
 
@@ -45,6 +46,7 @@ public class EntityController : MonoBehaviour
     void Start()
     {
         Agent = GetComponent<NavMeshAgent>();
+        Agent.updateRotation = false;
         ChangeBehavior(StalkingBehavior);
 
         NodeManager.EvaluateHiddenNodes(Player);
@@ -68,9 +70,12 @@ public class EntityController : MonoBehaviour
         
         UpdateVisibility();
 
-        LookAtPlayer();
-
         _currentBehavior.Tick(this);
+    }
+
+    void LateUpdate()
+    {
+        LookAtPlayer();
     }
 
     private void HandleStateEnter(GameState state)
@@ -181,6 +186,9 @@ public class EntityController : MonoBehaviour
     {
         //if (PlayerVisibility == Visibility.Focused) return;
         HeadAnchor.LookAt(PlayerCamera.position);
+        Vector3 flat = PlayerCamera.position - BodyAnchor.position;
+        flat.y = 0f;
+        BodyAnchor.rotation = Quaternion.LookRotation(flat);
     }
 
     void OnDrawGizmos()

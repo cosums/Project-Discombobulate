@@ -44,7 +44,7 @@ public class LightingManager : MonoBehaviour
 
     public void Blackout(float hold, Action onBlackout = null)
     {
-        _routine = StartCoroutine(BlackoutRoutine(hold, onBlackout));
+        //_routine = StartCoroutine(BlackoutRoutine(hold, onBlackout));
     }
 
     private IEnumerator BlackoutRoutine(float hold, Action onBlackout)
