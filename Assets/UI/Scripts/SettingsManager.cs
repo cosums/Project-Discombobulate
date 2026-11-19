@@ -17,7 +17,7 @@ public class SettingsManager : MonoBehaviour
     {
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            if (!_paused && GameManager.Instance.CurrentState != GameState.Paused)
+            if (!_paused && GameManager.Instance.CurrentState == GameState.Playing)
             {
                 GameManager.Instance.ChangeState(GameState.Paused);
                 SetPause(true);
