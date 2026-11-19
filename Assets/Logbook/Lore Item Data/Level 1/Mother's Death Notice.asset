@@ -15,6 +15,6 @@ MonoBehaviour:
   ItemName: Mother's Death Notice
   Description: A death notice announcing the passing of Lady Rosethorne shortly after
     giving birth to her daughter.
-  Icon: {fileID: 0}
-  modelPrefab: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 34e7078cc154a0144b4251301bb991c6, type: 3}
+  ModelPrefab: {fileID: 1160299670909165185, guid: 273e4e49b78d73741bd64f66d49ea53c, type: 3}
   groupIndex: 2

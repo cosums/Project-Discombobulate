@@ -31,6 +31,19 @@ public class InspectObjectUI : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        if (previewCamera == null)
+        {
+            previewCamera = GameObject.Find("Inspect Object Camera").GetComponent<Camera>();
+        }
+
+        if (spawnPoint == null)
+        {
+            spawnPoint = GameObject.Find("Inspect Object Spawn Point").GetComponent<Transform>();
+        }
+    }
+
 
     public void Show(LoreItemData data)
     {

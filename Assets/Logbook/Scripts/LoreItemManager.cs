@@ -80,7 +80,7 @@ public class LoreItemManager : MonoBehaviour
 
     /// <summary>
     /// Checks if the lore item can be collected.
-    /// Cannot collect if groupIndex doesn't match or item has been colleccted already
+    /// Cannot collect if groupIndex doesn't match or item has been collected already
     /// </summary>
     /// <param name="loreItem"></param>
     /// <returns></returns>
@@ -90,7 +90,7 @@ public class LoreItemManager : MonoBehaviour
 
         if (groupIndex != currentGroupIndex)
         {
-            Debug.Log($"Can't collect {loreItem.name} yet!");
+            Debug.Log($"Can't collect {loreItem.name} yet! {loreItem.groupIndex}, {currentGroupIndex}");
             return false;
         }
 

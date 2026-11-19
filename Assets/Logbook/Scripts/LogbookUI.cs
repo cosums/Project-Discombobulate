@@ -42,6 +42,11 @@ public class LogbookUI : MonoBehaviour
     {
         loreItemButtons.Clear();
         loreItemButtons.AddRange(GetComponentsInChildren<LoreItemButtonUI>(true));
+
+        foreach (LoreItemButtonUI button in loreItemButtons)
+        {
+            button.UpdateButton(button.ItemData, false);
+        }
     }
 
     private void UpdateLogbookUI()
