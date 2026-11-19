@@ -31819,11 +31819,11 @@ PrefabInstance:
       objectReference: {fileID: 799400680}
     - target: {fileID: 7752123301521875883, guid: 1e2d22dac4d306049a37b8e390996ad7, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.x
-      value: -4.2109892e-11
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7752123301521875883, guid: 1e2d22dac4d306049a37b8e390996ad7, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.z
-      value: -0.00000009529499
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36538,6 +36538,10 @@ PrefabInstance:
       propertyPath: dialogueUI2
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 721852333528602348, guid: b8207ca11ea38384d941ed3f6d5acc98, type: 3}
+      propertyPath: TestDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 526c36bb4cd71e94dbe04551e371e7c4, type: 2}
     - target: {fileID: 6550322378172262882, guid: b8207ca11ea38384d941ed3f6d5acc98, type: 3}
       propertyPath: m_Name
       value: Core Systems

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07ca10a5917619439953c0c2b0b0c84, type: 3}
+  m_Name: 1 Dialogue
+  m_EditorClassIdentifier: Assembly-CSharp::Dialogue
+  dialogLines:
+  - dialogLine: Where did you find that?
+    dialogAudio: {fileID: 0}
+    clipLength: 3
+    speaker: 1
+  - dialogLine: In the drawing room. Lady Rosethorne's death notice, I believe. Your
+      mother.
+    dialogAudio: {fileID: 0}
+    clipLength: 4
+    speaker: 0
+  - dialogLine: Yes. She died the day I was born. I never knew her, not even the
+      sound of her voice.
+    dialogAudio: {fileID: 0}
+    clipLength: 4
+    speaker: 1
+  endingChoice: {fileID: 11400000, guid: 25c503eeb70de584b9ca069c7c206362, type: 2}
+  strictPlay: 0
+  result: 0

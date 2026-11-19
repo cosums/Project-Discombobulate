@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07ca10a5917619439953c0c2b0b0c84, type: 3}
+  m_Name: 2 Dialogue
+  m_EditorClassIdentifier: Assembly-CSharp::Dialogue
+  dialogLines:
+  - dialogLine: I came across your journal earlier. You wrote about your parents
+      and how happy they were before your mother passed.
+    dialogAudio: {fileID: 0}
+    clipLength: 5
+    speaker: 0
+  - dialogLine: 'That is what everyone tells me. That he was kind, that he was happy.
+      Before I was born.
+
+'
+    dialogAudio: {fileID: 0}
+    clipLength: 4
+    speaker: 1
+  - dialogLine: 'And what do you remember of him?
+
+'
+    dialogAudio: {fileID: 0}
+    clipLength: 3
+    speaker: 0
+  - dialogLine: 'I remember being told how much he loved my mother. And how much
+      he lost when she died.
+
+'
+    dialogAudio: {fileID: 0}
+    clipLength: 4
+    speaker: 0
+  endingChoice: {fileID: 11400000, guid: 6dabf1597f8c8034892ff077f2b94f31, type: 2}
+  strictPlay: 0
+  result: 0

@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07ca10a5917619439953c0c2b0b0c84, type: 3}
+  m_Name: 0 Dialogue
+  m_EditorClassIdentifier: Assembly-CSharp::Dialogue
+  dialogLines:
+  - dialogLine: You! What have you done? Why have you brought me here?
+    dialogAudio: {fileID: 0}
+    clipLength: 3
+    speaker: 1
+  - dialogLine: Miss Rosethorne, I presume. James Thorne.
+    dialogAudio: {fileID: 0}
+    clipLength: 3
+    speaker: 0
+  - dialogLine: 'I believe we''ve had the pleasure of meeting, though I must say
+      our first encounter was rather less civilized.
+
+'
+    dialogAudio: {fileID: 0}
+    clipLength: 5
+    speaker: 0
+  - dialogLine: I did not ask for your company. Leave this house!
+    dialogAudio: {fileID: 0}
+    clipLength: 3
+    speaker: 1
+  - dialogLine: 'I''m afraid that''s rather difficult, seeing as I''ve just inherited
+      it. But perhaps we might come to an understanding.
+
+'
+    dialogAudio: {fileID: 0}
+    clipLength: 5
+    speaker: 0
+  - dialogLine: 'An understanding? You know nothing of me. You''re just another stranger
+      meddling in matters that do not concern him. '
+    dialogAudio: {fileID: 0}
+    clipLength: 5
+    speaker: 1
+  endingChoice: {fileID: 11400000, guid: ed437ec7e455b4544a441eb7ce40dc90, type: 2}
+  strictPlay: 0
+  result: 0
