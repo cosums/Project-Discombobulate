@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07ca10a5917619439953c0c2b0b0c84, type: 3}
+  m_Name: Journal1
+  m_EditorClassIdentifier: Assembly-CSharp::Dialogue
+  dialogLines:
+  - dialogLine: To love someone so dearly, only to lose them...
+    dialogAudio: {fileID: 0}
+    clipLength: 4
+    speaker: 0
+  - dialogLine: I know something of that. Far too many good men never came home.
+    dialogAudio: {fileID: 0}
+    clipLength: 4
+    speaker: 0
+  endingChoice: {fileID: 0}
+  strictPlay: 1
+  result: 0
