@@ -4731,6 +4731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoreItemCollectible
   loreItemData: {fileID: 11400000, guid: ee000abcac1f81e48b35aaa2323fbd02, type: 2}
+  dialogueOnPickup: {fileID: 0}
   OnInteractEnter:
     m_PersistentCalls:
       m_Calls:
@@ -17390,6 +17391,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1939269850386961596, guid: 6f0b3353792664245b8b0f24ee37a48f, type: 3}
   m_PrefabInstance: {fileID: 991572328}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &993293973 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4684335432684832208, guid: b8207ca11ea38384d941ed3f6d5acc98, type: 3}
+  m_PrefabInstance: {fileID: 595177292860383212}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &996913677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19523,6 +19529,11 @@ PrefabInstance:
       addedObject: {fileID: 1518966515}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f4ca24b1f6b9dc41b71717de008686b, type: 3}
+--- !u!4 &1118868246 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5338839312727753780, guid: b8207ca11ea38384d941ed3f6d5acc98, type: 3}
+  m_PrefabInstance: {fileID: 595177292860383212}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1131144447
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20459,6 +20470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoreItemCollectible
   loreItemData: {fileID: 11400000, guid: 72243e22f7460c24e939b20a7d30bc0f, type: 2}
+  dialogueOnPickup: {fileID: 0}
   OnInteractEnter:
     m_PersistentCalls:
       m_Calls:
@@ -34292,10 +34304,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2025034351024605531, guid: ac7f1c8c7c2fbd34cbdee579c71db2af, type: 3}
+      propertyPath: previewCamera
+      value: 
+      objectReference: {fileID: 993293973}
     - target: {fileID: 6422401407290000068, guid: ac7f1c8c7c2fbd34cbdee579c71db2af, type: 3}
       propertyPath: m_Name
       value: Game UI
       objectReference: {fileID: 0}
+    - target: {fileID: 6939129976654893419, guid: ac7f1c8c7c2fbd34cbdee579c71db2af, type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 1118868246}
+    - target: {fileID: 6939129976654893419, guid: ac7f1c8c7c2fbd34cbdee579c71db2af, type: 3}
+      propertyPath: previewCamera
+      value: 
+      objectReference: {fileID: 993293973}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
