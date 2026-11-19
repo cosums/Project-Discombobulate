@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 733392720109727679}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorTall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 4487281606424868698}
   - component: {fileID: 4450715218963415742}
   - component: {fileID: 1130319758945542294}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: door.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 563746192730147774}
   - component: {fileID: 7546089390106851717}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorTall_better
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6449495881534487660}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 28853298614725547}
   - component: {fileID: 2299033793663778795}
   - component: {fileID: 4099109482229085808}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: keyhole_shadow.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 338512251072397415}
   - component: {fileID: 958448993657290666}
   - component: {fileID: 2848264296811016869}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: frame.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,7 +420,7 @@ GameObject:
   - component: {fileID: 5775014135623211653}
   - component: {fileID: 3792228790081378373}
   - component: {fileID: 8036342546826322158}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -510,7 +510,7 @@ GameObject:
   - component: {fileID: 2215854213678586202}
   - component: {fileID: 415647758512107116}
   - component: {fileID: 7386092631681162393}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Doorknob
   m_TagString: Untagged
   m_Icon: {fileID: 0}

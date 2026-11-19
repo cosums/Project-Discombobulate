@@ -29,7 +29,7 @@ public class PlayerInteractor : MonoBehaviour
     {
         // Hovering over valid interactable object
         if (Physics.Raycast(cam.position, cam.forward, out RaycastHit hit, interactDistance, interactLayer)
-            && hit.transform.TryGetComponent<IInteractable>(out IInteractable interactable))
+            && hit.collider.GetComponentInParent<IInteractable>() is IInteractable interactable)
         {
             if (currentInteractable != null && currentInteractable.Equals(interactable)) return;
 

@@ -17,6 +17,7 @@ public class AINodeManager : MonoBehaviour
     public Transform PlayerTransform;
 
     public float RetreatApproachTolerance = 1.5f;
+    public float RetreatDistanceGain = 5f;
     public float LineOfSightBonus = 12f;
     public float CurrentTargetBonus = 3f;
 
@@ -328,24 +329,28 @@ public class AINodeManager : MonoBehaviour
         float minAllowedDist = startDist - RetreatApproachTolerance;
  
         AINode best = null;
+        float bestPlayerDistance = startDist + RetreatDistanceGain;
         float bestLength = Mathf.Infinity;
  
         foreach (var node in HiddenNodes)
         {
             Vector3 nodePos = node.transform.position;
- 
-            if (Vector3.Distance(start, nodePos) >= bestLength) continue;
+            float playerDistance = FlatDistance(nodePos, player.position);
+            if (playerDistance < bestPlayerDistance) continue;
  
             if (!NavMesh.CalculatePath(start, nodePos, NavMesh.AllAreas, _retreatPath)) continue;
             if (_retreatPath.status != NavMeshPathStatus.PathComplete) continue;
  
             float length = GetPathLength(_retreatPath);
-            if (length >= bestLength) continue;
- 
             if (PathGetsCloserThan(_retreatPath.corners, player.position, minAllowedDist)) continue;
  
-            best = node;
-            bestLength = length;
+            if (playerDistance > bestPlayerDistance ||
+                (Mathf.Approximately(playerDistance, bestPlayerDistance) && length < bestLength))
+            {
+                best = node;
+                bestPlayerDistance = playerDistance;
+                bestLength = length;
+            }
         }
  
         return best;

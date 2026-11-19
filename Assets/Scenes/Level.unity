@@ -5354,6 +5354,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1825f80c2c715b43b6f17d8a17e0d2d, type: 3}
+--- !u!224 &282040915 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8537969292693368122, guid: a3cc589c231d06f4a8f9e99d6316db7f, type: 3}
+  m_PrefabInstance: {fileID: 2927850523624052856}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &282628711 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2491489949242145722, guid: c1825f80c2c715b43b6f17d8a17e0d2d, type: 3}
@@ -26558,6 +26563,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2911366455026851406, guid: 9039b56b99c0823438239a1fc1051e78, type: 3}
   m_PrefabInstance: {fileID: 1473368648}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1476029393 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7499319814310223986, guid: b8207ca11ea38384d941ed3f6d5acc98, type: 3}
+  m_PrefabInstance: {fileID: 595177292860383212}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1478554141
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36588,7 +36598,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7499319814310223986, guid: b8207ca11ea38384d941ed3f6d5acc98, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 282040915}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8207ca11ea38384d941ed3f6d5acc98, type: 3}
 --- !u!1001 &1885908978287761655
@@ -36748,7 +36761,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1476029393}
     m_Modifications:
     - target: {fileID: 384066036523497667, guid: a3cc589c231d06f4a8f9e99d6316db7f, type: 3}
       propertyPath: m_AnchorMax.y
@@ -37673,7 +37686,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 595177292860383212}
   - {fileID: 1941943184}
-  - {fileID: 2927850523624052856}
   - {fileID: 9081413463688345974}
   - {fileID: 484090812}
   - {fileID: 1885908978287761655}

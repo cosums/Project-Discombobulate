@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: 1.1 Choice
   m_EditorClassIdentifier: Assembly-CSharp::DialogueChoice
   dialogueChoices:
-  - dialogLine: 'At least you had your father. I''m certain he did his best.
+  - dialogLine: '> At least you had your father. I''m certain he did his best.
 
 '
     dialogAudio: {fileID: 0}
     clipLength: 3
     nextDialogue: {fileID: 11400000, guid: 389dfd18fc8f7c042a5fea7feb2f876d, type: 2}
-  - dialogLine: It must have been difficult growing up without ever knowing your
-      mother.
+  - dialogLine: '> It must have been difficult growing up without ever knowing your
+      mother.'
     dialogAudio: {fileID: 0}
     clipLength: 3
     nextDialogue: {fileID: 11400000, guid: e3376564392d52443afe2b161ae5be92, type: 2}

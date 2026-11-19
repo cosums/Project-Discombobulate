@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: 2.1 Choice
   m_EditorClassIdentifier: Assembly-CSharp::DialogueChoice
   dialogueChoices:
-  - dialogLine: His grief was his to bear, Mallory. You were only a child.
+  - dialogLine: '> His grief was his to bear, Mallory. You were only a child.'
     dialogAudio: {fileID: 0}
     clipLength: 3
     nextDialogue: {fileID: 11400000, guid: bc855af915098e64ab28cf81754e50c7, type: 2}
-  - dialogLine: 'Losing his wife must have been terribly painful. Perhaps you ought
+  - dialogLine: '> Losing his wife must have been terribly painful. Perhaps you ought
       to forgive him.
 
 '

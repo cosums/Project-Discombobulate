@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: 0.1 Choice
   m_EditorClassIdentifier: Assembly-CSharp::DialogueChoice
   dialogueChoices:
-  - dialogLine: You're quite right. I know very little about you. Perhaps you'd allow
-      me to change that.
+  - dialogLine: '> You''re quite right. I know very little about you. Perhaps you''d
+      allow me to change that.'
     dialogAudio: {fileID: 0}
     clipLength: 3
-    nextDialogue: {fileID: 0}
-  - dialogLine: I know enough to say that you have no right to terrorize me in my
-      own home.
+    nextDialogue: {fileID: 11400000, guid: 901495a3fa5ac3041bdb8f5a7dc0fc59, type: 2}
+  - dialogLine: '> I know enough to say that you have no right to terrorize me in
+      my own home.'
     dialogAudio: {fileID: 0}
     clipLength: 3
     nextDialogue: {fileID: 11400000, guid: 575056ab9d9c0ae428c53c2317639a00, type: 2}

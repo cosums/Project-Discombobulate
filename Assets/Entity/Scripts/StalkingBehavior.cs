@@ -8,17 +8,19 @@ public class StalkingBehavior : IEntityBehavior
     private const float FlickerDuration = 1.2f;
     private const float CutStareDuration = 0.75f;
     private const float CutHoldDuration = 0.8f;
-    private const float MaxStareTime = 6f;
+    private const float MaxStareTime = 1f;
 
     private const float MinHideTime = 3f;
     private const float VanishMinDistance = 10f;
     private const float RepathInterval = 0.5f;
+    private const float HideExposureGracePeriod = 1f;
     private const int MaxFollowAttempts = 3;
 
     private StalkingPhase phase;
     private float phaseTimer;
     private bool phaseEntered;
     private float repathTimer;
+    private float hideExposureTimer;
 
     private StareOutcome outcome;
     private StareOutcome? forcedOutcome;
@@ -60,6 +62,7 @@ public class StalkingBehavior : IEntityBehavior
         phaseTimer = 0f;
         phaseEntered = false;
         repathTimer = 0f;
+        hideExposureTimer = 0f;
     }
 
     private void TickHiding(EntityController entity)
@@ -78,22 +81,25 @@ public class StalkingBehavior : IEntityBehavior
         }
 
         AINode spot = entity.CurrentTarget;
-        if (spot != null && spot.VisibleToPlayer && spot.LineOfSightToPlayer)
+        if (spot == null || !spot.VisibleToPlayer || !spot.LineOfSightToPlayer)
         {
-            repathTimer -= Time.deltaTime;
-            if (repathTimer > 0f) return;
-            repathTimer = RepathInterval;
+            hideExposureTimer = 0f;
+            return;
+        }
 
-            AINode retreat = nodes.FindRetreatNode(entity.Player, entity.transform);
-            if (retreat != null)
-            {
-                entity.MoveToNode(retreat);
-            }
-            else
-            {
-                forcedOutcome = StareOutcome.CutLights;
-                SetPhase(StalkingPhase.StareDown);
-            }
+        hideExposureTimer += Time.deltaTime;
+        if (hideExposureTimer < HideExposureGracePeriod) return;
+        hideExposureTimer = 0f;
+
+        AINode retreat = nodes.FindRetreatNode(entity.Player, entity.transform);
+        if (retreat != null)
+        {
+            MoveToRetreatNode(entity, retreat);
+        }
+        else
+        {
+            forcedOutcome = StareOutcome.CutLights;
+            SetPhase(StalkingPhase.StareDown);
         }
     }
 
@@ -168,8 +174,14 @@ public class StalkingBehavior : IEntityBehavior
     private void DoRetreat(EntityController entity)
     {
         entity.Agent.speed = entity.StalkHideSpeed;
-        entity.MoveToNode(retreatNode); 
+        MoveToRetreatNode(entity, retreatNode);
         SetPhase(StalkingPhase.Hiding);
+    }
+
+    private void MoveToRetreatNode(EntityController entity, AINode target)
+    {
+        if (!entity.SmartMoveToNode(target, entity.NodeManager.EdgeExposureCostFunc))
+            entity.MoveToNode(target);
     }
 
     private void DoStareThenLights(EntityController entity, float stareTime, bool flicker)

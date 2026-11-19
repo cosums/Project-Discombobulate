@@ -85,6 +85,9 @@ public class EntityController : MonoBehaviour
             case GameState.Therapy:
                 EnterTherapy();
                 break;
+            default:
+                ExitTherapy();
+                break;
         }
     }
 
@@ -94,6 +97,12 @@ public class EntityController : MonoBehaviour
         Freeze();
         transform.position = SummoningManager.transform.position;
         LookAtPlayer();
+    }
+
+    private void ExitTherapy()
+    {
+        _therapyMode = false;
+        Unfreeze();
     }
 
     public bool SmartMoveToNode(AINode target, System.Func<AINode, AINode, float, float> costFn = null)

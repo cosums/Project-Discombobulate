@@ -17,7 +17,7 @@ public class LogbookUI : MonoBehaviour
     private void Update()
     {
         // TODO: move input logic to a centralized script
-        if (Keyboard.current.gKey.wasPressedThisFrame)
+        if (Keyboard.current.tabKey.wasPressedThisFrame)
         {
             showUI = !showUI;
             SetActive(showUI);
