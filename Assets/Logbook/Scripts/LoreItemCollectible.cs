@@ -25,7 +25,7 @@ public class LoreItemCollectible : MonoBehaviour, IInteractable
             DialogueSystem.Instance.PlayDialogue(dialogueOnPickup);
         }
 
-        //InspectObjectUI.Instance.Show(loreItemData); // TODO UNCOMMENT ME
+        InspectObjectUI.Instance.Show(loreItemData); // TODO UNCOMMENT ME
         // commented out to test if subtitles work at base
     }
 

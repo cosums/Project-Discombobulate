@@ -83,7 +83,7 @@ public class DialogueSystem : MonoBehaviour
     {
         foreach (var line in dialogue.GetLines())
         {
-            Debug.Log("Line " + line.dialogLine);
+            Debug.Log("[Dialogue]: " + line.dialogLine);
             if (dialogUI == null) break;
             GameObject lineObj = dialogUI.AddLine(line.dialogLine);
 

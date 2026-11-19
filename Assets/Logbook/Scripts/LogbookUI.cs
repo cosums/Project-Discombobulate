@@ -22,8 +22,8 @@ public class LogbookUI : MonoBehaviour
             showUI = !showUI;
             SetActive(showUI);
             PlayerController.CanMove = !showUI;
-            if (showUI) UIManager.EnableCursor();
-            else UIManager.DisableCursor();
+            if (showUI) GameManager.Instance.ChangeState(GameState.Paused);
+            else GameManager.Instance.ChangeState(GameState.Playing);
         }
     }
 

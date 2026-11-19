@@ -45,7 +45,7 @@ public class InspectObjectUI : MonoBehaviour
         previewCamera.enabled = true;
         panelRoot.SetActive(true);
 
-        UIManager.EnableCursor();
+        GameManager.Instance.ChangeState(GameState.Paused);
     }
 
     public void Hide()
@@ -53,7 +53,7 @@ public class InspectObjectUI : MonoBehaviour
         ClearModel();
         previewCamera.enabled = false;
         panelRoot.SetActive(false);
-        UIManager.DisableCursor();
+        GameManager.Instance.ChangeState(GameState.Playing);
     }
 
     private void SpawnModel(GameObject prefab)

@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public static bool movementDisabled = false;
+    //public static bool movementDisabled = false;
 
     private enum MovementMode
     {
@@ -45,7 +45,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         m_CharacterController = GetComponent<CharacterController>();
-        UIManager.DisableCursor();
         _initialScale = transform.localScale;
     }
     
@@ -56,11 +55,6 @@ public class PlayerController : MonoBehaviour
             LookTowardsGhost();
         }
 
-        if(movementDisabled)
-        {
-            return;
-        }
-        
         if (GameManager.Instance.CurrentState != GameState.Playing) return;
         
         MyInput();

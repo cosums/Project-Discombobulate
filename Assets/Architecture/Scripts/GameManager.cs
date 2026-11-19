@@ -76,8 +76,11 @@ public class GameManager : MonoBehaviour
     {
         switch (state)
         {
+            case GameState.Playing:
+                break;
             case GameState.Paused:
-                Time.timeScale = 0;
+                Time.timeScale = 1;
+                UIManager.DisableCursor();
                 break;
             case GameState.Therapy:
                 UIManager.DisableCursor();
@@ -91,8 +94,12 @@ public class GameManager : MonoBehaviour
     {
         switch (state)
         {
+            case GameState.Playing:
+                UIManager.DisableCursor();
+                break;
             case GameState.Paused:
-                Time.timeScale = 1;
+                Time.timeScale = 0;
+                UIManager.EnableCursor();
                 break;
             case GameState.Therapy:
                 UIManager.EnableCursor();

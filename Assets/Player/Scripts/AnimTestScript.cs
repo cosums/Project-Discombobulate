@@ -22,13 +22,13 @@ public class AnimTestScript : MonoBehaviour
         if (totalTime > 5f && !playedFirst)
         {
             playedFirst = true;
-            PlayerController.movementDisabled = true;
+            //PlayerController.movementDisabled = true;
             animator.SetTrigger(firstTrigger);
             totalTime = 0f;
         }
         if (totalTime > 5f && playedFirst)
         {
-            PlayerController.movementDisabled = false;
+            //PlayerController.movementDisabled = false;
             playedFirst = false;
             animator.SetTrigger(secondTrigger);
             totalTime = 0f;
