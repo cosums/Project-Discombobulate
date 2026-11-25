@@ -5,6 +5,7 @@ public class DoorController : MonoBehaviour, IInteractable
 {
     // I adoor this script guys
     // reply to my code comments im so lonely
+    // hi so lonely im dad
     
     [SerializeField] private Transform m_DoorPivot;
     [SerializeField] private Vector3 m_DoorOpenRotation;
@@ -24,6 +25,8 @@ public class DoorController : MonoBehaviour, IInteractable
         m_DoorPivot.localRotation = Quaternion.Lerp(Quaternion.Euler(startRot), Quaternion.Euler(targetRot), _progress);
 
         _done = targetRot == m_DoorPivot.localEulerAngles;
+
+        
     }
 
     public void OpenDoor(bool open)
