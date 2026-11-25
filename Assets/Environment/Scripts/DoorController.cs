@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +16,8 @@ public class DoorController : MonoBehaviour, IInteractable
     private float _progress = 0;
     private bool _open = false;
     private bool _done = false;
+
+    public Action OnTryOpenDoor = () => { };
 
     void Update()
     {
@@ -49,5 +52,6 @@ public class DoorController : MonoBehaviour, IInteractable
     {
         Debug.Log("Tried opening door!");
         OpenDoor(!_open);
+        OnTryOpenDoor();
     }
 }
